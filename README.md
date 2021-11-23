@@ -2,7 +2,7 @@
 
 ### Pour tester la visualisation sur vos donnés 
 
-#### Etape 1 
+#### Etape 1 - Récupérer votre historique Youtube
 1.  Go to http://google.com/takeout
 1.  Select "deselect all" at the top
 1.  Scroll to bottom and select "YouTube and YouTube Music"
@@ -15,7 +15,7 @@
 1.  The download should be ready in a few minutes, refresh the page at https://takeout.google.com/ and you will see a "Download" button
 
 
-#### Etape 2
+#### Etape 2 - Mapper vos historiques avec les informations sur chaque vidéos
 Lancer un serveur python dans le dossier git
 > `python3  http.server 8000`
 
