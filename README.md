@@ -1,6 +1,6 @@
 # Projet de visualisation de l'historique Youtube
 
-### Pour tester la visualisation sur vos donnés 
+## Pour tester la visualisation sur vos donnés 
 
 #### Etape 1 - Récupérer votre historique Youtube
 1.  Go to http://google.com/takeout
@@ -15,7 +15,7 @@
 1.  The download should be ready in a few minutes, refresh the page at https://takeout.google.com/ and you will see a "Download" button
 
 
-#### Etape 2 - Mapper vos historiques avec les informations sur chaque vidéos
+#### Etape 2 - Mapper votre historique avec les informations sur chaque vidéos
 Lancer un serveur python dans le dossier git
 > `python3  http.server 8000`
 
