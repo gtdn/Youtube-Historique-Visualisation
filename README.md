@@ -15,7 +15,7 @@
 
 #### Etape 2 - Mapper votre historique avec les informations sur chaque vidéos
 Lancer un serveur python dans le dossier git
-> `python3  http.server 8000`
+> `python3  -m http.server 8000`
 
 Enregistrer votre historique Youtube récupéré à l'étape 1 dans `/data/history`
 
