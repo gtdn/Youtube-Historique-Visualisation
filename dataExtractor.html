@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Extractor</title>
+        <title>Extracteurr</title>
     </head>
     <body>
-        <p> Extraction des données </p>
-
-
+        <p> Extraction et mappage des données en cours...</p>
     </body>
 </html>
 
@@ -14,7 +12,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-  'python3 -m http,serveur 8000'
   var apiKey = 'AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U'
   var json = []
   var json_name = "video_tim"
@@ -42,7 +39,6 @@
       console.log(json);
   },500)
 
-
   });
 
   function download(content, fileName, contentType) {
@@ -52,5 +48,4 @@
      a.download = fileName;
      a.click();
   }
-
 </script>
