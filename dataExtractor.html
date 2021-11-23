@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+
+
+    </body>
+</html>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+/*python3 -m http.server  8000 */
+var apiKey = 'AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U'
+var json = []
+var json_name = "video_tim"
+
+d3.json("/Takeout/Youtube/historique/watch-history.json").then(function(data){
+  //console.log(data);
+  console.log(data)
+  var exist = []
+  data.forEach((item, i) => {
+
+      if(item.titleUrl != undefined){
+        video_id = item.titleUrl.replace("https://www.youtube.com/watch?v=","");
+        exist.push(video_id)
+        if(!(exist.includes('video'))){
+
+          var url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey;
+          $.get(url, function(data2){
+            console.log(data2)
+            data2["date"] = item.time;
+            json.push(data2)
+          })
+        }
+      }
+
+
+  });
+  setTimeout(function(){
+    download(JSON.stringify(json), json_name+".json", "text/html");
+    console.log(json);
+},500)
+
+
+});
+
+function download(content, fileName, contentType) {
+         const a = document.createElement("a");
+         const file = new Blob([content], { type: contentType });
+         a.href = URL.createObjectURL(file);
+         a.download = fileName;
+         a.click();
+    }
+
+
+/* function start() {
+<script src="https://apis.google.com/js/api.js"><script>
+<script type="text/javascript">
+  console.log("test")
+  d3.json("/Takeout/Youtube/historique/watch-history.json", function(error,data) {
+    if (error) throw error;
+
+    console.log(data)
+    var video1 = data[1]
+    console.log(video1)
+    console.log(video1.titleUrl)
+
+  });
+
+
+  //
+
+
+
+  // 2. Initialize the JavaScript client library.
+  gapi.client.init({
+    'apiKey': 'AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U',
+    // Your API key will be automatically added to the Discovery Document URLs.
+    'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+
+  }).then(function() {
+    // 3. Initialize and make the API request.
+    return gapi.client.people.people.get({
+      'resourceName': 'people/me',
+      'requestMask.includeField': 'person.names'
+    });
+  }).then(function(response) {
+    console.log(response.result);
+  }, function(reason) {
+    console.log('Error: ' + reason.result.error.message);
+  });
+};
+// 1. Load the JavaScript client library.
+gapi.load('client', start);
+*/
+</script>
