@@ -1,8 +1,9 @@
 # data_viz-project
 
-## Pour extraire vos donnés 
+### Pour extraire vos donnés 
 Lancer un serveur python dans le dossier 
-`python 3  http.server 8000`
+
+`python3  http.server 8000`
 
 
 ## Google Cloud API 
