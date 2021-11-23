@@ -1,9 +1,11 @@
 # data_viz-project
 
 ### Pour extraire vos donnés 
-Lancer un serveur python dans le dossier 
+Lancer un serveur python dans le dossier  `python3  http.server 8000`
 
-`python3  http.server 8000`
+Modifier le fichier `dataExtractor.html` avec votre clé `API Youtube` 
+
+Lancer le site `dataExtractor.html`
 
 
 ## Google Cloud API 
