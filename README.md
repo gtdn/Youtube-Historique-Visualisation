@@ -6,7 +6,7 @@ Lancer un serveur python dans le dossier
 
 Enregistrer votre historique Youtube dans `/data/history`
 
-Modifier le fichier `dataExtractor.html` avec votre clé `API Youtube` et le nom de votre fichier dans `/data/brut` 
+Modifier le fichier `dataExtractor.html` avec votre clé `API Youtube` et changer le chemin  `/data/history/yourdatahistory` 
 
 Lancer le site `dataExtractor.html`, puis enregistrer votre dataset dans `/data`
 
