@@ -1,12 +1,25 @@
 # Projet de visualisation de l'historique Youtube
 
-### Pour extraire vos donnés 
-Lancer un serveur python dans le dossier  
-> `python3  http.server 8000`
+## Pour tester la visualisation sur vos donnés 
 
-Enregistrer votre historique Youtube dans `/data/history`
+#### Etape 1 - Récupérer votre historique Youtube
+1.  Aller sur http://google.com/takeout
+1.  Sélectionnez "désélectionner tout" en haut
+1.  Faites défiler vers le bas et sélectionnez "YouTube et YouTube Music"
+1.  Sélectionnez ensuite "Toutes les données YouTube incluses" sous l'option "YouTube et YouTube Music"
+1.  Sélectionnez "désélectionner tout" (à nouveau) dans cette fenêtre contextuelle
+1.  Sélectionnez "historique", puis "ok"
+1.  Sélectionnez "Étape suivante", laissez "exporter une fois" sélectionné
+1.  Laissez .zip sélectionné et 2 Go sélectionnés (le téléchargement ne fera que quelques Mo)
+1.  Le téléchargement devrait être prêt dans quelques minutes, actualisez la page sur https://takeout.google.com/ et vous verrez un bouton "Télécharger"
 
-Modifier le fichier `dataExtractor.html` avec votre clé `API Youtube` et changer le chemin  `/data/history/yourdatahistory` 
+#### Etape 2 - Mapper votre historique avec les informations sur chaque vidéos
+Lancer un serveur python dans le dossier git
+> `python3  -m http.server 8000`
+
+Enregistrer votre historique Youtube récupéré à l'étape 1 dans `/data/history`
+
+Modifier le fichier `dataExtractor.html` et changer le chemin avec `/data/history/yourdatahistory` 
 
 Lancer le site `dataExtractor.html`, puis enregistrer votre dataset dans `/data`
 
