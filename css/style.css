@@ -1,9 +1,10 @@
 body{
-
+	font-family: "Fira Sans";
 }
 
 #header{	
 	background-color: #FFDAB9;
+	padding: 40px;
 }
 
 nav{
