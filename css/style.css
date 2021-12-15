@@ -1,0 +1,54 @@
+body{
+	font-family: "Fira Sans";
+}
+
+#header{	
+	background-color: #FFDAB9;
+	padding: 40px;
+}
+
+nav{
+	text-align: center;	
+	color: #5F5C5B;
+	letter-spacing: 4px; 
+	font-weight:bold;
+	font-size: 20px;
+}
+
+#stat{
+	font-weight:bold;
+	background-color: #8F3A841C;
+	margin-bottom: 40px;
+	margin-top: 40px;
+	/*margin-left: 5px;*/
+}
+
+#titleStat{
+	text-align: center;	
+	padding: 40px;
+}
+
+#periode{
+	text-align: center;
+}
+
+#favCateg,#favVideo{
+	text-align: center;
+	padding-bottom: 40px;
+	font-weight:bold;
+}
+
+#codeD3{
+	padding: 40px;
+	margin-top: 10px;
+	text-align: center;	
+}
+
+
+#footer {
+	text-align: center;
+	padding: 40px;
+	color : #5F5C5B;
+	background-color: #FFDAB9;
+}
+
