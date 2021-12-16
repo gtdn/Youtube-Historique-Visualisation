@@ -17,30 +17,35 @@
   var json_name = "parsed_data_api_2"
 
   d3.json("data/history/watch-history_2.json").then(function(data){
-    console.log(data)
+
     var exist = []
-    int nbRequeste = 0;
+    var nbRequeste = 0;
     data.forEach((item, i) => {
-      if nbRequeste <= 1000{
+      //arrêté à 573
+      if (i >= 573 && i <= 1000){
         if(item.titleUrl != undefined){
+
+          nbRequeste += 1;
+
           video_id = item.titleUrl.replace("https://www.youtube.com/watch?v=","");
           exist.push(video_id)
           if(!(exist.includes('video'))){
 
             var url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey;
             $.get(url, function(data2){
-              console.log(data2)
               data2["date"] = item.time;
               json.push(data2)
             })
           }
-        }  
+
+        }
       }
     });
+    console.log(nbRequeste)
     setTimeout(function(){
-      download(JSON.stringify(json), json_name+".json", "text/html");
-      //console.log(json);
-  },500)
+    download(JSON.stringify(json), json_name+".json", "text/html");
+    //console.log(json);
+  },2000)
 
   });
 

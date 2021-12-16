@@ -48,7 +48,7 @@ var colorArray = [
 ];
 
 d3.json(
-  "data/parsed_data_api_2.json"
+  "data/parsed_data_api_1.json"
 ).then(function (json) {
 
   //Create an array of datas By categories
@@ -68,17 +68,20 @@ d3.json(
   //Create an array of all month between first and last video :
   var dates = [];
   var values = []
+  const a = json.reduce((a, b) => (a.date < b.date) ? a.date : b.date);
+  console.log("a",a)
   var dateEnd = new Date(json[0].date);
   var dateStart = new Date(json[json.length-1].date);
   var month = new Date(dateStart);
   var par = d3.timeFormat("%Y-%m")
   nbMonth = ((dateEnd.getYear()-dateStart.getYear())*12)+(dateEnd.getMonth()-dateStart.getMonth())
+  //console.log(dateStart,dateEnd)
    while(!(dateEnd.getYear() == month.getYear() && dateEnd.getMonth() == month.getMonth())){
       dates.push(par(month));
       month = new Date(month.setMonth(month.getMonth()+1))
   }
   dates.push(par(month));
-console.log(dates)
+//console.log(dates)
 //Create a structure of video by Categories AND Month
   let max = 0;
   let datas = []
@@ -103,7 +106,7 @@ console.log(dates)
     datas.push(obj)
   }
 
-
+  //console.log(datas)
   //Initialize Line Chart with scales
   var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
   svg.append("g")
@@ -145,7 +148,15 @@ for(i in categories){
 // This allows to find the closest X index of the mouse:
 var bisect = d3.bisector(function(d) { return d.x; }).left;
 
-
+var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
+  .attr("class","mouseLine")
+  .attr('x1', 500)
+  .attr('y1', 0)
+  .attr('x2', 500)
+  .attr('y2', height)
+  .style("stroke","black")
+  .style("stroke-width", "1px")
+  .style("opacity", "0");
 // Create the text that travels along the curve of chart
 // var focusText = svg
 // .append('g')
@@ -164,40 +175,13 @@ svg
   .on('mousemove', mousemove)
   .on('mouseout', mouseout);
 
-var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
-  .attr("class","mouseLine")
-  .attr('x1', 500)
-  .attr('y1', 0)
-  .attr('x2', 500)
-  .attr('y2', height)
-  .style("stroke","black")
-  .style("stroke-width", "1px")
-  .style("opacity", "0");
+
 
   function mousemove(e) {
     var coordinates= d3.pointer(e);
     var cooX = coordinates[0];
     var cooY = coordinates[1];
-   //  mouseLine
-   // .attr("d", function(){
-   //   yRange = y.range(); // range of y axis
-   //   var xCoor = cooX; // mouse position in x
-   //   var xDate = x.invert(xCoor);
-   //
-   // })
-  /* svg.append('line')
-    .attr('x1', 0)
-    .attr('y1', y)
-    .attr('x2', width)
-    .attr('y2', y)
-    .attr('stroke', 'red')*/
     mouseLine.attr('x1', cooX).attr('x2', cooX)
-    // .attr("d", function(){
-    // yRange = y.range(); // range of y axis
-    // var xCoor = cooX; // mouse position in x
-    // var xDate = x.invert(xCoor);
-    // });
-
   }
   function mouseover() {
     mouseLine
@@ -206,7 +190,7 @@ var mouseLine = svg.append("line") // this is the black vertical line to follow 
   }
   function mouseout() {
     mouseLine
-  .style("opacity", "0.5");
+  .style("opacity", "0");
   //  console.log("out")
   }
   // // What happens when the mouse move -> show the annotations at the right positions.
