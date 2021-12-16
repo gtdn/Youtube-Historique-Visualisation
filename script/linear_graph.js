@@ -48,12 +48,12 @@ var colorArray = [
 ];
 
 d3.json(
-  "data/video_tim.json"
+  "data/parsed_data_api_2.json"
 ).then(function (json) {
 
   //Create an array of datas By categories
   var structByCategories={};
-  console.log(categories)
+//  console.log(categories)
   for (i in categories){
     let cat_video = json.filter(function(d){
       if(d.items[0] !== undefined){
@@ -62,7 +62,7 @@ d3.json(
     });
     structByCategories[i] = cat_video;
   }
-  console.log(structByCategories);
+//  console.log(structByCategories);
 
 
   //Create an array of all month between first and last video :
@@ -78,7 +78,7 @@ d3.json(
       month = new Date(month.setMonth(month.getMonth()+1))
   }
   dates.push(par(month));
-
+console.log(dates)
 //Create a structure of video by Categories AND Month
   let max = 0;
   let datas = []
@@ -102,20 +102,6 @@ d3.json(
     obj.values = values_cat;
     datas.push(obj)
   }
-  console.log(datas)
-
-  //Create a Structure of video by month
-  // datas = []
-  // //Create Value Table
-  // for(i in dates){
-  //   var da = new Date(dates[i]);
-  //   let obj = {}
-  //   obj.dates = da
-  //   obj.values = json.filter((d) =>
-  //   (da.getYear() == new Date(d.date).getYear() &&
-  //   da.getMonth() == new Date(d.date).getMonth())).length;
-  //   datas.push(obj)
-  // }
 
 
   //Initialize Line Chart with scales
@@ -131,26 +117,121 @@ d3.json(
       .call(d3.axisLeft(y));
   // define the 1st line
 
+
 for(i in categories){
 
-  path = svg.append("path")
+    path = svg.append("path")
     .datum(datas)
     .attr("fill", "none")
     .attr("class","lines")
     .attr("stroke", colorArray[i])
-    .attr("stroke-width", 1.5)
+    .attr("stroke-width", 3)
     .attr("d", d3.line()
-      .x(function(d) { return x(d.dates) })
-      .y(function(d) { return y(d.values[i]) })
-    )
+    .x(function(d) { return x(d.dates) })
+    .y(function(d) { return y(d.values[i]) })
+  ).on('mouseover', function (d, i) {
+  //  console.log(this)
+    d3.select(".lines").a
+    d3.select(this).transition()
+    .duration('50')
+    .attr('opacity', '.85');
+  }).on('mouseout', function (d, i) {
+    d3.select(this).transition()
+    .duration('50')
+    .attr('opacity', '1');
+  })
 }
 
-d3.selectAll(".lines").on("mouseover", (e) => {
-  console.log("Test")
-  d3.selectAll(".lines").attr("opacity","80%");
-})
-  // Add the line
+// This allows to find the closest X index of the mouse:
+var bisect = d3.bisector(function(d) { return d.x; }).left;
 
+
+// Create the text that travels along the curve of chart
+// var focusText = svg
+// .append('g')
+// .append('text')
+//   .style("opacity", 0)
+//   .attr("text-anchor", "left")
+//   .attr("alignment-baseline", "middle")
+// Create a rect on top of the svg area: this rectangle recovers mouse position
+svg
+  .append('rect')
+  .style("fill", "none")
+  .style("pointer-events", "all")
+  .attr('width', width)
+  .attr('height', height)
+  .on('mouseover', mouseover)
+  .on('mousemove', mousemove)
+  .on('mouseout', mouseout);
+
+var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
+  .attr("class","mouseLine")
+  .attr('x1', 500)
+  .attr('y1', 0)
+  .attr('x2', 500)
+  .attr('y2', height)
+  .style("stroke","black")
+  .style("stroke-width", "1px")
+  .style("opacity", "0");
+
+  function mousemove(e) {
+    var coordinates= d3.pointer(e);
+    var cooX = coordinates[0];
+    var cooY = coordinates[1];
+   //  mouseLine
+   // .attr("d", function(){
+   //   yRange = y.range(); // range of y axis
+   //   var xCoor = cooX; // mouse position in x
+   //   var xDate = x.invert(xCoor);
+   //
+   // })
+  /* svg.append('line')
+    .attr('x1', 0)
+    .attr('y1', y)
+    .attr('x2', width)
+    .attr('y2', y)
+    .attr('stroke', 'red')*/
+    mouseLine.attr('x1', cooX).attr('x2', cooX)
+    // .attr("d", function(){
+    // yRange = y.range(); // range of y axis
+    // var xCoor = cooX; // mouse position in x
+    // var xDate = x.invert(xCoor);
+    // });
+
+  }
+  function mouseover() {
+    mouseLine
+  .style("opacity", "0.5");
+  //  console.log("over")
+  }
+  function mouseout() {
+    mouseLine
+  .style("opacity", "0.5");
+  //  console.log("out")
+  }
+  // // What happens when the mouse move -> show the annotations at the right positions.
+  // function mouseover() {
+  //   focus.style("opacity", 1)
+  //   focusText.style("opacity",1)
+  // }
+  //
+  // function mousemove() {
+  //   // recover coordinate we need
+  //   var x0 = x.invert(d3.pointer(this)[0]);
+  //   var i = bisect(datas, x0, 1);
+  //   selectedData = datas[i];
+  //   focus
+  //     .attr("cx", x(selectedData.x))
+  //     .attr("cy", y(selectedData.y))
+  //   focusText
+  //     .html("x:" + selectedData.x + "  -  " + "y:" + selectedData.y)
+  //     .attr("x", x(selectedData.x)+15)
+  //     .attr("y", y(selectedData.y))
+  //   }
+  // function mouseout() {
+  //   focus.style("opacity", 0)
+  //   focusText.style("opacity", 0)
+  // }
 
 
 });

@@ -14,12 +14,14 @@
 <script>
   var apiKey = 'AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U'
   var json = []
-  var json_name = "video_tim"
+  var json_name = "parsed_data_api_2"
 
-  d3.json("data/history/watch_history_1.json").then(function(data){
+  d3.json("data/history/watch-history_2.json").then(function(data){
     console.log(data)
     var exist = []
+    int nbRequeste = 0;
     data.forEach((item, i) => {
+      if nbRequeste <= 1000{
         if(item.titleUrl != undefined){
           video_id = item.titleUrl.replace("https://www.youtube.com/watch?v=","");
           exist.push(video_id)
@@ -32,11 +34,12 @@
               json.push(data2)
             })
           }
-        }
+        }  
+      }
     });
     setTimeout(function(){
       download(JSON.stringify(json), json_name+".json", "text/html");
-      console.log(json);
+      //console.log(json);
   },500)
 
   });
