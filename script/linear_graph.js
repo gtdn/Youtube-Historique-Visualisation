@@ -48,7 +48,7 @@ var colorArray = [
 ];
 
 d3.json(
-  "data/parsed_data_api_1.json"
+  "data/data.json"
 ).then(function (json) {
 
   //Create an array of datas By categories
