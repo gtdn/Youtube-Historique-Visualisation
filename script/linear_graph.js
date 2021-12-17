@@ -122,27 +122,29 @@ d3.json(
 
 
 for(i in categories){
-
     path = svg.append("path")
     .datum(datas)
     .attr("fill", "none")
     .attr("class","lines")
+    .attr("id","category_"+categories[i].id)
     .attr("stroke", colorArray[i])
     .attr("stroke-width", 3)
     .attr("d", d3.line()
     .x(function(d) { return x(d.dates) })
     .y(function(d) { return y(d.values[i]) })
   ).on('mouseover', function (d, i) {
-  //  console.log(this)
-    d3.select(".lines").a
-    d3.select(this).transition()
-    .duration('50')
-    .attr('opacity', '.85');
+    //  console.log(this)
+      d3.select(".lines")
+      d3.select(this).transition()
+      .duration('50')
+      .attr('opacity', '.85');
   }).on('mouseout', function (d, i) {
-    d3.select(this).transition()
-    .duration('50')
-    .attr('opacity', '1');
+      d3.select(this).transition()
+      .duration('50')
+      .attr('opacity', '1');
   })
+
+  legend = svg.append("")
 }
 
 // This allows to find the closest X index of the mouse:
