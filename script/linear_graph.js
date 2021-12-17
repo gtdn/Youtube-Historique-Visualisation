@@ -105,9 +105,29 @@ d3.json(
     obj.values = values_cat;
     datas.push(obj)
   }
+//Initialize vertical line
+  var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
+    .attr("class","mouseLine")
+    .attr('x1', 500)
+    .attr('y1', 0)
+    .attr('x2', 500)
+    .attr('y2', height)
+    .style("stroke","black")
+    .style("stroke-width", "1px")
+    .style("opacity", "0");
 
-  //console.log(datas)
-  //Initialize Line Chart with scales
+//Initialize Rect to catch mouse position on the svg (For the vertical line)
+  svg
+    .append('rect')
+    .style("fill", "none")
+    .style("pointer-events", "all")
+    .attr('width', width)
+    .attr('height', height)
+    .on('mouseover', mouseover)
+    .on('mousemove', mousemove)
+    .on('mouseout', mouseout);
+
+  //Initialize scales for Line Chart
   var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
   svg.append("g")
      .attr("transform", `translate(0, ${height})`)
@@ -121,44 +141,75 @@ d3.json(
   // define the 1st line
 
 
+  //Initialize Legend :
+  var legend = svg
+      .append('g')
+      .attr('class', 'legend')
+
+//For each categories add a line and legend from datas
 for(i in categories){
+  //append Line
     path = svg.append("path")
     .datum(datas)
     .attr("fill", "none")
     .attr("class","lines")
-    .attr("id","category_"+categories[i].id)
+    .attr("id","line_"+categories[i].id)
     .attr("stroke", colorArray[i])
+    .attr("data-id",categories[i].id)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
     .x(function(d) { return x(d.dates) })
     .y(function(d) { return y(d.values[i]) })
-  ).on('mouseover', function (d, i) {
-    //  console.log(this)
-      d3.select(".lines")
-      d3.select(this).transition()
-      .duration('50')
-      .attr('opacity', '.85');
-  }).on('mouseout', function (d, i) {
-      d3.select(this).transition()
-      .duration('50')
-      .attr('opacity', '1');
-  })
+    ).on('mouseover', function (d, i) {
+      const id = this.id//.classed("active", true)
+      d3.selectAll(".lines").filter(function() {
+      return !(this.id == id)
+    }, id).attr('opacity', 0.5);
 
-  legend = svg.append("")
+
+  }).on('mouseout', function (d, i) {
+      d3.selectAll(".lines").attr('opacity', 1);
+
+  });
+
+
+// Append legend
+  legend.append('rect')
+      .attr('x', width - 195)
+      .attr('y', i* 20 -10 )
+      .attr('width', 10)
+      .attr('height', 10)
+      .attr("data_id",categories[i].id)
+      .attr("id","label_"+categories[i].id)
+      .attr('class', 'label_rect')
+      .style('fill', colorArray[i]).on('mouseover', function (d, i) {
+        //  console.log(this)
+
+          d3.select(this).transition()
+          .duration('50')
+          .attr('opacity', '.85');
+        }).on('mouseout', function (d, i) {
+            d3.select(this).transition()
+            .duration('50')
+            .attr('opacity', '1');
+        }).on('click', function (d, i) {
+          console.log(this.id)
+        });
+
+  legend.append('text')
+      .attr('x', width - 180)
+      .attr('y', i * 20)
+      .text(categories[i].name);
+
 }
+
+
+
 
 // This allows to find the closest X index of the mouse:
 var bisect = d3.bisector(function(d) { return d.x; }).left;
 
-var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
-  .attr("class","mouseLine")
-  .attr('x1', 500)
-  .attr('y1', 0)
-  .attr('x2', 500)
-  .attr('y2', height)
-  .style("stroke","black")
-  .style("stroke-width", "1px")
-  .style("opacity", "0");
+
 // Create the text that travels along the curve of chart
 // var focusText = svg
 // .append('g')
@@ -167,57 +218,28 @@ var mouseLine = svg.append("line") // this is the black vertical line to follow 
 //   .attr("text-anchor", "left")
 //   .attr("alignment-baseline", "middle")
 // Create a rect on top of the svg area: this rectangle recovers mouse position
-svg
-  .append('rect')
-  .style("fill", "none")
-  .style("pointer-events", "all")
-  .attr('width', width)
-  .attr('height', height)
-  .on('mouseover', mouseover)
-  .on('mousemove', mousemove)
-  .on('mouseout', mouseout);
 
 
 
+//Function mouse action on svg
   function mousemove(e) {
     var coordinates= d3.pointer(e);
     var cooX = coordinates[0];
     var cooY = coordinates[1];
     mouseLine.attr('x1', cooX).attr('x2', cooX)
   }
+
   function mouseover() {
     mouseLine
   .style("opacity", "0.5");
-  //  console.log("over")
   }
+
   function mouseout() {
     mouseLine
   .style("opacity", "0");
-  //  console.log("out")
+
   }
-  // // What happens when the mouse move -> show the annotations at the right positions.
-  // function mouseover() {
-  //   focus.style("opacity", 1)
-  //   focusText.style("opacity",1)
-  // }
-  //
-  // function mousemove() {
-  //   // recover coordinate we need
-  //   var x0 = x.invert(d3.pointer(this)[0]);
-  //   var i = bisect(datas, x0, 1);
-  //   selectedData = datas[i];
-  //   focus
-  //     .attr("cx", x(selectedData.x))
-  //     .attr("cy", y(selectedData.y))
-  //   focusText
-  //     .html("x:" + selectedData.x + "  -  " + "y:" + selectedData.y)
-  //     .attr("x", x(selectedData.x)+15)
-  //     .attr("y", y(selectedData.y))
-  //   }
-  // function mouseout() {
-  //   focus.style("opacity", 0)
-  //   focusText.style("opacity", 0)
-  // }
+
 
 
 });

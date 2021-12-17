@@ -8,3 +8,11 @@
   fill: none;
   pointer-events: all;
 }
+
+.partial_hide {
+  opacity: 0.5
+}
+
+.hide{
+  opacity: 0
+}
