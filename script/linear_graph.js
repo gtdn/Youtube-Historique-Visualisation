@@ -64,7 +64,6 @@ d3.json(
   }
 //  console.log(structByCategories);
 
-
   //Create an array of all month between first and last video :
   var dates = [];
   var values = []
@@ -81,7 +80,11 @@ d3.json(
       month = new Date(month.setMonth(month.getMonth()+1))
   }
   dates.push(par(month));
-//console.log(dates)
+
+// add statistique date start and dateEnd
+d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
+
+
 //Create a structure of video by Categories AND Month
   let max = 0;
   let datas = []
