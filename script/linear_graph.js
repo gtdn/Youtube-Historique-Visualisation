@@ -164,50 +164,55 @@ for(i in categories){
     .x(function(d) { return x(d.dates) })
     .y(function(d) { return y(d.values[i]) })
     ).on('mouseover', function (d, i) {
+
       const id = this.id//.classed("active", true)
       d3.selectAll(".lines").filter(function() {
-      return !(this.id == id)
+      return !(this.id == id || this.attributes.class.value.includes("hide"))
     }, id).attr('opacity', 0.5);
 
 
   }).on('mouseout', function (d, i) {
-      d3.selectAll(".lines").attr('opacity', 1);
+      d3.selectAll(".lines").filter(function() {
+      return !(this.attributes.class.value.includes("hide"))
+    }).attr('opacity', 1);
 
   });
 
 
-// Append legend
+  // Append legend
   legend.append('rect')
-      .attr('x', width - 195)
-      .attr('y', i* 20 -10 )
-      .attr('width', 10)
-      .attr('height', 10)
-      .attr("data_id",categories[i].id)
-      .attr("id","label_"+categories[i].id)
-      .attr('class', 'label_rect')
-      .style('fill', colorArray[i]).on('mouseover', function (d, i) {
-        //  console.log(this)
+  .attr('x', width - 195)
+  .attr('y', i* 20 -10 )
+  .attr('width', 10)
+  .attr('height', 10)
+  .attr("data_id",categories[i].id)
+  .attr("id","label_"+categories[i].id)
+  .attr('class', 'label_rect')
+  .style('fill', colorArray[i]).on('mouseover', function (d, i) {
+    //  console.log(this)
 
-          d3.select(this).transition()
-          .duration('50')
-          .attr('opacity', '.85');
-        }).on('mouseout', function (d, i) {
-            d3.select(this).transition()
-            .duration('50')
-            .attr('opacity', '1');
-        }).on('click', function (d, i) {
-          console.log(this.id)
-        });
+    d3.select(this).transition()
+    .duration('50')
+    .attr('opacity', '.85');
+  }).on('mouseout', function (d, i) {
+    d3.select(this).transition()
+    .duration('50')
+    .attr('opacity', '1');
+  }).on('click', function (d, i) {
+
+    var id_cat = d3.select("#"+this.id).attr('data_id')
+    hide_categories(id_cat);
+
+  });
 
   legend.append('text')
       .attr('x', width - 180)
       .attr('y', i * 20)
+      .attr('id',"labelText_"+categories[i].id)
+      .attr('class', "labelText")
       .text(categories[i].name);
 
 }
-
-
-
 
 // This allows to find the closest X index of the mouse:
 var bisect = d3.bisector(function(d) { return d.x; }).left;
@@ -221,8 +226,6 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 //   .attr("text-anchor", "left")
 //   .attr("alignment-baseline", "middle")
 // Create a rect on top of the svg area: this rectangle recovers mouse position
-
-
 
 //Function mouse action on svg
   function mousemove(e) {

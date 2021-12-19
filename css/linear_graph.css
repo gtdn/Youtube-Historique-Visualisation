@@ -16,3 +16,7 @@
 .hide{
   opacity: 0
 }
+
+.labelText{
+  font: icon;
+}
