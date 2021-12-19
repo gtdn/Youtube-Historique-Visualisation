@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta charset="UTF-8">
+      <!--Ligne à retirer lors du déployement-->
+      <link rel="shortcut icon" href="#">
         <title>Extracteurr</title>
     </head>
     <body>
@@ -20,28 +23,43 @@
 
     var exist = []
     var nbRequeste = 0;
+    var isFirstError = true;
     data.forEach((item, i) => {
-      //arrêté à 1000
-      if (i >= 1000 && i <= 1500){
+      //arrêté à 1266
+      if (i >= 1266 ){
         if(item.titleUrl != undefined){
-
+          // if(item.time == "2021-09-03T11:21:56.457Z"){
+          //   console.log(i)
+          // }
           nbRequeste += 1;
 
           video_id = item.titleUrl.replace("https://www.youtube.com/watch?v=","");
           exist.push(video_id)
-          if(!(exist.includes('video'))){
+//          if(!(exist.includes('video'))){}
 
+          if(isFirstError){
             var url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey;
             $.get(url, function(data2){
               data2["date"] = item.time;
               json.push(data2)
+            }).done(function() {
+            })
+            .fail(function() {
+              if(isFirstError == true){
+                console.log("Error after nb : "+i);
+                isFirstError == false;
+              }else{
+                console.log("error")
+              }
+
             })
           }
+
+
 
         }
       }
     });
-    console.log(nbRequeste)
     setTimeout(function(){
     download(JSON.stringify(json), json_name+".json", "text/html");
     //console.log(json);
