@@ -18,25 +18,27 @@
   var apiKey = 'AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U'
   var json = []
   var json_name = "parsed_data_api_2"
-
+    var nbTotal = 0;
   d3.json("data/history/watch-history_2.json").then(function(data){
 
     var exist = []
     var nbRequeste = 0;
     var isFirstError = true;
+
     data.forEach((item, i) => {
-      //arrêté à 1266
-      if (i >= 1266 ){
+      //arrêté à 3678
+      if (i >= 3678 && i <= 10000){
         if(item.titleUrl != undefined){
-          // if(item.time == "2021-09-03T11:21:56.457Z"){
-          //   console.log(i)
-          // }
+          if(item.time == "2021-01-20T16:07:47.903Z"){
+            console.log(i)
+          }
           nbRequeste += 1;
 
           video_id = item.titleUrl.replace("https://www.youtube.com/watch?v=","");
           exist.push(video_id)
 //          if(!(exist.includes('video'))){}
 
+          /*
           if(isFirstError){
             var url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey;
             $.get(url, function(data2){
@@ -46,25 +48,30 @@
             })
             .fail(function() {
               if(isFirstError == true){
-                console.log("Error after nb : "+i);
+
+                //console.log("Error after nb : "+i);
                 isFirstError == false;
               }else{
-                console.log("error")
+
               }
 
             })
           }
-
+          // */
 
 
         }
+
       }
+      nbTotal = i;
     });
+    console.log(nbTotal)
+   /*
     setTimeout(function(){
     download(JSON.stringify(json), json_name+".json", "text/html");
     //console.log(json);
-  },2000)
-
+  },10000)
+  //*/
   });
 
   function download(content, fileName, contentType) {
@@ -73,5 +80,6 @@
      a.href = URL.createObjectURL(file);
      a.download = fileName;
      a.click();
+
   }
 </script>

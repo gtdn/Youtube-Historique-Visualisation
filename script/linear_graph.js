@@ -1,6 +1,8 @@
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-width = 960 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+width = 1200 - margin.left - margin.right,
+height = 800 - margin.top - margin.bottom,
+margin2 = {top: 430, right: 20, bottom: 30, left: 40};
+
 
 var svg = d3.select("#codeD3").append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -8,6 +10,8 @@ var svg = d3.select("#codeD3").append("svg")
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
+var height2 = +svg.attr("height") - margin2.top - margin2.bottom;
+
 var categories = [
   {"id" : 1, "name" : "Film & Animation"},
   {"id" : 2, "name" : "Autos & Vehicles"},
@@ -68,7 +72,7 @@ d3.json(
   var dates = [];
   var values = []
   const a = json.reduce((a, b) => (a.date < b.date) ? a.date : b.date);
-  console.log("a",a)
+
   var dateEnd = new Date(json[0].date);
   var dateStart = new Date(json[json.length-1].date);
   var month = new Date(dateStart);
@@ -142,8 +146,10 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
   svg.append("g")
       .call(d3.axisLeft(y));
   // define the 1st line
+  var  x2 = d3.scaleTime().range([0, width]),
+       y2 = d3.scaleLinear().range([height2, 0]);
 
-
+  xAxis2 = d3.axisBottom(x2);
   //Initialize Legend :
   var legend = svg
       .append('g')
@@ -181,7 +187,7 @@ for(i in categories){
 
   // Append legend
   legend.append('rect')
-  .attr('x', width - 195)
+  .attr('x', width - 130)
   .attr('y', i* 20 -10 )
   .attr('width', 10)
   .attr('height', 10)
@@ -199,18 +205,45 @@ for(i in categories){
     .duration('50')
     .attr('opacity', '1');
   }).on('click', function (d, i) {
-
     var id_cat = d3.select("#"+this.id).attr('data_id')
     hide_categories(id_cat);
-
   });
+  var context = svg.append("g")
+    .attr("class", "context")
+    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
   legend.append('text')
-      .attr('x', width - 180)
-      .attr('y', i * 20)
-      .attr('id',"labelText_"+categories[i].id)
-      .attr('class', "labelText")
-      .text(categories[i].name);
+    .attr('x', width - 115)
+    .attr('y', i * 20)
+    .style('font','icon')
+    .attr('id',"labelText_"+categories[i].id)
+    .attr('class', "labelText")
+    .text(categories[i].name);
+
+// Pour le brush
+/*
+  context.append("path")
+    .datum(datas)
+    .attr("class", "line")
+    .attr("id","line_"+categories[i].id)
+    .attr("stroke", colorArray[i])
+    .attr("data-id",categories[i].id)
+    .attr("stroke-width", 3)
+    .attr("d", d3.line()
+    .x(function(d) { return x(d.dates) })
+    .y(function(d) { return y(d.values[i]) }));
+
+
+  context.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height2 + ")")
+    .call(xAxis2);
+
+  context.append("g")
+    .attr("class", "brush")*/
+  //  .call(brush)
+  //  .call(brush.move, x.range());
+
 
 }
 

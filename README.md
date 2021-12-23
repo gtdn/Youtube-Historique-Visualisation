@@ -1,9 +1,9 @@
 # Projet de visualisation de l'historique Youtube
 
-## Web page du site 
+## Web page du site
 https://gtdn.github.io/data_viz-project/
 
-## Pour tester la visualisation sur vos donnés 
+## Pour tester la visualisation sur vos donnés
 
 #### Etape 1 - Récupérer votre historique Youtube
 1.  Aller sur http://google.com/takeout
@@ -22,12 +22,12 @@ Lancer un serveur python dans le dossier git
 
 Enregistrer votre historique Youtube récupéré à l'étape 1 dans `/data/history`
 
-Modifier le fichier `dataExtractor.html` et changer le chemin avec `/data/history/yourdatahistory` 
+Modifier le fichier `dataExtractor.html` et changer le chemin avec `/data/history/yourdatahistory`
 
 Lancer le site `dataExtractor.html`, puis enregistrer votre dataset dans `/data`
 
 
-## Google Cloud API 
+## Google Cloud API
 https://console.cloud.google.com/apis
 
 ## ID category videos
@@ -35,5 +35,8 @@ https://techpostplus.com/youtube-video-categories-list-faqs-and-solutions/
 
 
 
-## Video List : 
+## Video List :
 https://developers.google.com/youtube/v3/docs/videos/list?apix=true#usage
+
+## Chart brush and zoom :
+https://bl.ocks.org/EfratVil/92f894ac0ba265192411e73f633a3e2f
