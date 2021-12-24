@@ -1,8 +1,8 @@
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-width = 1200 - margin.left - margin.right,
-height = 800 - margin.top - margin.bottom,
-margin2 = {top: 430, right: 20, bottom: 30, left: 40};
-
+var margin = {top: 20, right: 100, bottom: 110, left: 40},
+width = 960 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom,
+margin2 = {top: 430, right: 100, bottom: 40, left: 40}
+height2 = 500 - margin2.top - margin2.bottom;
 
 var svg = d3.select("#codeD3").append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -10,7 +10,6 @@ var svg = d3.select("#codeD3").append("svg")
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
-var height2 = +svg.attr("height") - margin2.top - margin2.bottom;
 
 var categories = [
   {"id" : 1, "name" : "Film & Animation"},
@@ -136,32 +135,64 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
 
   //Initialize scales for Line Chart and add axis
   var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
-  var axisX = svg.append("g")
-     .attr("transform", `translate(0, ${height})`)
-     .call(d3.axisBottom(x));
 
   var y = d3.scaleLinear()
       .domain([0, d3.max(datas,(d)=> Math.max(...d.values) )])
       .range([ height, 0 ]);
-  var axisY = svg.append("g")
-      .call(d3.axisLeft(y));
 
-  // Tentative pour le blur
-  var  x2 = d3.scaleTime().range([0, width]),
-       y2 = d3.scaleLinear().range([height2, 0]);
+
+  // Tentative pour le brush
+  var brush = d3.brushX()
+    .extent([[0, 0], [width, height2]])
+    //.on("brush end", brushed);
+
+var zoom = d3.zoom()
+    .scaleExtent([1, Infinity])
+    .translateExtent([[0, 0], [width, height]])
+    .extent([[0, 0], [width, height]])
+  //  .on("zoom", zoomed);
+  var  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
+       y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
   xAxis2 = d3.axisBottom(x2);
 
-  //Initialize Legend :
+  //Pour brush :
+  var Line_chart = svg.append("g")
+    .attr("class", "focus")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("clip-path", "url(#clip)");
+  var focus = svg.append("g")
+    .attr("class", "focus")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var context = svg.append("g")
+    .attr("class", "context")
+    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+  context.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height2 + ")")
+    .call(xAxis2);
+
+  context.append("g")
+    .attr("class", "brush")
+    .call(brush)
+    .call(brush.move, x.range());
+
+    var axisX = focus.append("g")
+       .attr("transform", `translate(0, ${height})`)
+       .call(d3.axisBottom(x));
+    var axisY = focus.append("g")
+       .call(d3.axisLeft(y));
+
+//Initialize Legend :
   var legend = svg
-      .append('g')
-      .attr('class', 'legend')
+    .append('g')
+    .attr('class', 'legend')
 
 //Stock All Lines for later utilisation
 var lines = {};
 //For each categories add a line and legend from datas
 for(i in categories){
   //append Line
-    path = svg.append("path")
+    path = Line_chart.append("path")
     .datum(datas)
     .attr("fill", "none")
     .attr("class","lines")
@@ -216,9 +247,6 @@ for(i in categories){
     updateView(id_cat);
   });
 
-  var context = svg.append("g")
-    .attr("class", "context")
-    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
   //Add text to legend
   legend.append('text')
     .attr('x', width - 115)
@@ -228,31 +256,31 @@ for(i in categories){
     .attr('class', "labelText")
     .text(categories[i].name);
 
+
+}
+
 // Todo : Pour le brush
-/*
+///*
+  i = 6;
   context.append("path")
     .datum(datas)
     .attr("class", "line")
+    .attr('fill','none')
     .attr("id","line_"+categories[i].id)
     .attr("stroke", colorArray[i])
     .attr("data-id",categories[i].id)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
-    .x(function(d) { return x(d.dates) })
-    .y(function(d) { return y(d.values[i]) }));
+    .x(function(d) { return x2(d.dates) })
+    .y(function(d) { return y2(d.values[i]) }));
 
 
-  context.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height2 + ")")
-    .call(xAxis2);
 
   context.append("g")
-    .attr("class", "brush")*/
+    .attr("class", "brush")//*/
   //  .call(brush)
   //  .call(brush.move, x.range());
 
-}
 
 //Todo This allows to find the closest X index of the mouse:
 var bisect = d3.bisector(function(d) { return d.x; }).left;
