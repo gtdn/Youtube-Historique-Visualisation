@@ -143,8 +143,10 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
   var y = d3.scaleLinear()
       .domain([0, d3.max(datas,(d)=> Math.max(...d.values) )])
       .range([ height, 0 ]);
-  svg.append("g")
+
+  var axisY = svg.append("g")
       .call(d3.axisLeft(y));
+
   // define the 1st line
   var  x2 = d3.scaleTime().range([0, width]),
        y2 = d3.scaleLinear().range([height2, 0]);
@@ -154,6 +156,9 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
   var legend = svg
       .append('g')
       .attr('class', 'legend')
+
+//Stock All Lines
+var lines = {};
 
 //For each categories add a line and legend from datas
 for(i in categories){
@@ -184,6 +189,8 @@ for(i in categories){
 
   });
 
+  //Set Path in dictionnary of lines
+  lines[categories[i].id] = path;
 
   // Append legend
   legend.append('rect')
@@ -206,7 +213,8 @@ for(i in categories){
     .attr('opacity', '1');
   }).on('click', function (d, i) {
     var id_cat = d3.select("#"+this.id).attr('data_id')
-    hide_categories(id_cat);
+    //hide_categories(id_cat);
+    updateView(id_cat)
   });
   var context = svg.append("g")
     .attr("class", "context")
@@ -259,6 +267,41 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 //   .attr("text-anchor", "left")
 //   .attr("alignment-baseline", "middle")
 // Create a rect on top of the svg area: this rectangle recovers mouse position
+
+//Function to update view when a category is hidden
+var categories_hidden = []
+function updateView(category_hidden){
+  //console.log(category_hidden, lines[category_hidden]);
+  lines[category_hidden].remove();
+
+  categories_hidden.push(parseInt(category_hidden));
+  //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
+  //We're looking for the max of all lines without the current category
+  let max = 0;
+  datas.map(function(d){
+    for (i in categories){
+      if(!categories_hidden.includes(categories[i].id)){
+        max = (max >= d.values[i]) ? max : d.values[i];
+      }
+    }
+  });
+
+  //Upgrade y axis
+  y.domain([0,max])
+  axisY.transition(500).call(d3.axisLeft(y));
+
+  //Upgrade Others Paths :
+  for(i in categories){
+    if(!categories_hidden.includes(categories[i].id)){
+      lines[categories[i].id].transition(500).attr("d", d3.line()
+      .x(function(d) { return x(d.dates) })
+      .y(function(d) { return y(d.values[i]) })
+      )
+      // console.log(lines[categories[i].id])
+    }
+  }
+
+}
 
 //Function mouse action on svg
   function mousemove(e) {
