@@ -134,32 +134,30 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
     .on('mousemove', mousemove)
     .on('mouseout', mouseout);
 
-  //Initialize scales for Line Chart
+  //Initialize scales for Line Chart and add axis
   var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
-  svg.append("g")
+  var axisX = svg.append("g")
      .attr("transform", `translate(0, ${height})`)
      .call(d3.axisBottom(x));
 
   var y = d3.scaleLinear()
       .domain([0, d3.max(datas,(d)=> Math.max(...d.values) )])
       .range([ height, 0 ]);
-
   var axisY = svg.append("g")
       .call(d3.axisLeft(y));
 
-  // define the 1st line
+  // Tentative pour le blur
   var  x2 = d3.scaleTime().range([0, width]),
        y2 = d3.scaleLinear().range([height2, 0]);
-
   xAxis2 = d3.axisBottom(x2);
+
   //Initialize Legend :
   var legend = svg
       .append('g')
       .attr('class', 'legend')
 
-//Stock All Lines
+//Stock All Lines for later utilisation
 var lines = {};
-
 //For each categories add a line and legend from datas
 for(i in categories){
   //append Line
@@ -175,8 +173,8 @@ for(i in categories){
     .x(function(d) { return x(d.dates) })
     .y(function(d) { return y(d.values[i]) })
     ).on('mouseover', function (d, i) {
-
-      const id = this.id//.classed("active", true)
+      //On MouseOver of Each Line
+      const id = this.id
       d3.selectAll(".lines").filter(function() {
       return !(this.id == id || this.attributes.class.value.includes("hide"))
     }, id).attr('opacity', 0.5);
@@ -192,7 +190,7 @@ for(i in categories){
   //Set Path in dictionnary of lines
   lines[categories[i].id] = path;
 
-  // Append legend
+  // Append colored square legend
   legend.append('rect')
   .attr('x', width - 130)
   .attr('y', i* 20 -10 )
@@ -202,8 +200,7 @@ for(i in categories){
   .attr("id","label_"+categories[i].id)
   .attr('class', 'label_rect')
   .style('fill', colorArray[i]).on('mouseover', function (d, i) {
-    //  console.log(this)
-
+    //TODO Stay low opacity when path removed
     d3.select(this).transition()
     .duration('50')
     .attr('opacity', '.85');
@@ -211,15 +208,18 @@ for(i in categories){
     d3.select(this).transition()
     .duration('50')
     .attr('opacity', '1');
+  }).on("dblclick",function(d){
+    TODO //On Double click remove all other Lines
   }).on('click', function (d, i) {
-    var id_cat = d3.select("#"+this.id).attr('data_id')
-    //hide_categories(id_cat);
-    updateView(id_cat)
+    //On Click remove this line
+    var id_cat = d3.select("#"+this.id).attr('data_id');
+    updateView(id_cat);
   });
+
   var context = svg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
-
+  //Add text to legend
   legend.append('text')
     .attr('x', width - 115)
     .attr('y', i * 20)
@@ -228,7 +228,7 @@ for(i in categories){
     .attr('class', "labelText")
     .text(categories[i].name);
 
-// Pour le brush
+// Todo : Pour le brush
 /*
   context.append("path")
     .datum(datas)
@@ -252,13 +252,12 @@ for(i in categories){
   //  .call(brush)
   //  .call(brush.move, x.range());
 
-
 }
 
-// This allows to find the closest X index of the mouse:
+//Todo This allows to find the closest X index of the mouse:
 var bisect = d3.bisector(function(d) { return d.x; }).left;
 
-
+//TODO Display text all along vertical Line
 // Create the text that travels along the curve of chart
 // var focusText = svg
 // .append('g')
@@ -268,38 +267,117 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 //   .attr("alignment-baseline", "middle")
 // Create a rect on top of the svg area: this rectangle recovers mouse position
 
-//Function to update view when a category is hidden
+// List of all hidden categories
 var categories_hidden = []
-function updateView(category_hidden){
-  //console.log(category_hidden, lines[category_hidden]);
-  lines[category_hidden].remove();
 
-  categories_hidden.push(parseInt(category_hidden));
-  //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
-  //We're looking for the max of all lines without the current category
-  let max = 0;
-  datas.map(function(d){
-    for (i in categories){
+//Function to update view when a category is hidden
+function updateView(category_hidden){
+
+  let square = d3.select("#label_"+category_hidden);
+
+  category_hidden = parseInt(category_hidden);
+  // If Already hide / Else
+  if(categories_hidden.includes(category_hidden)){
+    //Change opacity of legend
+    square.attr("opacity",1)
+    d3.select("#labelText_"+category_hidden).style('fill', 'black')
+
+    //Remove from hidden
+    categories_hidden.splice(categories_hidden.indexOf(category_hidden), 1);
+
+    //FInd New Max of line Graph
+    let max = 0;
+    datas.map(function(d){
+      for (i in categories){
+        if(!categories_hidden.includes(categories[i].id)){
+          max = (max >= d.values[i]) ? max : d.values[i];
+        }
+      }
+    });
+    //Change domain to fit the line we want to show
+    y.domain([0,max])
+    axisY.transition(500).call(d3.axisLeft(y));
+
+    let index;
+    for(i in categories){
       if(!categories_hidden.includes(categories[i].id)){
-        max = (max >= d.values[i]) ? max : d.values[i];
+        //Find the Index of the line we show
+        if(categories[i].id == category_hidden){
+          index = i;
+        }
+        //Re-display all lines with new y domain
+        lines[categories[i].id].transition(500)
+        .attr("d", d3.line()
+        .x(function(d) { return x(d.dates) })
+        .y(function(d) { return y(d.values[i]) })
+        )
+        // console.log(lines[categories[i].id])
       }
     }
-  });
 
-  //Upgrade y axis
-  y.domain([0,max])
-  axisY.transition(500).call(d3.axisLeft(y));
 
-  //Upgrade Others Paths :
-  for(i in categories){
-    if(!categories_hidden.includes(categories[i].id)){
-      lines[categories[i].id].transition(500).attr("d", d3.line()
-      .x(function(d) { return x(d.dates) })
-      .y(function(d) { return y(d.values[i]) })
-      )
-      // console.log(lines[categories[i].id])
+    lines[category_hidden] = svg.append("path")
+    .datum(datas)
+    .attr("fill", "none")
+    .attr("class","lines")
+    .attr("id","line_"+categories[index].id)
+    .attr("stroke", colorArray[index])
+    .attr("data-id",categories[index].id)
+    .attr("stroke-width", 3)
+    .attr("d", d3.line()
+    .x(function(d) { return x(d.dates) })
+    .y(function(d) { return y(d.values[index]) })
+    ).on('mouseover', function (d, i) {
+      const id = this.id//.classed("active", true)
+      d3.selectAll(".lines").filter(function() {
+      return !(this.id == id || this.attributes.class.value.includes("hide"))
+    }, id).attr('opacity', 0.5);
+    }).on('mouseout', function (d, i) {
+        d3.selectAll(".lines").filter(function() {
+        return !(this.attributes.class.value.includes("hide"))
+      }).attr('opacity', 1);
+
+    });
+      console.log(lines[category_hidden])
+
+  }else{
+    //Change Opacity of legend
+    square.attr("opacity",0.5)
+    d3.select("#labelText_"+category_hidden).style('fill', 'lightgrey')
+
+
+    //console.log(category_hidden, lines[category_hidden]);
+    lines[category_hidden].remove();
+
+    categories_hidden.push(category_hidden);
+    //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
+    //We're looking for the max of all lines without the current category
+    let max = 0;
+    datas.map(function(d){
+      for (i in categories){
+        if(!categories_hidden.includes(categories[i].id)){
+          max = (max >= d.values[i]) ? max : d.values[i];
+        }
+      }
+    });
+
+    //Upgrade y axis
+    y.domain([0,max])
+    axisY.transition(500).call(d3.axisLeft(y));
+
+    //Upgrade Others Paths :
+    for(i in categories){
+      if(!categories_hidden.includes(categories[i].id)){
+        lines[categories[i].id].transition(500)
+        .attr("d", d3.line()
+        .x(function(d) { return x(d.dates) })
+        .y(function(d) { return y(d.values[i]) })
+        )
+        // console.log(lines[categories[i].id])
+      }
     }
   }
+
 
 }
 
@@ -308,6 +386,7 @@ function updateView(category_hidden){
     var coordinates= d3.pointer(e);
     var cooX = coordinates[0];
     var cooY = coordinates[1];
+    //Move verticalLine on the SVG
     mouseLine.attr('x1', cooX).attr('x2', cooX)
   }
 
