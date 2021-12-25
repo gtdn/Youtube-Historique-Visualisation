@@ -49,7 +49,8 @@ var colorArray = [
     "#99E6E6",
     "#6666FF"
 ];
-
+//Stock All Lines for later utilisation
+var lines = {};
 d3.json(
   "data/data.json"
 ).then(function (json) {
@@ -132,41 +133,31 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
       .range([ height, 0 ]);
 
 
-  // Tentative pour le brush
-  var brush = d3.brushX()
-    .extent([[0, 0], [width, height2]])
-    .on("brush end", brushed);
 
-var zoom = d3.zoom()
-    .scaleExtent([1, Infinity])
-    .translateExtent([[0, 0], [width, height]])
-    .extent([[0, 0], [width, height]])
-    .on("zoom", zoomed);
   var  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
        y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
   xAxis2 = d3.axisBottom(x2);
 
   var focus = svg.append("g")
     .attr("class", "focus")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   var context = svg.append("g")
     .attr("class", "context")
-    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+    .attr("transform", "translate(0," + margin2.top + ")");
   context.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", "translate(0," + height2 + ")")
     .call(xAxis2);
 
-  context.append("g")
-    .attr("class", "brush")
-    .call(brush)
-    .call(brush.move, x.range());
 
-    var axisX = focus.append("g")
-       .attr("transform", `translate(0, ${height})`)
-       .call(d3.axisBottom(x));
-    var axisY = focus.append("g")
-       .call(d3.axisLeft(y));
+  var axisX = focus.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x));
+  var axisY = focus.append("g")
+    .attr("transform", `translate(-1,0)`)
+    .attr("class", "axis axis--y")
+    .call(d3.axisLeft(y));
 
  //Initialize Rect to catch mouse position on the svg (For the vertical line)
    svg
@@ -191,8 +182,7 @@ var zoom = d3.zoom()
     .append('g')
     .attr('class', 'legend')
 
-//Stock All Lines for later utilisation
-var lines = {};
+
 //For each categories add a line and legend from datas
 for(i in categories){
   //append Line
@@ -259,7 +249,24 @@ for(i in categories){
 
 
 }
+// Tentative pour le brush
+var brush = d3.brushX()
+  .extent([[0, 0], [width, height2]])
+  .on("brush end", brushed);
 
+var zoom = d3.zoom()
+  .scaleExtent([1, Infinity])
+  .translateExtent([[0, 0], [width, height]])
+  .extent([[0, 0], [width, height]])
+  .on("zoom", zoomed);
+
+
+context.append("g")
+  .attr("class", "brush")
+  .call(brush)
+  .call(brush.move, x.range());
+
+console.log(lines)
 // Todo : Pour le brush
 ///*
   i = 6;
@@ -439,10 +446,22 @@ function updateView(category_hidden){
 
     x.domain(s.map(x2.invert, x2));
     //Line_chart.select(".line").attr("d", line);
-    //focus.select(".axis--x").call(xAxis);
-    svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+    //focus.select(".axis--x").call(axisX);
+    svg.select(".zoom").transition(500).call(zoom.transform, d3.zoomIdentity
         .scale(width / (s[1] - s[0]))
         .translate(-s[0], 0));
+    console.log(lines)
+    for(i in categories){
+    //  if(!categories_hidden.includes(categories[i].id)){
+        lines[categories[i].id].transition(500)
+        .attr("d", d3.line()
+        .x(function(d) { return x(d.dates) })
+        .y(function(d) { return y(d.values[i]) })
+        )
+        // console.log(lines[categories[i].id])
+    //  }
+  }
+
   }
 
   function zoomed(event) {
