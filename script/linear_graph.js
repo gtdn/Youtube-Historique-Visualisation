@@ -447,6 +447,8 @@ function updateView(category_hidden){
     x.domain(s.map(x2.invert, x2));
     //Line_chart.select(".line").attr("d", line);
     //focus.select(".axis--x").call(axisX);
+    axisX.transition(500).call(d3.axisBottom(x));
+
     svg.select(".zoom").transition(500).call(zoom.transform, d3.zoomIdentity
         .scale(width / (s[1] - s[0]))
         .translate(-s[0], 0));
