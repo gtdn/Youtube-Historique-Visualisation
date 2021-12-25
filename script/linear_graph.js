@@ -186,28 +186,7 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
 //For each categories add a line and legend from datas
 for(i in categories){
   //append Line
-    path = svg.append("path")
-    .datum(datas)
-    .attr("fill", "none")
-    .attr("class","lines")
-    .attr("id","line_"+categories[i].id)
-    .attr("stroke", colorArray[i])
-    .attr("data-id",categories[i].id)
-    .attr("stroke-width", 3)
-    .attr("d", d3.line()
-    .x(function(d) { return x(d.dates) })
-    .y(function(d) { return y(d.values[i]) })
-    ).on('mouseover', function (d, i) {
-      //On MouseOver of Each Line
-      const id = this.id
-      d3.selectAll(".lines").filter(function() {
-      return !(this.id == id || this.attributes.class.value.includes("hide"))
-    }, id).attr('opacity', 0.5);
-    }).on('mouseout', function (d, i) {
-      d3.selectAll(".lines").filter(function() {
-      return !(this.attributes.class.value.includes("hide"))
-    }).attr('opacity', 1);
-  });
+    path = createPath(i)
 
   //Set Path in dictionnary of lines
   lines[categories[i].id] = path;
@@ -266,7 +245,7 @@ context.append("g")
   .call(brush)
   .call(brush.move, x.range());
 
-console.log(lines)
+
 // Todo : Pour le brush
 ///*
   i = 6;
@@ -334,53 +313,14 @@ function updateView(category_hidden){
     y.domain([0,max])
     axisY.transition(500).call(d3.axisLeft(y));
 
-    let index;
-    for(i in categories){
-      if(!categories_hidden.includes(categories[i].id)){
-        //Find the Index of the line we show
-        if(categories[i].id == category_hidden){
-          index = i;
-        }
-        //Re-display all lines with new y domain
-        lines[categories[i].id].transition(500)
-        .attr("d", d3.line()
-        .x(function(d) { return x(d.dates) })
-        .y(function(d) { return y(d.values[i]) })
-        )
-        // console.log(lines[categories[i].id])
-      }
-    }
+    let index = updatePath(categories_hidden, category_hidden);
 
-
-    lines[category_hidden] = svg.append("path")
-    .datum(datas)
-    .attr("fill", "none")
-    .attr("class","lines")
-    .attr("id","line_"+categories[index].id)
-    .attr("stroke", colorArray[index])
-    .attr("data-id",categories[index].id)
-    .attr("stroke-width", 3)
-    .attr("d", d3.line()
-    .x(function(d) { return x(d.dates) })
-    .y(function(d) { return y(d.values[index]) })
-    ).on('mouseover', function (d, i) {
-      const id = this.id//.classed("active", true)
-      d3.selectAll(".lines").filter(function() {
-      return !(this.id == id || this.attributes.class.value.includes("hide"))
-    }, id).attr('opacity', 0.5);
-    }).on('mouseout', function (d, i) {
-        d3.selectAll(".lines").filter(function() {
-        return !(this.attributes.class.value.includes("hide"))
-      }).attr('opacity', 1);
-
-    });
-      console.log(lines[category_hidden])
+    lines[category_hidden] = createPath(index);
 
   }else{
     //Change Opacity of legend
     square.attr("opacity",0.5)
     d3.select("#labelText_"+category_hidden).style('fill', 'lightgrey')
-
 
     //console.log(category_hidden, lines[category_hidden]);
     lines[category_hidden].remove();
@@ -402,16 +342,7 @@ function updateView(category_hidden){
     axisY.transition(500).call(d3.axisLeft(y));
 
     //Upgrade Others Paths :
-    for(i in categories){
-      if(!categories_hidden.includes(categories[i].id)){
-        lines[categories[i].id].transition(500)
-        .attr("d", d3.line()
-        .x(function(d) { return x(d.dates) })
-        .y(function(d) { return y(d.values[i]) })
-        )
-        // console.log(lines[categories[i].id])
-      }
-    }
+    updatePath(categories_hidden);
   }
 
 
@@ -427,7 +358,6 @@ function updateView(category_hidden){
   }
 
   function mouseover() {
-    console.log("test")
     mouseLine
   .style("opacity", "0.5");
   }
@@ -442,7 +372,7 @@ function updateView(category_hidden){
   function brushed(event) {
     if (event.sourceEvent && event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = event.selection || x2.range();
-    console.log(s.map(x2.invert, x2))
+
 
     x.domain(s.map(x2.invert, x2));
     //Line_chart.select(".line").attr("d", line);
@@ -452,17 +382,8 @@ function updateView(category_hidden){
     svg.select(".zoom").transition(500).call(zoom.transform, d3.zoomIdentity
         .scale(width / (s[1] - s[0]))
         .translate(-s[0], 0));
-    console.log(lines)
-    for(i in categories){
-    //  if(!categories_hidden.includes(categories[i].id)){
-        lines[categories[i].id].transition(500)
-        .attr("d", d3.line()
-        .x(function(d) { return x(d.dates) })
-        .y(function(d) { return y(d.values[i]) })
-        )
-        // console.log(lines[categories[i].id])
-    //  }
-  }
+
+    updatePath([])
 
   }
 
@@ -481,5 +402,71 @@ function updateView(category_hidden){
     return d;
   }
 
+  //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
+  function updatePath(categories_hidden, category_hidden = -1){
+    let index;
+    for(i in categories){
+      if(!categories_hidden.includes(categories[i].id)){
+        if(categories[i].id == category_hidden){
+          index = i;
+        }
+        lines[categories[i].id].transition(500)
+        .attr("d", d3.line()
+        .x(function(d) { return x(d.dates) })
+        .y(function(d) { return y(d.values[i]) })
+        )
+      }
+    }
+    return index
+  }
+
+  //Function Creation of lines, argument : Id of the line
+  function createPath(i){
+    return svg.append("path")
+    .datum(datas)
+    .attr("fill", "none")
+    .attr("class","lines")
+    .attr("id","line_"+categories[i].id)
+    .attr("stroke", colorArray[i])
+    .attr("data-id",categories[i].id)
+    .attr("stroke-width", 3)
+    .attr("d", d3.line()
+    .x(function(d) { return x(d.dates) })
+    .y(function(d) { return y(d.values[i]) })
+    ).on('mouseover', function (d, i) {
+      //On MouseOver of Each Line
+      const id = this.id
+      d3.selectAll(".lines").filter(function() {
+      return !(this.id == id || this.attributes.class.value.includes("hide"))
+    }, id).attr('opacity', 0.5);
+    }).on('mouseout', function (d, i) {
+      d3.selectAll(".lines").filter(function() {
+      return !(this.attributes.class.value.includes("hide"))
+    }).attr('opacity', 1);
+  }).on('click',function(){
+
+      hideAllExcept(this.getAttribute("data-id"))
+
+  });
+  }
+
+  function hideAllExcept(id){
+
+    if(categories_hidden.length +1 == categories.length){
+      for(i in categories){
+        updateView(categories[i].id)
+      }
+    }else{
+      categories_hidden = [];
+      for( i in lines){
+        lines[i].remove();
+      }
+      for(i in categories){
+        categories_hidden.push(categories[i].id);
+      }
+    }
+
+    updateView(id);
+  }
 
 });
