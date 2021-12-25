@@ -1,4 +1,4 @@
-var margin = {top: 20, right: 100, bottom: 110, left: 40},
+var margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
 margin2 = {top: 430, right: 100, bottom: 40, left: 40}
@@ -114,24 +114,15 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
 //Initialize vertical line
   var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
     .attr("class","mouseLine")
-    .attr('x1', 500)
-    .attr('y1', 0)
-    .attr('x2', 500)
-    .attr('y2', height)
+    .attr('x1', 0)
+    .attr('y1', 0+margin.top)
+    .attr('x2', 0)
+    .attr('y2', height+margin.top)
     .style("stroke","black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
-//Initialize Rect to catch mouse position on the svg (For the vertical line)
-  svg
-    .append('rect')
-    .style("fill", "none")
-    .style("pointer-events", "all")
-    .attr('width', width)
-    .attr('height', height)
-    .on('mouseover', mouseover)
-    .on('mousemove', mousemove)
-    .on('mouseout', mouseout);
+
 
   //Initialize scales for Line Chart and add axis
   var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
@@ -144,22 +135,17 @@ d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
   // Tentative pour le brush
   var brush = d3.brushX()
     .extent([[0, 0], [width, height2]])
-    //.on("brush end", brushed);
+    .on("brush end", brushed);
 
 var zoom = d3.zoom()
     .scaleExtent([1, Infinity])
     .translateExtent([[0, 0], [width, height]])
     .extent([[0, 0], [width, height]])
-  //  .on("zoom", zoomed);
+    .on("zoom", zoomed);
   var  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
        y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
   xAxis2 = d3.axisBottom(x2);
 
-  //Pour brush :
-  var Line_chart = svg.append("g")
-    .attr("class", "focus")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .attr("clip-path", "url(#clip)");
   var focus = svg.append("g")
     .attr("class", "focus")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -182,6 +168,24 @@ var zoom = d3.zoom()
     var axisY = focus.append("g")
        .call(d3.axisLeft(y));
 
+ //Initialize Rect to catch mouse position on the svg (For the vertical line)
+   svg
+     .append('rect')
+     .style("fill", "none")
+     .style("pointer-events", "all")
+     .attr('width', width )
+     .attr('height', height  )
+     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+     .on('mouseover', mouseover)
+     .on('mousemove', mousemove)
+     .on('mouseout', mouseout);
+
+   //Pour brush :
+   var Line_chart = svg.append("g")
+     .attr("class", "focus")
+     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+     .attr("clip-path", "url(#clip)");
+
 //Initialize Legend :
   var legend = svg
     .append('g')
@@ -192,7 +196,7 @@ var lines = {};
 //For each categories add a line and legend from datas
 for(i in categories){
   //append Line
-    path = Line_chart.append("path")
+    path = svg.append("path")
     .datum(datas)
     .attr("fill", "none")
     .attr("class","lines")
@@ -209,13 +213,10 @@ for(i in categories){
       d3.selectAll(".lines").filter(function() {
       return !(this.id == id || this.attributes.class.value.includes("hide"))
     }, id).attr('opacity', 0.5);
-
-
-  }).on('mouseout', function (d, i) {
+    }).on('mouseout', function (d, i) {
       d3.selectAll(".lines").filter(function() {
       return !(this.attributes.class.value.includes("hide"))
     }).attr('opacity', 1);
-
   });
 
   //Set Path in dictionnary of lines
@@ -415,10 +416,11 @@ function updateView(category_hidden){
     var cooX = coordinates[0];
     var cooY = coordinates[1];
     //Move verticalLine on the SVG
-    mouseLine.attr('x1', cooX).attr('x2', cooX)
+    mouseLine.attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
   }
 
   function mouseover() {
+    console.log("test")
     mouseLine
   .style("opacity", "0.5");
   }
@@ -429,6 +431,34 @@ function updateView(category_hidden){
 
   }
 
+//brush moved
+  function brushed(event) {
+    if (event.sourceEvent && event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    var s = event.selection || x2.range();
+    console.log(s.map(x2.invert, x2))
+
+    x.domain(s.map(x2.invert, x2));
+    //Line_chart.select(".line").attr("d", line);
+    //focus.select(".axis--x").call(xAxis);
+    svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+        .scale(width / (s[1] - s[0]))
+        .translate(-s[0], 0));
+  }
+
+  function zoomed(event) {
+    if (event.sourceEvent && event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+    var t = event.transform;
+    x.domain(t.rescaleX(x2).domain());
+    //Line_chart.select(".line").attr("d", line);
+    focus.select(".axis--x").call(xAxis);
+    context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+  }
+
+  function type(d) {
+    d.Date = parseDate(d.Date);
+    d.Air_Temp = +d.Air_Temp;
+    return d;
+  }
 
 
 });
