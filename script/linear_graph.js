@@ -1,17 +1,17 @@
-var margin = {top: 10, right: 100, bottom: 110, left: 40},
+const margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
 margin2 = {top: 430, right: 100, bottom: 40, left: 40}
 height2 = 500 - margin2.top - margin2.bottom;
 
-var svg = d3.select("#codeD3").append("svg")
+var svg = d3.select("#codeD3Graph").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
 
-var categories = [
+const categories = [
   {"id" : 1, "name" : "Film & Animation"},
   {"id" : 2, "name" : "Autos & Vehicles"},
   {"id" : 10, "name" : "Music"},
@@ -28,7 +28,7 @@ var categories = [
   {"id" : 28, "name" : "Science & Technology"},
   {"id" : 29, "name" : "Nonprofits & Activism"}
 ];
-var colorArray = [
+const colorArray = [
     "#FF6633",
     "#FFB399",
     "#FF33FF",
@@ -117,6 +117,7 @@ function sortObject(obj){
   return sortable;
 }
 
+// Fonction pour mettre à jour les stats
 function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   // On met a jour le titre
   d3.select("#periodeDate").text(dateBeg +" - "+ dateEnd)
@@ -140,10 +141,9 @@ function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   d3.select("#favVidOne").text(videoFav1[0] + " : " + videoFav1[1] + " vues")
   d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
   d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
-
-
 }
 
+// Fonction pour récupérer les stats pour une range de date
 function getStat(date1, date2){
   const dateTest1 = "2021-01"
   const dateTest2 = "2021-12"
@@ -158,7 +158,6 @@ function getStat(date1, date2){
       }
     })
     // On compte le nombre de visionnage par catégorie
-    console.log(newJson)
     for (var i = 0; i < newJson.length; i++) {   
       if(newJson[i].items[0] !== undefined){
         const itemCat = newJson[i].items[0].snippet.categoryId
@@ -171,6 +170,7 @@ function getStat(date1, date2){
       }
     }
     categFav = sortObject(categFav)
+    console.log(categFav)
     videoFav = sortObject(videoFav)
     
     changeStatInfo(categFav,videoFav, dateTest1, dateTest2)
