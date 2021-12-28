@@ -9,15 +9,19 @@ var svgCam = d3.select("#codeD3Cam").append("svg")
   .attr("transform",
   "translate(" + width / 2 + "," + height / 2 + ")");
 
-const r = 100
+const radius = 100
 
 const pie = d3.pie()
   .sort(null)
   .value((d) => d[1]);
 
 const arc = d3.arc()
-    .innerRadius(r / 2)
-    .outerRadius(r);
+    .innerRadius(radius / 2)
+    .outerRadius(radius);
+
+const label = d3.arc()
+            .outerRadius(radius)
+            .innerRadius(radius - 80);
 
 const arcs = svgCam.selectAll("arc")
                 .data(pie(categ))
@@ -25,9 +29,32 @@ const arcs = svgCam.selectAll("arc")
                 .append("g")
                 .attr("class", "arc")
 
+function mouseover() {
+    mouseLine
+  .style("opacity", "0.5");
+  }
+
+  function mouseout() {
+    mouseLine
+  .style("opacity", "0");
+
+  }
+
 arcs.append("path")
       .attr("fill", function(d, i) {
           return color(i);
       })
-      .attr("d", arc);
+      .attr("d", arc)
+      .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
+      .on('mouseout', function (d){ d3.select(this).style("opacity", 1)});
+
+svgCam.append("g")
+   .attr("transform", "translate(" + (width / 2 - 480) + "," + height / 2 + ")")
+   .append("text")
+   .text("Camembert des catégories")
+   .attr("class", "title")
+
+
+
+
 
