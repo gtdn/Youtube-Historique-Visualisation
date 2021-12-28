@@ -88,6 +88,97 @@ d3.json(
 // add statistique date start and dateEnd
 d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
 
+const categoriesDict = {
+  1  : "Film & Animation",
+  2  : "Autos & Vehicles",
+  10 : "Music",
+  15 :"Pets & Animals",
+  17 : "Sports",
+  19 : "Travel & Events",
+  20 : "Gaming",
+  22 : "People & Blogs",
+  23 : "Comedy",
+  24 : "Entertainment",
+  25 : "News & Politics",
+  26 : "Howto & Style",
+  27 : "Education",
+  28 : "Science & Technology",
+  29 : "Nonprofits & Activism"
+}
+// Fonction pour trier des objets
+function sortObject(obj){
+  var sortable = [];
+  for (var item in obj) {
+    sortable.push([item, obj[item]]);
+  }
+  sortable.sort(function(a, b) {
+      return a[1] - b[1];
+  });
+  return sortable;
+}
+
+function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
+  // On met a jour le titre
+  d3.select("#periodeDate").text(dateBeg +" - "+ dateEnd)
+
+  // On met a jour les catégories
+  const lengCat = categFav.length
+  const categFav1 = categFav[lengCat - 1]
+  const categFav2 = categFav[lengCat - 2]
+  const categFav3 = categFav[lengCat - 3]
+
+  d3.select("#favCatOne").text(categoriesDict[categFav1[0]] + " : " + categFav1[1])
+  d3.select("#favCatTwo").text(categoriesDict[categFav2[0]] + " : " + categFav2[1])
+  d3.select("#favCatThree").text(categoriesDict[categFav3[0]] + " : " + categFav3[1])
+
+  // On met a jour le top 3 des vidéos
+  const lengVid = videoFav.length
+  const videoFav1 = videoFav[lengVid - 1]
+  const videoFav2 = videoFav[lengVid - 2]
+  const videoFav3 = videoFav[lengVid - 3]
+
+  d3.select("#favVidOne").text(videoFav1[0] + " : " + videoFav1[1] + " vues")
+  d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
+  d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
+
+
+}
+
+function getStat(date1, date2){
+  const dateTest1 = "2021-01"
+  const dateTest2 = "2021-12"
+  var categFav = new Object();
+  var videoFav = new Object();
+  d3.json("data/data.json").then(function (json){
+    // On filtre le JSON pour la période sélectionnée
+    var newJson = json.filter((d) => {
+      const currentDate = par(new Date(d.date))
+      if(currentDate > dateTest1 && currentDate < dateTest2){
+        return d;
+      }
+    })
+    // On compte le nombre de visionnage par catégorie
+    console.log(newJson)
+    for (var i = 0; i < newJson.length; i++) {   
+      if(newJson[i].items[0] !== undefined){
+        const itemCat = newJson[i].items[0].snippet.categoryId
+        if (categFav[itemCat] == null) categFav[itemCat] = 1 
+        else categFav[itemCat] ++
+
+        const itemVid = newJson[i].items[0].snippet.localized.title
+        if (videoFav[itemVid] == null) videoFav[itemVid] = 1 
+        else videoFav[itemVid] ++
+      }
+    }
+    categFav = sortObject(categFav)
+    videoFav = sortObject(videoFav)
+    
+    changeStatInfo(categFav,videoFav, dateTest1, dateTest2)
+  })
+}
+
+getStat(par(dateStart),par(dateEnd))
+
 
 //Create a structure of video by Categories AND Month
   let max = 0;
