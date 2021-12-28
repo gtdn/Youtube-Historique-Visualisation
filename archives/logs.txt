@@ -1,0 +1,283 @@
+========= Scrap, Time = 2021-12-28 15:45:29.821300 ======= 
+error type :'titleUrl' during iteration :1090
+========= Scrap, Time = 2021-12-28 15:46:55.295786 ======= 
+error type :'titleUrl' during iteration :1090
+
+========= Scrap, Time = 2021-12-28 15:47:13.408990 ======= 
+error type :'titleUrl' during iteration :1090
+
+========= Scrap, Time = 2021-12-28 16:22:16.567268 ======= 
+error type :'titleUrl' during iteration :8150
+error type :'titleUrl' during iteration :8186
+error type :'titleUrl' during iteration :8255
+error type :'titleUrl' during iteration :8324
+error type :'titleUrl' during iteration :8330
+error type :'titleUrl' during iteration :8367
+error type :'titleUrl' during iteration :8394
+error type :'titleUrl' during iteration :8494
+error type :'titleUrl' during iteration :8566
+error type :'titleUrl' during iteration :8576
+error type :'titleUrl' during iteration :8618
+error type :'titleUrl' during iteration :8630
+error type :'titleUrl' during iteration :8636
+error type :'titleUrl' during iteration :8664
+error type :'titleUrl' during iteration :8675
+error type :'titleUrl' during iteration :8683
+error type :'titleUrl' during iteration :8702
+error type :'titleUrl' during iteration :8717
+error type :'titleUrl' during iteration :8752
+error type :'titleUrl' during iteration :8767
+error type :'titleUrl' during iteration :8770
+error type :'titleUrl' during iteration :8787
+error type :'titleUrl' during iteration :8867
+error type :'titleUrl' during iteration :8890
+error type :'titleUrl' during iteration :8913
+error type :'titleUrl' during iteration :8977
+error type :'titleUrl' during iteration :8982
+error type :'titleUrl' during iteration :9095
+error type :'titleUrl' during iteration :9271
+error type :'titleUrl' during iteration :9298
+error type :'titleUrl' during iteration :9310
+error type :'titleUrl' during iteration :9338
+error type :'titleUrl' during iteration :9584
+error type :'titleUrl' during iteration :9612
+error type :'titleUrl' during iteration :9653
+error type :'titleUrl' during iteration :9743
+error type :'titleUrl' during iteration :9907
+error type :'titleUrl' during iteration :10001
+error type :'titleUrl' during iteration :10111
+error type :'titleUrl' during iteration :10240
+error type :'titleUrl' during iteration :10290
+error type :'titleUrl' during iteration :10318
+error type :'titleUrl' during iteration :10335
+error type :'titleUrl' during iteration :10338
+error type :'titleUrl' during iteration :10442
+error type :'titleUrl' during iteration :10451
+error type :'titleUrl' during iteration :10470
+error type :'titleUrl' during iteration :10518
+error type :'titleUrl' during iteration :10557
+error type :'titleUrl' during iteration :10708
+error type :'titleUrl' during iteration :10780
+error type :'titleUrl' during iteration :10807
+error type :'titleUrl' during iteration :10813
+error type :'titleUrl' during iteration :10833
+error type :'titleUrl' during iteration :10852
+error type :'titleUrl' during iteration :10858
+error type :'titleUrl' during iteration :10869
+error type :'titleUrl' during iteration :10930
+error type :'titleUrl' during iteration :11076
+error type :'titleUrl' during iteration :11132
+error type :'titleUrl' during iteration :11209
+error type :'titleUrl' during iteration :11231
+error type :'titleUrl' during iteration :11307
+error type :'titleUrl' during iteration :11381
+error type :'titleUrl' during iteration :11397
+error type :'titleUrl' during iteration :11556
+error type :'titleUrl' during iteration :11824
+error type :'titleUrl' during iteration :11943
+error type :'titleUrl' during iteration :12264
+error type :'titleUrl' during iteration :12315
+error type :'titleUrl' during iteration :12471
+error type :'titleUrl' during iteration :12663
+error type :local variable 'operUrl' referenced before assignment during iteration :12665
+error type :'titleUrl' during iteration :12741
+error type :'titleUrl' during iteration :12782
+error type :'titleUrl' during iteration :12831
+error type :'titleUrl' during iteration :12934
+error type :'titleUrl' during iteration :12976
+error type :'titleUrl' during iteration :13236
+error type :'titleUrl' during iteration :13278
+error type :'titleUrl' during iteration :13409
+error type :'titleUrl' during iteration :13463
+error type :'titleUrl' during iteration :13502
+error type :'titleUrl' during iteration :13755
+error type :'titleUrl' during iteration :13945
+error type :'titleUrl' during iteration :13947
+error type :'titleUrl' during iteration :13964
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :'titleUrl' during iteration :14145
+error type :'titleUrl' during iteration :14223
+error type :'titleUrl' during iteration :14229
+error type :'titleUrl' during iteration :14230
+error type :'titleUrl' during iteration :14256
+error type :'titleUrl' during iteration :14269
+error type :'titleUrl' during iteration :14270
+error type :'titleUrl' during iteration :14272
+error type :'titleUrl' during iteration :14284
+error type :'titleUrl' during iteration :14289
+error type :'titleUrl' during iteration :14319
+error type :'titleUrl' during iteration :14338
+error type :'titleUrl' during iteration :14388
+error type :'titleUrl' during iteration :14417
+error type :'titleUrl' during iteration :14431
+error type :'titleUrl' during iteration :14462
+error type :'titleUrl' during iteration :14514
+error type :'titleUrl' during iteration :14541
+error type :'titleUrl' during iteration :14568
+error type :'titleUrl' during iteration :14577
+error type :'titleUrl' during iteration :14591
+error type :'titleUrl' during iteration :14596
+error type :'titleUrl' during iteration :14602
+error type :'titleUrl' during iteration :14646
+error type :'titleUrl' during iteration :14650
+error type :'titleUrl' during iteration :14666
+error type :'titleUrl' during iteration :14669
+error type :'titleUrl' during iteration :14698
+error type :'titleUrl' during iteration :14700
+error type :'titleUrl' during iteration :14701
+error type :'titleUrl' during iteration :14702
+error type :'titleUrl' during iteration :14708
+error type :'titleUrl' during iteration :14721
+error type :'titleUrl' during iteration :14722
+error type :'titleUrl' during iteration :14723
+error type :'titleUrl' during iteration :14726
+error type :'titleUrl' during iteration :14732
+error type :'titleUrl' during iteration :14791
+error type :'titleUrl' during iteration :14798
+error type :'titleUrl' during iteration :14803
+error type :'titleUrl' during iteration :14838
+error type :'titleUrl' during iteration :14844
+error type :'titleUrl' during iteration :14866
+error type :'titleUrl' during iteration :14879
+error type :'titleUrl' during iteration :14882
+error type :'titleUrl' during iteration :14902
+error type :'titleUrl' during iteration :14914
+error type :'titleUrl' during iteration :14934
+error type :'titleUrl' during iteration :14961
+error type :'titleUrl' during iteration :14964
+error type :'titleUrl' during iteration :14965
+error type :'titleUrl' during iteration :14966
+error type :'titleUrl' during iteration :14967
+error type :'titleUrl' during iteration :14968
+error type :'titleUrl' during iteration :14970
+error type :'titleUrl' during iteration :14993
+error type :'titleUrl' during iteration :14994
+Stopped at :15000
+========= Scrap, Time = 2021-12-28 16:29:45.231453 ======= 
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :'titleUrl' during iteration :14145
+error type :'titleUrl' during iteration :14223
+error type :'titleUrl' during iteration :14229
+error type :'titleUrl' during iteration :14230
+error type :'titleUrl' during iteration :14256
+error type :'titleUrl' during iteration :14269
+error type :'titleUrl' during iteration :14270
+error type :'titleUrl' during iteration :14272
+error type :'titleUrl' during iteration :14284
+error type :'titleUrl' during iteration :14289
+error type :'titleUrl' during iteration :14319
+error type :'titleUrl' during iteration :14338
+error type :'titleUrl' during iteration :14388
+error type :'titleUrl' during iteration :14417
+error type :'titleUrl' during iteration :14431
+error type :'titleUrl' during iteration :14462
+
+========= Scrap, Time = 2021-12-28 16:31:58.229506 ======= 
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :'titleUrl' during iteration :14145
+Stopped at :14200 Resulting : 18 errors for 200 lines. Accuracy : 0.09
+========= Scrap, Time = 2021-12-28 16:34:21.328112 ======= 
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :'titleUrl' during iteration :14145
+error type :local variable 'operUrl' referenced before assignment during iteration :14150
+error type :local variable 'operUrl' referenced before assignment during iteration :14151
+error type :local variable 'operUrl' referenced before assignment during iteration :14152
+error type :local variable 'operUrl' referenced before assignment during iteration :14153
+error type :local variable 'operUrl' referenced before assignment during iteration :14154
+error type :local variable 'operUrl' referenced before assignment during iteration :14155
+error type :local variable 'operUrl' referenced before assignment during iteration :14156
+error type :local variable 'operUrl' referenced before assignment during iteration :14157
+error type :local variable 'operUrl' referenced before assignment during iteration :14158
+error type :local variable 'operUrl' referenced before assignment during iteration :14160
+error type :local variable 'operUrl' referenced before assignment during iteration :14161
+error type :local variable 'operUrl' referenced before assignment during iteration :14162
+error type :local variable 'operUrl' referenced before assignment during iteration :14167
+error type :local variable 'operUrl' referenced before assignment during iteration :14169
+error type :local variable 'operUrl' referenced before assignment during iteration :14170
+error type :local variable 'operUrl' referenced before assignment during iteration :14172
+error type :local variable 'operUrl' referenced before assignment during iteration :14173
+error type :local variable 'operUrl' referenced before assignment during iteration :14174
+error type :local variable 'operUrl' referenced before assignment during iteration :14176
+error type :local variable 'operUrl' referenced before assignment during iteration :14177
+error type :local variable 'operUrl' referenced before assignment during iteration :14178
+error type :local variable 'operUrl' referenced before assignment during iteration :14179
+error type :local variable 'operUrl' referenced before assignment during iteration :14180
+error type :local variable 'operUrl' referenced before assignment during iteration :14181
+error type :local variable 'operUrl' referenced before assignment during iteration :14182
+error type :local variable 'operUrl' referenced before assignment during iteration :14183
+error type :local variable 'operUrl' referenced before assignment during iteration :14184
+error type :local variable 'operUrl' referenced before assignment during iteration :14185
+error type :local variable 'operUrl' referenced before assignment during iteration :14187
+error type :local variable 'operUrl' referenced before assignment during iteration :14188
+error type :local variable 'operUrl' referenced before assignment during iteration :14190
+error type :local variable 'operUrl' referenced before assignment during iteration :14193
+error type :local variable 'operUrl' referenced before assignment during iteration :14194
+error type :local variable 'operUrl' referenced before assignment during iteration :14195
+error type :local variable 'operUrl' referenced before assignment during iteration :14197
+error type :local variable 'operUrl' referenced before assignment during iteration :14198
+error type :local variable 'operUrl' referenced before assignment during iteration :14200
+Start at : 14000, Stopped at :14200 Resulting : 55 errors for 200 lines. Tx error : 0.275

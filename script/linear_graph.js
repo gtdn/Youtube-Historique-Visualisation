@@ -52,7 +52,7 @@ const colorArray = [
 //Stock All Lines for later utilisation
 var lines = {};
 d3.json(
-  "data/data.json"
+  "data/temporaryDatas.json"
 ).then(function (json) {
 
   //Create an array of datas By categories
@@ -153,26 +153,26 @@ function getStat(date1, date2){
     // On filtre le JSON pour la période sélectionnée
     var newJson = json.filter((d) => {
       const currentDate = par(new Date(d.date))
-      if(currentDate > dateTest1 && currentDate < dateTest2){
+      if(currentDate > date1 && currentDate < date2){
         return d;
       }
     })
     // On compte le nombre de visionnage par catégorie
-    for (var i = 0; i < newJson.length; i++) {   
+    for (var i = 0; i < newJson.length; i++) {
       if(newJson[i].items[0] !== undefined){
         const itemCat = newJson[i].items[0].snippet.categoryId
-        if (categFav[itemCat] == null) categFav[itemCat] = 1 
+        if (categFav[itemCat] == null) categFav[itemCat] = 1
         else categFav[itemCat] ++
 
         const itemVid = newJson[i].items[0].snippet.localized.title
-        if (videoFav[itemVid] == null) videoFav[itemVid] = 1 
+        if (videoFav[itemVid] == null) videoFav[itemVid] = 1
         else videoFav[itemVid] ++
       }
     }
     categFav = sortObject(categFav)
     console.log(categFav)
     videoFav = sortObject(videoFav)
-    
+
     changeStatInfo(categFav,videoFav, dateTest1, dateTest2)
   })
 }
