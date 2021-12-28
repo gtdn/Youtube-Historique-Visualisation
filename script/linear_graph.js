@@ -52,7 +52,7 @@ const colorArray = [
 //Stock All Lines for later utilisation
 var lines = {};
 d3.json(
-  "data/data.json"
+  "data/data2.json"
 ).then(function (json) {
 
   //Create an array of datas By categories
