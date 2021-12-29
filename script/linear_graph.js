@@ -1,3 +1,5 @@
+const d = new Date();
+let timeStart = d.getTime();
 const margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
@@ -54,7 +56,9 @@ var lines = {};
 d3.json(
   "data/temporaryDatas.json"
 ).then(function (json) {
-
+  const d = new Date();
+  let timeLoad = d.getTime();
+  console.log("End of loading :",timeLoad," Duration :",(timeLoad - timeStart)/ 1000)
   //Create an array of datas By categories
   var structByCategories={};
 //  console.log(categories)
@@ -75,6 +79,7 @@ d3.json(
 
   var dateEnd = new Date(json[0].date);
   var dateStart = new Date(json[json.length-1].date);
+  console.log(json[json.length-1])
   var month = new Date(dateStart);
   var par = d3.timeFormat("%Y-%m")
   nbMonth = ((dateEnd.getYear()-dateStart.getYear())*12)+(dateEnd.getMonth()-dateStart.getMonth())
@@ -150,6 +155,9 @@ function getStat(date1, date2){
   var categFav = new Object();
   var videoFav = new Object();
   d3.json("data/data2.json").then(function (json){
+    const d = new Date();
+    let time2Load = d.getTime();
+    console.log("End of second loading :",time2Load," Duration :",(time2Load - timeStart)/ 1000)
     // On filtre le JSON pour la période sélectionnée
     var newJson = json.filter((d) => {
       const currentDate = par(new Date(d.date))

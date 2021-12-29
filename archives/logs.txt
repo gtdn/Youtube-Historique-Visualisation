@@ -365,3 +365,124 @@ Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 er
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 16:12:46.555659 ======= 
+error type :'titleUrl' during iteration :1103
+Start at: 1100, Stopped at: 1110. Write in file: data/test.json. Resulting: 1 errors for 10 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 18:07:34.981818 ======= 
+error type :local variable 'operUrl' referenced before assignment during iteration :9609
+error type :local variable 'operUrl' referenced before assignment during iteration :9610
+error type :local variable 'operUrl' referenced before assignment during iteration :9611
+error type :'titleUrl' during iteration :9612
+error type :local variable 'operUrl' referenced before assignment during iteration :9613
+error type :local variable 'operUrl' referenced before assignment during iteration :9614
+error type :local variable 'operUrl' referenced before assignment during iteration :9615
+error type :local variable 'operUrl' referenced before assignment during iteration :9616
+error type :local variable 'operUrl' referenced before assignment during iteration :9617
+error type :local variable 'operUrl' referenced before assignment during iteration :9618
+error type :local variable 'operUrl' referenced before assignment during iteration :9620
+error type :local variable 'operUrl' referenced before assignment during iteration :9621
+error type :local variable 'operUrl' referenced before assignment during iteration :9622
+error type :local variable 'operUrl' referenced before assignment during iteration :9623
+error type :local variable 'operUrl' referenced before assignment during iteration :9624
+error type :local variable 'operUrl' referenced before assignment during iteration :9627
+error type :local variable 'operUrl' referenced before assignment during iteration :9628
+error type :local variable 'operUrl' referenced before assignment during iteration :9629
+error type :local variable 'operUrl' referenced before assignment during iteration :9630
+error type :local variable 'operUrl' referenced before assignment during iteration :9632
+error type :local variable 'operUrl' referenced before assignment during iteration :9633
+error type :local variable 'operUrl' referenced before assignment during iteration :9634
+error type :local variable 'operUrl' referenced before assignment during iteration :9636
+error type :local variable 'operUrl' referenced before assignment during iteration :9637
+error type :local variable 'operUrl' referenced before assignment during iteration :9638
+error type :local variable 'operUrl' referenced before assignment during iteration :9639
+error type :local variable 'operUrl' referenced before assignment during iteration :9640
+error type :local variable 'operUrl' referenced before assignment during iteration :9641
+error type :local variable 'operUrl' referenced before assignment during iteration :9642
+error type :local variable 'operUrl' referenced before assignment during iteration :9643
+error type :local variable 'operUrl' referenced before assignment during iteration :9644
+error type :local variable 'operUrl' referenced before assignment during iteration :9645
+error type :local variable 'operUrl' referenced before assignment during iteration :9647
+error type :local variable 'operUrl' referenced before assignment during iteration :9648
+error type :local variable 'operUrl' referenced before assignment during iteration :9650
+error type :local variable 'operUrl' referenced before assignment during iteration :9651
+error type :local variable 'operUrl' referenced before assignment during iteration :9652
+error type :'titleUrl' during iteration :9653
+error type :local variable 'operUrl' referenced before assignment during iteration :9654
+error type :local variable 'operUrl' referenced before assignment during iteration :9656
+error type :local variable 'operUrl' referenced before assignment during iteration :9657
+error type :local variable 'operUrl' referenced before assignment during iteration :9659
+error type :local variable 'operUrl' referenced before assignment during iteration :9660
+error type :local variable 'operUrl' referenced before assignment during iteration :9661
+error type :local variable 'operUrl' referenced before assignment during iteration :9662
+error type :local variable 'operUrl' referenced before assignment during iteration :9663
+error type :local variable 'operUrl' referenced before assignment during iteration :9664
+error type :local variable 'operUrl' referenced before assignment during iteration :9665
+error type :local variable 'operUrl' referenced before assignment during iteration :9666
+error type :local variable 'operUrl' referenced before assignment during iteration :9667
+error type :local variable 'operUrl' referenced before assignment during iteration :9668
+error type :local variable 'operUrl' referenced before assignment during iteration :9670
+error type :local variable 'operUrl' referenced before assignment during iteration :9671
+error type :local variable 'operUrl' referenced before assignment during iteration :9672
+error type :local variable 'operUrl' referenced before assignment during iteration :9673
+error type :local variable 'operUrl' referenced before assignment during iteration :9675
+error type :local variable 'operUrl' referenced before assignment during iteration :9677
+error type :local variable 'operUrl' referenced before assignment during iteration :9678
+error type :local variable 'operUrl' referenced before assignment during iteration :9679
+error type :local variable 'operUrl' referenced before assignment during iteration :9680
+error type :local variable 'operUrl' referenced before assignment during iteration :9681
+error type :local variable 'operUrl' referenced before assignment during iteration :9682
+error type :local variable 'operUrl' referenced before assignment during iteration :9684
+error type :local variable 'operUrl' referenced before assignment during iteration :9685
+error type :local variable 'operUrl' referenced before assignment during iteration :9686
+error type :local variable 'operUrl' referenced before assignment during iteration :9687
+error type :local variable 'operUrl' referenced before assignment during iteration :9688
+error type :local variable 'operUrl' referenced before assignment during iteration :9689
+error type :local variable 'operUrl' referenced before assignment during iteration :9691
+error type :local variable 'operUrl' referenced before assignment during iteration :9692
+error type :local variable 'operUrl' referenced before assignment during iteration :9693
+error type :local variable 'operUrl' referenced before assignment during iteration :9694
+error type :local variable 'operUrl' referenced before assignment during iteration :9695
+error type :local variable 'operUrl' referenced before assignment during iteration :9696
+error type :local variable 'operUrl' referenced before assignment during iteration :9697
+error type :local variable 'operUrl' referenced before assignment during iteration :9698
+error type :local variable 'operUrl' referenced before assignment during iteration :9699
+Start at: 9609, Stopped at: 9700. Write in file: data/test.json. Resulting: 77 errors for 91 lines. Tx error: 0.8461538461538461
+
+========= Scrap, Time = 2021-12-29 18:13:23.956515 ======= 
+HTTP Error 403: Forbidden, url return :
+error type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9700. Write in file: data/test.json. Resulting: 3 errors for 91 lines. Tx error: 0.03296703296703297
+
+========= Scrap, Time = 2021-12-29 18:14:38.965748 ======= 
+HTTP Error 403: Forbidden, url return :
+error type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2021-12-29 18:16:56.341051 ======= 
+HTTP Error 403: Forbidden, url return :
+error type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2021-12-29 18:18:01.097527 ======= 
+HTTP Error 403: Forbidden, url return :
+error type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2021-12-29 18:18:27.436882 ======= 
+HTTP Error 403: Forbidden, url return :
+error type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2021-12-29 18:20:08.388617 ======= 
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=VixdIglCZXk&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0

@@ -19,7 +19,7 @@
   var json = []
   var json_name = "parsed_data_api_2"
     var nbTotal = 0;
-  d3.json("data/history/watch-history_2.json").then(function(data){
+  d3.json("../data/history/watch-history_2.json").then(function(data){
 
     var exist = []
     var nbRequeste = 0;
@@ -33,7 +33,7 @@
       if (i >= debut && i <= fin){
 
         if(item.titleUrl != undefined){
-          if(item.time == "2020-02-26T17:18:47.746Z"){
+          if(item.time == "2018-09-18T23:05:05.412Z"){
             console.log(i)
           }
           nbRequeste += 1;
@@ -42,7 +42,7 @@
         //  exist.push(video_id)
 //          if(!(exist.includes('video'))){}
 
-          // /*
+          /*
           if(isFirstError){
             var url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey;
             console.log(url)
