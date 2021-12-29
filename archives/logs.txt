@@ -287,3 +287,81 @@ Start at : 1089, Stopped at :1090 Resulting : 1 errors for 1 lines. Tx error : 1
 ========= Scrap, Time = 2021-12-29 14:31:46.782491 ======= 
 error type :'titleUrl' during iteration :1090
 Start at : 1090, Stopped at :1091 Resulting : 1 errors for 1 lines. Tx error : 1.0
+========= Scrap, Time = 2021-12-29 14:46:57.764264 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1090, Stopped at :1091 Resulting : 1 errors for 1 lines. Tx error : 1.0
+========= Scrap, Time = 2021-12-29 14:47:37.975215 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
+ ========= Scrap, Time = 2021-12-29 14:48:26.529964 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
+
+========= Scrap, Time = 2021-12-29 14:48:54.499609 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
+
+========= Scrap, Time = 2021-12-29 14:51:00.422005 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
+
+========= Scrap, Time = 2021-12-29 14:51:30.194822 ======= 
+error type :'titleUrl' during iteration :1090
+
+
+========= Scrap, Time = 2021-12-29 14:54:02.541638 ======= 
+error type :'titleUrl' during iteration :1090
+Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
+
+========= Scrap, Time = 2021-12-29 14:54:20.386910 ======= 
+error type :'titleUrl' during iteration :1090
+Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
+
+========= Scrap, Time = 2021-12-29 14:55:24.109012 ======= 
+error type :'titleUrl' during iteration :1090
+Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
+
+========= Scrap, Time = 2021-12-29 14:56:21.555222 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
+
+========= Scrap, Time = 2021-12-29 14:57:06.386287 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
+
+========= Scrap, Time = 2021-12-29 15:07:31.135063 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
+
+========= Scrap, Time = 2021-12-29 15:07:52.708573 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
+
+========= Scrap, Time = 2021-12-29 15:09:06.667960 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 15:27:24.425408 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 15:27:35.772909 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 15:29:12.964544 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
+
+========= Scrap, Time = 2021-12-29 15:30:22.974638 ======= 
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
