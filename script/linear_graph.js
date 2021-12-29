@@ -149,7 +149,7 @@ function getStat(date1, date2){
   const dateTest2 = "2021-12"
   var categFav = new Object();
   var videoFav = new Object();
-  d3.json("data/data.json").then(function (json){
+  d3.json("data/data2.json").then(function (json){
     // On filtre le JSON pour la période sélectionnée
     var newJson = json.filter((d) => {
       const currentDate = par(new Date(d.date))
@@ -173,7 +173,7 @@ function getStat(date1, date2){
     console.log(categFav)
     videoFav = sortObject(videoFav)
 
-    changeStatInfo(categFav,videoFav, dateTest1, dateTest2)
+    changeStatInfo(categFav,videoFav, date1, date2)
   })
 }
 

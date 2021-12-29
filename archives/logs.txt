@@ -281,3 +281,9 @@ error type :local variable 'operUrl' referenced before assignment during iterati
 error type :local variable 'operUrl' referenced before assignment during iteration :14198
 error type :local variable 'operUrl' referenced before assignment during iteration :14200
 Start at : 14000, Stopped at :14200 Resulting : 55 errors for 200 lines. Tx error : 0.275
+========= Scrap, Time = 2021-12-29 12:32:20.364300 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1090 Resulting : 1 errors for 1 lines. Tx error : 1.0
+========= Scrap, Time = 2021-12-29 14:31:46.782491 ======= 
+error type :'titleUrl' during iteration :1090
+Start at : 1090, Stopped at :1091 Resulting : 1 errors for 1 lines. Tx error : 1.0
