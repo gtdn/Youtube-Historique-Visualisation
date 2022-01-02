@@ -33,15 +33,17 @@ with open(dataFile) as f:
 
 Logs = []
 #Youtube Api Key
-apiKey = 'AIzaSyBS-E56Er8bAkNy4GsqsdhmEZ-9Yy38iXA'
+apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
 
-#Api Key Timothée : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
+#List autres Api Key :
+# AIzaSyBS-E56Er8bAkNy4GsqsdhmEZ-9Yy38iXA
+#Api Key Timothee : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
 
 #Start and End scrapping data
 #debut = 9609
 #fin = 9700#len(data)-1
 
-debut = 0
+debut = 9912
 fin = len(data)-1
 
 datasRetour = []

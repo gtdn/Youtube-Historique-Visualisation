@@ -486,3 +486,166 @@ HTTP Error 403: Forbidden,
 error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=VixdIglCZXk&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2022-01-02 19:24:35.754943 ======= 
+error type :'titleUrl' during iteration :535
+error type :'titleUrl' during iteration :546
+error type :'titleUrl' during iteration :585
+error type :'titleUrl' during iteration :638
+error type :'titleUrl' during iteration :1184
+error type :'titleUrl' during iteration :2003
+error type :'titleUrl' during iteration :2071
+error type :'titleUrl' during iteration :2196
+error type :'titleUrl' during iteration :2418
+error type :'titleUrl' during iteration :2514
+error type :'titleUrl' during iteration :2637
+error type :'titleUrl' during iteration :2754
+error type :'titleUrl' during iteration :2777
+error type :'titleUrl' during iteration :2861
+error type :'titleUrl' during iteration :2964
+error type :'titleUrl' during iteration :2973
+error type :'titleUrl' during iteration :3222
+error type :'titleUrl' during iteration :3350
+error type :'titleUrl' during iteration :3690
+error type :'titleUrl' during iteration :3726
+error type :'titleUrl' during iteration :3756
+error type :'titleUrl' during iteration :3758
+error type :'titleUrl' during iteration :3840
+error type :'titleUrl' during iteration :3881
+error type :'titleUrl' during iteration :3906
+error type :'titleUrl' during iteration :3964
+error type :'titleUrl' during iteration :3994
+error type :'titleUrl' during iteration :4154
+error type :'titleUrl' during iteration :4210
+error type :'titleUrl' during iteration :4327
+error type :'titleUrl' during iteration :4521
+error type :'titleUrl' during iteration :4823
+error type :'titleUrl' during iteration :4881
+error type :'titleUrl' during iteration :4967
+error type :'titleUrl' during iteration :4995
+error type :'titleUrl' during iteration :5019
+error type :'titleUrl' during iteration :5051
+error type :'titleUrl' during iteration :5149
+error type :'titleUrl' during iteration :5294
+error type :'titleUrl' during iteration :5435
+error type :'titleUrl' during iteration :5545
+error type :'titleUrl' during iteration :5568
+error type :'titleUrl' during iteration :5618
+error type :'titleUrl' during iteration :5689
+error type :'titleUrl' during iteration :5766
+error type :'titleUrl' during iteration :5792
+error type :'titleUrl' during iteration :5823
+error type :'titleUrl' during iteration :5838
+error type :'titleUrl' during iteration :5852
+error type :'titleUrl' during iteration :5869
+error type :'titleUrl' during iteration :5906
+error type :'titleUrl' during iteration :5923
+error type :'titleUrl' during iteration :6342
+error type :'titleUrl' during iteration :6462
+error type :'titleUrl' during iteration :6524
+error type :'titleUrl' during iteration :6609
+error type :'titleUrl' during iteration :6729
+error type :'titleUrl' during iteration :6764
+error type :'titleUrl' during iteration :6792
+error type :'titleUrl' during iteration :6818
+error type :'titleUrl' during iteration :6940
+error type :'titleUrl' during iteration :7088
+error type :'titleUrl' during iteration :7153
+error type :'titleUrl' during iteration :7183
+error type :'titleUrl' during iteration :7224
+error type :'titleUrl' during iteration :7424
+error type :'titleUrl' during iteration :7454
+error type :'titleUrl' during iteration :7480
+error type :'titleUrl' during iteration :7524
+error type :'titleUrl' during iteration :7546
+error type :'titleUrl' during iteration :7572
+error type :'titleUrl' during iteration :7685
+error type :'titleUrl' during iteration :7728
+error type :'titleUrl' during iteration :7780
+error type :'titleUrl' during iteration :7905
+error type :'titleUrl' during iteration :8086
+error type :'titleUrl' during iteration :8262
+error type :'titleUrl' during iteration :8489
+error type :'titleUrl' during iteration :8614
+error type :'titleUrl' during iteration :8752
+error type :'titleUrl' during iteration :8785
+error type :'titleUrl' during iteration :9224
+error type :'titleUrl' during iteration :9368
+error type :'titleUrl' during iteration :9374
+error type :'titleUrl' during iteration :9774
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=K23ZXGZr4s4&key=AIzaSyBS-E56Er8bAkNy4GsqsdhmEZ-9Yy38iXAerror type :list indices must be integers or slices, not str during iteration :9909
+error during : 9910code error : True
+Start at: 0, Stopped at: 9910. Write in file: data/test.json. Resulting: 88 errors for 9910 lines. Tx error: 0.00887991927346115
+
+========= Scrap, Time = 2022-01-02 19:42:17.221127 ======= 
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=3H5XeGOC2wU&key=AIzaSyDX0Yi2C5A8MjNHKerniqEe0cn7O03hhkIerror type :list indices must be integers or slices, not str during iteration :9911
+error during : 9912code error : True
+Start at: 9910, Stopped at: 9912. Write in file: data/test.json. Resulting: 3 errors for 2 lines. Tx error: 1.5
+
+========= Scrap, Time = 2022-01-02 19:51:46.546888 ======= 
+error type :'titleUrl' during iteration :10711
+error type :'titleUrl' during iteration :11036
+error type :'titleUrl' during iteration :11099
+error type :'titleUrl' during iteration :11211
+error type :'titleUrl' during iteration :11256
+error type :'titleUrl' during iteration :11300
+error type :'titleUrl' during iteration :11318
+error type :'titleUrl' during iteration :11341
+error type :'titleUrl' during iteration :11363
+error type :'titleUrl' during iteration :11410
+error type :'titleUrl' during iteration :11437
+error type :'titleUrl' during iteration :11444
+error type :'titleUrl' during iteration :11508
+error type :'titleUrl' during iteration :11553
+error type :'titleUrl' during iteration :11634
+error type :'titleUrl' during iteration :11652
+error type :'titleUrl' during iteration :11670
+error type :'titleUrl' during iteration :11683
+error type :'titleUrl' during iteration :11719
+error type :'titleUrl' during iteration :11763
+error type :'titleUrl' during iteration :11806
+error type :'titleUrl' during iteration :11846
+error type :'titleUrl' during iteration :11976
+error type :'titleUrl' during iteration :11982
+error type :'titleUrl' during iteration :11997
+error type :'titleUrl' during iteration :12143
+error type :'titleUrl' during iteration :12237
+error type :'titleUrl' during iteration :12390
+error type :'titleUrl' during iteration :12426
+error type :'titleUrl' during iteration :12512
+error type :'titleUrl' during iteration :12538
+error type :'titleUrl' during iteration :12539
+error type :'titleUrl' during iteration :12554
+error type :'titleUrl' during iteration :12559
+error type :'titleUrl' during iteration :12664
+error type :'titleUrl' during iteration :12741
+error type :'titleUrl' during iteration :12840
+error type :'titleUrl' during iteration :12894
+error type :'titleUrl' during iteration :13194
+error type :'titleUrl' during iteration :13262
+error type :'titleUrl' during iteration :13344
+error type :'titleUrl' during iteration :13376
+error type :'titleUrl' during iteration :13496
+error type :'titleUrl' during iteration :13532
+error type :'titleUrl' during iteration :13556
+error type :'titleUrl' during iteration :13683
+error type :'titleUrl' during iteration :13815
+error type :'titleUrl' during iteration :13881
+error type :'titleUrl' during iteration :13887
+error type :'titleUrl' during iteration :13976
+error type :'titleUrl' during iteration :14048
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14272
+error type :'titleUrl' during iteration :14287
+error type :'titleUrl' during iteration :14325
+error type :'titleUrl' during iteration :14432
+error type :'titleUrl' during iteration :14699
+
+HTTP Error 503: Service Unavailable,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=3YT8avAMCDw&key=AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaIerror type :list indices must be integers or slices, not str during iteration :14728
+error during : 14729code error : True
+Start at: 9912, Stopped at: 14729. Write in file: data/test.json. Resulting: 60 errors for 4817 lines. Tx error: 0.012455885405854267
