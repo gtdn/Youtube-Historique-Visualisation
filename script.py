@@ -43,11 +43,9 @@ apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
 #Api Key Timothee : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
 
 #Start and End scrapping data
-#debut = 9609
-#fin = 9700#len(data)-1
-
-debut = 9912
-fin = len(data)-1
+debut = 0
+fin = 2#len(data)-1
+last = 0
 
 datasRetour = []
 error = False
@@ -58,11 +56,19 @@ for i,d in enumerate(data):
             sys.stdout.flush()
             print(Fore.GREEN,"\rScrapping in progress, ",i-debut+1,"/",fin-debut,end=' ')
             try:
+                video = {}
                 video_id = d['titleUrl'][32:]
                 url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey
                 error, jsonData = getResponse(url)
-                jsonData["date"] = d['time']
-                datasRetour.append(jsonData)
+                video['id'] = d['titleUrl']
+
+                video['date'] = d['time']
+                video['title'] = jsonData['items'][0]['snippet']['title']
+                video['channelTitle'] = jsonData['items'][0]['snippet']['channelTitle']
+                video['categoryId'] = jsonData['items'][0]['snippet']['categoryId']
+
+                datasRetour.append(video)
+                last = i
             except  Exception as e:
                 Logs.append('error type :'+str(e)+' during iteration :'+str(i)+'\n')
                 print(Fore.RED,'\n error type :',e,' during iteration :',i)
@@ -77,7 +83,7 @@ current_time = datetime.datetime.now()
 logsFile.write("\n\n========= Scrap, Time = "+str(current_time)+" ======= \n")
 logsFile.writelines(Logs)
 logsFile.write("Start at: "+str(debut)+", Stopped at: "+str(i)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
-print(Fore.WHITE,"Start at: "+str(debut)+", Stopped at: "+str(i)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
+print(Fore.WHITE,"\nStart at: "+str(debut)+", Stopped at: "+str(i)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
 datasRetour = previousData + datasRetour
 datasJson = json.dumps(datasRetour, ensure_ascii=False, indent=4)
 with open(dataFile, 'w') as f:

@@ -1,12 +1,12 @@
-========= Scrap, Time = 2021-12-28 15:45:29.821300 ======= 
+========= Scrap, Time = 2021-12-28 15:45:29.821300 =======
 error type :'titleUrl' during iteration :1090
-========= Scrap, Time = 2021-12-28 15:46:55.295786 ======= 
-error type :'titleUrl' during iteration :1090
-
-========= Scrap, Time = 2021-12-28 15:47:13.408990 ======= 
+========= Scrap, Time = 2021-12-28 15:46:55.295786 =======
 error type :'titleUrl' during iteration :1090
 
-========= Scrap, Time = 2021-12-28 16:22:16.567268 ======= 
+========= Scrap, Time = 2021-12-28 15:47:13.408990 =======
+error type :'titleUrl' during iteration :1090
+
+========= Scrap, Time = 2021-12-28 16:22:16.567268 =======
 error type :'titleUrl' during iteration :8150
 error type :'titleUrl' during iteration :8186
 error type :'titleUrl' during iteration :8255
@@ -169,7 +169,7 @@ error type :'titleUrl' during iteration :14970
 error type :'titleUrl' during iteration :14993
 error type :'titleUrl' during iteration :14994
 Stopped at :15000
-========= Scrap, Time = 2021-12-28 16:29:45.231453 ======= 
+========= Scrap, Time = 2021-12-28 16:29:45.231453 =======
 error type :'titleUrl' during iteration :14004
 error type :'titleUrl' during iteration :14008
 error type :'titleUrl' during iteration :14012
@@ -204,7 +204,7 @@ error type :'titleUrl' during iteration :14417
 error type :'titleUrl' during iteration :14431
 error type :'titleUrl' during iteration :14462
 
-========= Scrap, Time = 2021-12-28 16:31:58.229506 ======= 
+========= Scrap, Time = 2021-12-28 16:31:58.229506 =======
 error type :'titleUrl' during iteration :14004
 error type :'titleUrl' during iteration :14008
 error type :'titleUrl' during iteration :14012
@@ -224,7 +224,7 @@ error type :'titleUrl' during iteration :14085
 error type :'titleUrl' during iteration :14086
 error type :'titleUrl' during iteration :14145
 Stopped at :14200 Resulting : 18 errors for 200 lines. Accuracy : 0.09
-========= Scrap, Time = 2021-12-28 16:34:21.328112 ======= 
+========= Scrap, Time = 2021-12-28 16:34:21.328112 =======
 error type :'titleUrl' during iteration :14004
 error type :'titleUrl' during iteration :14008
 error type :'titleUrl' during iteration :14012
@@ -281,96 +281,96 @@ error type :local variable 'operUrl' referenced before assignment during iterati
 error type :local variable 'operUrl' referenced before assignment during iteration :14198
 error type :local variable 'operUrl' referenced before assignment during iteration :14200
 Start at : 14000, Stopped at :14200 Resulting : 55 errors for 200 lines. Tx error : 0.275
-========= Scrap, Time = 2021-12-29 12:32:20.364300 ======= 
+========= Scrap, Time = 2021-12-29 12:32:20.364300 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1089, Stopped at :1090 Resulting : 1 errors for 1 lines. Tx error : 1.0
-========= Scrap, Time = 2021-12-29 14:31:46.782491 ======= 
+========= Scrap, Time = 2021-12-29 14:31:46.782491 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1090, Stopped at :1091 Resulting : 1 errors for 1 lines. Tx error : 1.0
-========= Scrap, Time = 2021-12-29 14:46:57.764264 ======= 
+========= Scrap, Time = 2021-12-29 14:46:57.764264 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1090, Stopped at :1091 Resulting : 1 errors for 1 lines. Tx error : 1.0
-========= Scrap, Time = 2021-12-29 14:47:37.975215 ======= 
+========= Scrap, Time = 2021-12-29 14:47:37.975215 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
- ========= Scrap, Time = 2021-12-29 14:48:26.529964 ======= 
-error type :'titleUrl' during iteration :1090
-Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
-
-========= Scrap, Time = 2021-12-29 14:48:54.499609 ======= 
+ ========= Scrap, Time = 2021-12-29 14:48:26.529964 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
 
-========= Scrap, Time = 2021-12-29 14:51:00.422005 ======= 
+========= Scrap, Time = 2021-12-29 14:48:54.499609 =======
 error type :'titleUrl' during iteration :1090
 Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
 
-========= Scrap, Time = 2021-12-29 14:51:30.194822 ======= 
+========= Scrap, Time = 2021-12-29 14:51:00.422005 =======
+error type :'titleUrl' during iteration :1090
+Start at : 1089, Stopped at :1091 Resulting : 1 errors for 2 lines. Tx error : 0.5
+
+========= Scrap, Time = 2021-12-29 14:51:30.194822 =======
 error type :'titleUrl' during iteration :1090
 
 
-========= Scrap, Time = 2021-12-29 14:54:02.541638 ======= 
+========= Scrap, Time = 2021-12-29 14:54:02.541638 =======
 error type :'titleUrl' during iteration :1090
 Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
 
-========= Scrap, Time = 2021-12-29 14:54:20.386910 ======= 
+========= Scrap, Time = 2021-12-29 14:54:20.386910 =======
 error type :'titleUrl' during iteration :1090
 Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
 
-========= Scrap, Time = 2021-12-29 14:55:24.109012 ======= 
+========= Scrap, Time = 2021-12-29 14:55:24.109012 =======
 error type :'titleUrl' during iteration :1090
 Start at: 1089, Stopped at: 1091. Write in file: data/test.json. Resulting: 1 errors for 2 lines. Tx error: 0.5
 
-========= Scrap, Time = 2021-12-29 14:56:21.555222 ======= 
+========= Scrap, Time = 2021-12-29 14:56:21.555222 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
 
-========= Scrap, Time = 2021-12-29 14:57:06.386287 ======= 
+========= Scrap, Time = 2021-12-29 14:57:06.386287 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
 
-========= Scrap, Time = 2021-12-29 15:07:31.135063 ======= 
+========= Scrap, Time = 2021-12-29 15:07:31.135063 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
 
-========= Scrap, Time = 2021-12-29 15:07:52.708573 ======= 
+========= Scrap, Time = 2021-12-29 15:07:52.708573 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1089, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 21 lines. Tx error: 0.09523809523809523
 
-========= Scrap, Time = 2021-12-29 15:09:06.667960 ======= 
+========= Scrap, Time = 2021-12-29 15:09:06.667960 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 15:27:24.425408 ======= 
+========= Scrap, Time = 2021-12-29 15:27:24.425408 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 15:27:35.772909 ======= 
+========= Scrap, Time = 2021-12-29 15:27:35.772909 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 15:29:12.964544 ======= 
+========= Scrap, Time = 2021-12-29 15:29:12.964544 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 15:30:22.974638 ======= 
+========= Scrap, Time = 2021-12-29 15:30:22.974638 =======
 error type :'titleUrl' during iteration :1090
 error type :'titleUrl' during iteration :1103
 Start at: 1090, Stopped at: 1110. Write in file: data/test.json. Resulting: 2 errors for 20 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 16:12:46.555659 ======= 
+========= Scrap, Time = 2021-12-29 16:12:46.555659 =======
 error type :'titleUrl' during iteration :1103
 Start at: 1100, Stopped at: 1110. Write in file: data/test.json. Resulting: 1 errors for 10 lines. Tx error: 0.1
 
-========= Scrap, Time = 2021-12-29 18:07:34.981818 ======= 
+========= Scrap, Time = 2021-12-29 18:07:34.981818 =======
 error type :local variable 'operUrl' referenced before assignment during iteration :9609
 error type :local variable 'operUrl' referenced before assignment during iteration :9610
 error type :local variable 'operUrl' referenced before assignment during iteration :9611
@@ -450,44 +450,44 @@ error type :local variable 'operUrl' referenced before assignment during iterati
 error type :local variable 'operUrl' referenced before assignment during iteration :9699
 Start at: 9609, Stopped at: 9700. Write in file: data/test.json. Resulting: 77 errors for 91 lines. Tx error: 0.8461538461538461
 
-========= Scrap, Time = 2021-12-29 18:13:23.956515 ======= 
+========= Scrap, Time = 2021-12-29 18:13:23.956515 =======
 HTTP Error 403: Forbidden, url return :
 error type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9700. Write in file: data/test.json. Resulting: 3 errors for 91 lines. Tx error: 0.03296703296703297
 
-========= Scrap, Time = 2021-12-29 18:14:38.965748 ======= 
+========= Scrap, Time = 2021-12-29 18:14:38.965748 =======
 HTTP Error 403: Forbidden, url return :
 error type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
 
-========= Scrap, Time = 2021-12-29 18:16:56.341051 ======= 
+========= Scrap, Time = 2021-12-29 18:16:56.341051 =======
 HTTP Error 403: Forbidden, url return :
 error type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
 
-========= Scrap, Time = 2021-12-29 18:18:01.097527 ======= 
+========= Scrap, Time = 2021-12-29 18:18:01.097527 =======
 HTTP Error 403: Forbidden, url return :
 error type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
 
-========= Scrap, Time = 2021-12-29 18:18:27.436882 ======= 
+========= Scrap, Time = 2021-12-29 18:18:27.436882 =======
 HTTP Error 403: Forbidden, url return :
 error type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
 
-========= Scrap, Time = 2021-12-29 18:20:08.388617 ======= 
+========= Scrap, Time = 2021-12-29 18:20:08.388617 =======
 
 HTTP Error 403: Forbidden,
 error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=VixdIglCZXk&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :9609
 error during : 9610code error : True
 Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
 
-========= Scrap, Time = 2022-01-02 19:24:35.754943 ======= 
+========= Scrap, Time = 2022-01-02 19:24:35.754943 =======
 error type :'titleUrl' during iteration :535
 error type :'titleUrl' during iteration :546
 error type :'titleUrl' during iteration :585
@@ -579,14 +579,14 @@ error while getting ressources from url: https://www.googleapis.com/youtube/v3/v
 error during : 9910code error : True
 Start at: 0, Stopped at: 9910. Write in file: data/test.json. Resulting: 88 errors for 9910 lines. Tx error: 0.00887991927346115
 
-========= Scrap, Time = 2022-01-02 19:42:17.221127 ======= 
+========= Scrap, Time = 2022-01-02 19:42:17.221127 =======
 
 HTTP Error 403: Forbidden,
 error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=3H5XeGOC2wU&key=AIzaSyDX0Yi2C5A8MjNHKerniqEe0cn7O03hhkIerror type :list indices must be integers or slices, not str during iteration :9911
 error during : 9912code error : True
 Start at: 9910, Stopped at: 9912. Write in file: data/test.json. Resulting: 3 errors for 2 lines. Tx error: 1.5
 
-========= Scrap, Time = 2022-01-02 19:51:46.546888 ======= 
+========= Scrap, Time = 2022-01-02 19:51:46.546888 =======
 error type :'titleUrl' during iteration :10711
 error type :'titleUrl' during iteration :11036
 error type :'titleUrl' during iteration :11099
@@ -649,3 +649,519 @@ HTTP Error 503: Service Unavailable,
 error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=3YT8avAMCDw&key=AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaIerror type :list indices must be integers or slices, not str during iteration :14728
 error during : 14729code error : True
 Start at: 9912, Stopped at: 14729. Write in file: data/test.json. Resulting: 60 errors for 4817 lines. Tx error: 0.012455885405854267
+=======
+========= Scrap, Time = 2021-12-29 18:34:47.054723 =======
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=VixdIglCZXk&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :9609
+error during : 9610code error : True
+Start at: 9609, Stopped at: 9610. Write in file: data/test.json. Resulting: 3 errors for 1 lines. Tx error: 3.0
+
+========= Scrap, Time = 2022-01-02 15:53:06.307824 =======
+error type :'titleUrl' during iteration :1090
+error type :'titleUrl' during iteration :1103
+error type :'titleUrl' during iteration :1117
+error type :'titleUrl' during iteration :1196
+error type :'titleUrl' during iteration :1201
+error type :'titleUrl' during iteration :1239
+error type :'titleUrl' during iteration :1253
+error type :'titleUrl' during iteration :1291
+error type :'titleUrl' during iteration :1302
+error type :'titleUrl' during iteration :1331
+error type :'titleUrl' during iteration :1354
+error type :'titleUrl' during iteration :1373
+error type :'titleUrl' during iteration :1402
+error type :'titleUrl' during iteration :1428
+error type :'titleUrl' during iteration :1436
+error type :'titleUrl' during iteration :1464
+error type :'titleUrl' during iteration :1747
+error type :'titleUrl' during iteration :1889
+error type :'titleUrl' during iteration :1933
+error type :'titleUrl' during iteration :2054
+error type :'titleUrl' during iteration :2210
+error type :'titleUrl' during iteration :2765
+error type :'titleUrl' during iteration :2789
+error type :'titleUrl' during iteration :2797
+error type :'titleUrl' during iteration :2800
+error type :'titleUrl' during iteration :2824
+error type :'titleUrl' during iteration :2881
+error type :'titleUrl' during iteration :2959
+error type :'titleUrl' during iteration :2967
+error type :'titleUrl' during iteration :3460
+error type :'titleUrl' during iteration :4021
+error type :'titleUrl' during iteration :4392
+error type :'titleUrl' during iteration :4427
+error type :'titleUrl' during iteration :4444
+error type :'titleUrl' during iteration :4708
+error type :'titleUrl' during iteration :4798
+error type :'titleUrl' during iteration :4899
+error type :'titleUrl' during iteration :4979
+error type :'titleUrl' during iteration :5035
+error type :'titleUrl' during iteration :5108
+error type :'titleUrl' during iteration :5213
+error type :'titleUrl' during iteration :5820
+error type :'titleUrl' during iteration :5838
+error type :'titleUrl' during iteration :6423
+error type :'titleUrl' during iteration :6478
+error type :'titleUrl' during iteration :6675
+error type :'titleUrl' during iteration :6683
+error type :'titleUrl' during iteration :6700
+error type :'titleUrl' during iteration :6753
+error type :'titleUrl' during iteration :6772
+error type :'titleUrl' during iteration :6841
+error type :'titleUrl' during iteration :6959
+error type :'titleUrl' during iteration :6973
+error type :'titleUrl' during iteration :7023
+error type :'titleUrl' during iteration :7082
+error type :'titleUrl' during iteration :7397
+error type :'titleUrl' during iteration :7431
+error type :'titleUrl' during iteration :7440
+error type :'titleUrl' during iteration :7485
+error type :'titleUrl' during iteration :7521
+error type :'titleUrl' during iteration :7529
+error type :'titleUrl' during iteration :7870
+error type :'titleUrl' during iteration :7924
+error type :'titleUrl' during iteration :8150
+error type :'titleUrl' during iteration :8186
+error type :'titleUrl' during iteration :8255
+error type :'titleUrl' during iteration :8324
+error type :'titleUrl' during iteration :8330
+error type :'titleUrl' during iteration :8367
+error type :'titleUrl' during iteration :8394
+error type :'titleUrl' during iteration :8494
+error type :'titleUrl' during iteration :8566
+error type :'titleUrl' during iteration :8576
+error type :'titleUrl' during iteration :8618
+error type :'titleUrl' during iteration :8630
+error type :'titleUrl' during iteration :8636
+error type :'titleUrl' during iteration :8664
+error type :'titleUrl' during iteration :8675
+error type :'titleUrl' during iteration :8683
+error type :'titleUrl' during iteration :8702
+error type :'titleUrl' during iteration :8717
+error type :'titleUrl' during iteration :8752
+error type :'titleUrl' during iteration :8767
+error type :'titleUrl' during iteration :8770
+error type :'titleUrl' during iteration :8787
+error type :'titleUrl' during iteration :8867
+error type :'titleUrl' during iteration :8890
+error type :'titleUrl' during iteration :8913
+error type :'titleUrl' during iteration :8977
+error type :'titleUrl' during iteration :8982
+error type :'titleUrl' during iteration :9095
+error type :'titleUrl' during iteration :9271
+error type :'titleUrl' during iteration :9298
+error type :'titleUrl' during iteration :9310
+error type :'titleUrl' during iteration :9338
+error type :'titleUrl' during iteration :9584
+error type :'titleUrl' during iteration :9612
+error type :'titleUrl' during iteration :9653
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=zLv93Vqhqx4&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :9673
+error during : 9674code error : True
+Start at: 0, Stopped at: 9674. Write in file: data/tempDatas.json. Resulting: 101 errors for 9674 lines. Tx error: 0.010440355592309283
+
+========= Scrap, Time = 2022-01-03 10:44:38.519919 =======
+error type :'titleUrl' during iteration :9743
+error type :'titleUrl' during iteration :9907
+error type :'titleUrl' during iteration :10001
+error type :'titleUrl' during iteration :10111
+error type :'titleUrl' during iteration :10240
+error type :'titleUrl' during iteration :10290
+error type :'titleUrl' during iteration :10318
+error type :'titleUrl' during iteration :10335
+error type :'titleUrl' during iteration :10338
+error type :'titleUrl' during iteration :10442
+error type :'titleUrl' during iteration :10451
+error type :'titleUrl' during iteration :10470
+error type :'titleUrl' during iteration :10518
+error type :'titleUrl' during iteration :10557
+error type :'titleUrl' during iteration :10708
+error type :'titleUrl' during iteration :10780
+error type :'titleUrl' during iteration :10807
+error type :'titleUrl' during iteration :10813
+error type :'titleUrl' during iteration :10833
+error type :'titleUrl' during iteration :10852
+error type :'titleUrl' during iteration :10858
+error type :'titleUrl' during iteration :10869
+error type :'titleUrl' during iteration :10930
+error type :'titleUrl' during iteration :11076
+error type :'titleUrl' during iteration :11132
+error type :'titleUrl' during iteration :11209
+error type :'titleUrl' during iteration :11231
+error type :'titleUrl' during iteration :11307
+error type :'titleUrl' during iteration :11381
+error type :'titleUrl' during iteration :11397
+error type :'titleUrl' during iteration :11556
+error type :'titleUrl' during iteration :11824
+error type :'titleUrl' during iteration :11943
+error type :'titleUrl' during iteration :12264
+error type :'titleUrl' during iteration :12315
+error type :'titleUrl' during iteration :12471
+error type :'titleUrl' during iteration :12663
+error type :'titleUrl' during iteration :12741
+error type :'titleUrl' during iteration :12782
+error type :'titleUrl' during iteration :12831
+error type :'titleUrl' during iteration :12934
+error type :'titleUrl' during iteration :12976
+error type :'titleUrl' during iteration :13236
+error type :'titleUrl' during iteration :13278
+error type :'titleUrl' during iteration :13409
+error type :'titleUrl' during iteration :13463
+error type :'titleUrl' during iteration :13502
+error type :'titleUrl' during iteration :13755
+error type :'titleUrl' during iteration :13945
+error type :'titleUrl' during iteration :13947
+error type :'titleUrl' during iteration :13964
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :'titleUrl' during iteration :14145
+error type :'titleUrl' during iteration :14223
+error type :'titleUrl' during iteration :14229
+error type :'titleUrl' during iteration :14230
+error type :'titleUrl' during iteration :14256
+error type :'titleUrl' during iteration :14269
+error type :'titleUrl' during iteration :14270
+error type :'titleUrl' during iteration :14272
+error type :'titleUrl' during iteration :14284
+error type :'titleUrl' during iteration :14289
+error type :'titleUrl' during iteration :14319
+error type :'titleUrl' during iteration :14338
+error type :'titleUrl' during iteration :14388
+error type :'titleUrl' during iteration :14417
+error type :'titleUrl' during iteration :14431
+error type :'titleUrl' during iteration :14462
+error type :'titleUrl' during iteration :14514
+error type :'titleUrl' during iteration :14541
+error type :'titleUrl' during iteration :14568
+error type :'titleUrl' during iteration :14577
+error type :'titleUrl' during iteration :14591
+error type :'titleUrl' during iteration :14596
+error type :'titleUrl' during iteration :14602
+error type :'titleUrl' during iteration :14646
+error type :'titleUrl' during iteration :14650
+error type :'titleUrl' during iteration :14666
+error type :'titleUrl' during iteration :14669
+error type :'titleUrl' during iteration :14698
+error type :'titleUrl' during iteration :14700
+error type :'titleUrl' during iteration :14701
+error type :'titleUrl' during iteration :14702
+error type :'titleUrl' during iteration :14708
+error type :'titleUrl' during iteration :14721
+error type :'titleUrl' during iteration :14722
+error type :'titleUrl' during iteration :14723
+error type :'titleUrl' during iteration :14726
+error type :'titleUrl' during iteration :14732
+error type :'titleUrl' during iteration :14791
+error type :'titleUrl' during iteration :14798
+error type :'titleUrl' during iteration :14803
+error type :'titleUrl' during iteration :14838
+error type :'titleUrl' during iteration :14844
+error type :'titleUrl' during iteration :14866
+error type :'titleUrl' during iteration :14879
+error type :'titleUrl' during iteration :14882
+error type :'titleUrl' during iteration :14902
+error type :'titleUrl' during iteration :14914
+error type :'titleUrl' during iteration :14934
+error type :'titleUrl' during iteration :14961
+error type :'titleUrl' during iteration :14964
+error type :'titleUrl' during iteration :14965
+error type :'titleUrl' during iteration :14966
+error type :'titleUrl' during iteration :14967
+error type :'titleUrl' during iteration :14968
+error type :'titleUrl' during iteration :14970
+error type :'titleUrl' during iteration :14993
+error type :'titleUrl' during iteration :14994
+error type :'titleUrl' during iteration :15009
+error type :'titleUrl' during iteration :15018
+error type :'titleUrl' during iteration :15056
+error type :'titleUrl' during iteration :15081
+error type :'titleUrl' during iteration :15086
+error type :'titleUrl' during iteration :15113
+error type :'titleUrl' during iteration :15114
+error type :'titleUrl' during iteration :15122
+error type :'titleUrl' during iteration :15138
+error type :'titleUrl' during iteration :15143
+error type :'titleUrl' during iteration :15165
+error type :'titleUrl' during iteration :15171
+error type :'titleUrl' during iteration :15172
+error type :'titleUrl' during iteration :15176
+error type :'titleUrl' during iteration :15181
+error type :'titleUrl' during iteration :15184
+error type :'titleUrl' during iteration :15213
+error type :'titleUrl' during iteration :15255
+error type :'titleUrl' during iteration :15258
+error type :'titleUrl' during iteration :15275
+error type :'titleUrl' during iteration :15320
+error type :'titleUrl' during iteration :15322
+error type :'titleUrl' during iteration :15325
+error type :'titleUrl' during iteration :15328
+error type :'titleUrl' during iteration :15329
+error type :'titleUrl' during iteration :15333
+error type :'titleUrl' during iteration :15352
+error type :'titleUrl' during iteration :15357
+error type :'titleUrl' during iteration :15358
+error type :'titleUrl' during iteration :15359
+error type :'titleUrl' during iteration :15360
+error type :'titleUrl' during iteration :15365
+error type :'titleUrl' during iteration :15509
+error type :'titleUrl' during iteration :15520
+error type :'titleUrl' during iteration :15533
+error type :'titleUrl' during iteration :15579
+error type :'titleUrl' during iteration :15593
+error type :'titleUrl' during iteration :15596
+error type :'titleUrl' during iteration :15611
+error type :'titleUrl' during iteration :15717
+error type :'titleUrl' during iteration :15726
+error type :'titleUrl' during iteration :15742
+error type :'titleUrl' during iteration :15763
+error type :'titleUrl' during iteration :15785
+error type :'titleUrl' during iteration :15789
+error type :'titleUrl' during iteration :15798
+error type :'titleUrl' during iteration :15801
+error type :'titleUrl' during iteration :15850
+error type :'titleUrl' during iteration :15908
+error type :'titleUrl' during iteration :15918
+error type :'titleUrl' during iteration :15923
+error type :'titleUrl' during iteration :15925
+error type :'titleUrl' during iteration :15932
+error type :'titleUrl' during iteration :15979
+error type :'titleUrl' during iteration :15980
+error type :'titleUrl' during iteration :16060
+error type :'titleUrl' during iteration :16098
+error type :'titleUrl' during iteration :16106
+error type :'titleUrl' during iteration :16130
+error type :'titleUrl' during iteration :16150
+error type :'titleUrl' during iteration :16166
+error type :'titleUrl' during iteration :16167
+error type :'titleUrl' during iteration :16197
+error type :'titleUrl' during iteration :16206
+error type :'titleUrl' during iteration :16236
+error type :'titleUrl' during iteration :16254
+error type :'titleUrl' during iteration :16316
+error type :'titleUrl' during iteration :16321
+error type :'titleUrl' during iteration :16366
+error type :'titleUrl' during iteration :16370
+error type :'titleUrl' during iteration :16383
+error type :'titleUrl' during iteration :16394
+error type :'titleUrl' during iteration :16415
+error type :'titleUrl' during iteration :16418
+error type :'titleUrl' during iteration :16435
+error type :'titleUrl' during iteration :16437
+error type :'titleUrl' during iteration :16459
+error type :'titleUrl' during iteration :16462
+error type :'titleUrl' during iteration :16465
+error type :'titleUrl' during iteration :16480
+error type :'titleUrl' during iteration :16481
+error type :'titleUrl' during iteration :16491
+error type :'titleUrl' during iteration :16494
+error type :'titleUrl' during iteration :16497
+error type :'titleUrl' during iteration :16501
+error type :'titleUrl' during iteration :16503
+error type :'titleUrl' during iteration :16507
+error type :'titleUrl' during iteration :16514
+error type :'titleUrl' during iteration :16516
+error type :'titleUrl' during iteration :16521
+error type :'titleUrl' during iteration :16543
+error type :'titleUrl' during iteration :16573
+error type :'titleUrl' during iteration :16574
+error type :'titleUrl' during iteration :16590
+error type :'titleUrl' during iteration :16639
+error type :'titleUrl' during iteration :16653
+error type :'titleUrl' during iteration :16664
+error type :'titleUrl' during iteration :16679
+error type :'titleUrl' during iteration :16682
+error type :'titleUrl' during iteration :16684
+error type :'titleUrl' during iteration :16685
+error type :'titleUrl' during iteration :16766
+error type :'titleUrl' during iteration :16786
+error type :'titleUrl' during iteration :16848
+error type :'titleUrl' during iteration :16912
+error type :'titleUrl' during iteration :16929
+error type :'titleUrl' during iteration :16977
+error type :'titleUrl' during iteration :17075
+error type :'titleUrl' during iteration :17103
+error type :'titleUrl' during iteration :17145
+error type :'titleUrl' during iteration :17173
+error type :'titleUrl' during iteration :17248
+error type :'titleUrl' during iteration :17466
+error type :'titleUrl' during iteration :17589
+error type :'titleUrl' during iteration :17622
+error type :'titleUrl' during iteration :17706
+error type :'titleUrl' during iteration :17753
+error type :'titleUrl' during iteration :17798
+error type :'titleUrl' during iteration :17845
+error type :'titleUrl' during iteration :17946
+error type :'titleUrl' during iteration :17972
+error type :'titleUrl' during iteration :18094
+error type :'titleUrl' during iteration :18125
+error type :'titleUrl' during iteration :18150
+error type :'titleUrl' during iteration :18209
+error type :'titleUrl' during iteration :18233
+error type :'titleUrl' during iteration :18465
+error type :'titleUrl' during iteration :18499
+error type :'titleUrl' during iteration :18518
+error type :'titleUrl' during iteration :18559
+error type :'titleUrl' during iteration :18575
+error type :'titleUrl' during iteration :18584
+error type :'titleUrl' during iteration :18688
+error type :'titleUrl' during iteration :18779
+error type :'titleUrl' during iteration :18871
+error type :'titleUrl' during iteration :18905
+error type :'titleUrl' during iteration :18914
+error type :'titleUrl' during iteration :19183
+error type :'titleUrl' during iteration :19255
+error type :'titleUrl' during iteration :19260
+error type :'titleUrl' during iteration :19271
+error type :'titleUrl' during iteration :19467
+error type :'titleUrl' during iteration :19671
+error type :'titleUrl' during iteration :19715
+error type :'titleUrl' during iteration :19770
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=x69mK5h00PM&key=AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3Uerror type :list indices must be integers or slices, not str during iteration :19772
+error during : 19773code error : True
+Start at: 9674, Stopped at: 19773. Write in file: data/tempDatas.json. Resulting: 273 errors for 10099 lines. Tx error: 0.02703237944350926
+
+========= Scrap, Time = 2022-01-04 15:12:58.437020 =======
+error type :'titleUrl' during iteration :19859
+error type :'titleUrl' during iteration :20016
+error type :'titleUrl' during iteration :20118
+error type :'titleUrl' during iteration :20145
+error type :'titleUrl' during iteration :20219
+error type :'titleUrl' during iteration :20292
+error type :'titleUrl' during iteration :20330
+error type :'titleUrl' during iteration :20726
+error type :'titleUrl' during iteration :20764
+error type :'titleUrl' during iteration :20808
+error type :'titleUrl' during iteration :20841
+error type :'titleUrl' during iteration :20986
+error type :'titleUrl' during iteration :21064
+error type :'titleUrl' during iteration :21080
+error type :'titleUrl' during iteration :21190
+error type :'titleUrl' during iteration :21333
+error type :'titleUrl' during iteration :21420
+error type :'titleUrl' during iteration :21489
+error type :'titleUrl' during iteration :21530
+error type :'titleUrl' during iteration :21654
+error type :'titleUrl' during iteration :21721
+error type :'titleUrl' during iteration :21744
+error type :'titleUrl' during iteration :21788
+error type :'titleUrl' during iteration :21802
+error type :'titleUrl' during iteration :21979
+error type :'titleUrl' during iteration :22072
+error type :'titleUrl' during iteration :22143
+error type :'titleUrl' during iteration :22257
+error type :'titleUrl' during iteration :22267
+error type :'titleUrl' during iteration :22369
+error type :'titleUrl' during iteration :22385
+error type :'titleUrl' during iteration :22483
+error type :'titleUrl' during iteration :22500
+error type :'titleUrl' during iteration :22592
+error type :'titleUrl' during iteration :22660
+error type :'titleUrl' during iteration :22767
+error type :'titleUrl' during iteration :22851
+error type :'titleUrl' during iteration :22871
+error type :'titleUrl' during iteration :22883
+error type :'titleUrl' during iteration :22969
+error type :'titleUrl' during iteration :23042
+error type :'titleUrl' during iteration :23045
+error type :'titleUrl' during iteration :23132
+error type :'titleUrl' during iteration :23151
+error type :'titleUrl' during iteration :23161
+error type :'titleUrl' during iteration :23215
+error type :'titleUrl' during iteration :23344
+error type :'titleUrl' during iteration :23365
+error type :'titleUrl' during iteration :23496
+error type :'titleUrl' during iteration :23530
+error type :'titleUrl' during iteration :23565
+error type :'titleUrl' during iteration :23622
+error type :'titleUrl' during iteration :23661
+error type :'titleUrl' during iteration :23734
+error type :'titleUrl' during iteration :24095
+error type :'titleUrl' during iteration :24144
+error type :'titleUrl' during iteration :24221
+error type :'titleUrl' during iteration :24277
+error type :'titleUrl' during iteration :24284
+error type :'titleUrl' during iteration :24380
+error type :'titleUrl' during iteration :24468
+error type :'titleUrl' during iteration :24490
+error type :'titleUrl' during iteration :24532
+error type :'titleUrl' during iteration :24597
+error type :'titleUrl' during iteration :24634
+error type :'titleUrl' during iteration :24697
+error type :'titleUrl' during iteration :24871
+error type :'titleUrl' during iteration :25044
+error type :'titleUrl' during iteration :25152
+error type :'titleUrl' during iteration :25228
+error type :'titleUrl' during iteration :25269
+error type :'titleUrl' during iteration :25377
+error type :'titleUrl' during iteration :25429
+error type :'titleUrl' during iteration :25533
+error type :'titleUrl' during iteration :25576
+error type :'titleUrl' during iteration :25646
+error type :'titleUrl' during iteration :25665
+error type :'titleUrl' during iteration :25685
+error type :'titleUrl' during iteration :25701
+error type :'titleUrl' during iteration :25761
+error type :'titleUrl' during iteration :25788
+error type :'titleUrl' during iteration :25822
+error type :'titleUrl' during iteration :25875
+error type :'titleUrl' during iteration :25881
+error type :'titleUrl' during iteration :25923
+error type :'titleUrl' during iteration :26042
+error type :'titleUrl' during iteration :26140
+error type :'titleUrl' during iteration :26236
+error type :'titleUrl' during iteration :26268
+error type :'titleUrl' during iteration :26333
+error type :'titleUrl' during iteration :26409
+error type :'titleUrl' during iteration :26472
+error type :'titleUrl' during iteration :26485
+error type :'titleUrl' during iteration :26624
+error type :'titleUrl' during iteration :26655
+error type :'titleUrl' during iteration :26682
+error type :'titleUrl' during iteration :26778
+error type :'titleUrl' during iteration :26857
+error type :'titleUrl' during iteration :27007
+Start at: 19773, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 99 errors for 7287 lines. Tx error: 0.013585837793330589
+
+========= Scrap, Time = 2022-01-04 15:37:23.499979 =======
+error type :'items' during iteration :0
+error type :'items' during iteration :1
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 2 errors for 27060 lines. Tx error: 7.390983000739098e-05
+
+========= Scrap, Time = 2022-01-04 15:38:44.629113 =======
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 0 errors for 27060 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-04 15:39:17.817920 =======
+error type :list indices must be integers or slices, not str during iteration :0
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 1 errors for 27060 lines. Tx error: 3.695491500369549e-05
+
+========= Scrap, Time = 2022-01-04 15:41:40.971483 =======
+error type :'title' during iteration :0
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 1 errors for 27060 lines. Tx error: 3.695491500369549e-05
+
+========= Scrap, Time = 2022-01-04 15:41:55.918125 =======
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 0 errors for 27060 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-04 15:42:36.118575 =======
+Start at: 0, Stopped at: 27060. Write in file: data/tempDatas.json. Resulting: 0 errors for 27060 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-04 15:48:52.460002 =======
+Start at: 0, Stopped at: 27060. Write in file: data/test.json. Resulting: 0 errors for 27060 lines. Tx error: 0.0

@@ -51,11 +51,32 @@ const colorArray = [
     "#99E6E6",
     "#6666FF"
 ];
+
+const categoriesDict = {
+  1  : "Film & Animation",
+  2  : "Autos & Vehicles",
+  10 : "Music",
+  15 :"Pets & Animals",
+  17 : "Sports",
+  19 : "Travel & Events",
+  20 : "Gaming",
+  22 : "People & Blogs",
+  23 : "Comedy",
+  24 : "Entertainment",
+  25 : "News & Politics",
+  26 : "Howto & Style",
+  27 : "Education",
+  28 : "Science & Technology",
+  29 : "Nonprofits & Activism"
+}
+
+
 //Stock All Lines for later utilisation
 var lines = {};
 d3.json(
-  "data/temporaryDatas.json"
+  "data/test.json"
 ).then(function (json) {
+
   const d = new Date();
   let timeLoad = d.getTime();
   console.log("End of loading :",timeLoad," Duration :",(timeLoad - timeStart)/ 1000)
@@ -93,23 +114,7 @@ d3.json(
 // add statistique date start and dateEnd
 d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
 
-const categoriesDict = {
-  1  : "Film & Animation",
-  2  : "Autos & Vehicles",
-  10 : "Music",
-  15 :"Pets & Animals",
-  17 : "Sports",
-  19 : "Travel & Events",
-  20 : "Gaming",
-  22 : "People & Blogs",
-  23 : "Comedy",
-  24 : "Entertainment",
-  25 : "News & Politics",
-  26 : "Howto & Style",
-  27 : "Education",
-  28 : "Science & Technology",
-  29 : "Nonprofits & Activism"
-}
+
 // Fonction pour trier des objets
 function sortObject(obj){
   var sortable = [];
@@ -257,7 +262,7 @@ getStat(par(dateStart),par(dateEnd))
     .attr("transform", `translate(-1,0)`)
     .attr("class", "axis axis--y")
     .call(d3.axisLeft(y));
-
+    console.log(datas)
  //Initialize Rect to catch mouse position on the svg (For the vertical line)
    svg
      .append('rect')
@@ -346,7 +351,7 @@ context.append("g")
 
 
 // Todo : Pour le brush
-///*
+
   i = 6;
   context.append("path")
     .datum(datas)
@@ -363,7 +368,7 @@ context.append("g")
 
 
   context.append("g")
-    .attr("class", "brush")//*/
+    .attr("class", "brush")//
   //  .call(brush)
   //  .call(brush.move, x.range());
 
