@@ -54,7 +54,7 @@ const colorArray = [
 //Stock All Lines for later utilisation
 var lines = {};
 d3.json(
-  "data/temporaryDatas.json"
+  "data/tempDatas.json"
 ).then(function (json) {
   const d = new Date();
   let timeLoad = d.getTime();
