@@ -1,3 +1,5 @@
+const d = new Date();
+let timeStart = d.getTime();
 const margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
@@ -52,9 +54,11 @@ const colorArray = [
 //Stock All Lines for later utilisation
 var lines = {};
 d3.json(
-  "data/data.json"
+  "data/temporaryDatas.json"
 ).then(function (json) {
-
+  const d = new Date();
+  let timeLoad = d.getTime();
+  console.log("End of loading :",timeLoad," Duration :",(timeLoad - timeStart)/ 1000)
   //Create an array of datas By categories
   var structByCategories={};
 //  console.log(categories)
@@ -75,6 +79,7 @@ d3.json(
 
   var dateEnd = new Date(json[0].date);
   var dateStart = new Date(json[json.length-1].date);
+  console.log(json[json.length-1])
   var month = new Date(dateStart);
   var par = d3.timeFormat("%Y-%m")
   nbMonth = ((dateEnd.getYear()-dateStart.getYear())*12)+(dateEnd.getMonth()-dateStart.getMonth())
@@ -149,31 +154,34 @@ function getStat(date1, date2){
   const dateTest2 = "2021-12"
   var categFav = new Object();
   var videoFav = new Object();
-  d3.json("data/data.json").then(function (json){
+  d3.json("data/data2.json").then(function (json){
+    const d = new Date();
+    let time2Load = d.getTime();
+    console.log("End of second loading :",time2Load," Duration :",(time2Load - timeStart)/ 1000)
     // On filtre le JSON pour la période sélectionnée
     var newJson = json.filter((d) => {
       const currentDate = par(new Date(d.date))
-      if(currentDate > dateTest1 && currentDate < dateTest2){
+      if(currentDate > date1 && currentDate < date2){
         return d;
       }
     })
     // On compte le nombre de visionnage par catégorie
-    for (var i = 0; i < newJson.length; i++) {   
+    for (var i = 0; i < newJson.length; i++) {
       if(newJson[i].items[0] !== undefined){
         const itemCat = newJson[i].items[0].snippet.categoryId
-        if (categFav[itemCat] == null) categFav[itemCat] = 1 
+        if (categFav[itemCat] == null) categFav[itemCat] = 1
         else categFav[itemCat] ++
 
         const itemVid = newJson[i].items[0].snippet.localized.title
-        if (videoFav[itemVid] == null) videoFav[itemVid] = 1 
+        if (videoFav[itemVid] == null) videoFav[itemVid] = 1
         else videoFav[itemVid] ++
       }
     }
     categFav = sortObject(categFav)
     console.log(categFav)
     videoFav = sortObject(videoFav)
-    
-    changeStatInfo(categFav,videoFav, dateTest1, dateTest2)
+
+    changeStatInfo(categFav,videoFav, date1, date2)
   })
 }
 
