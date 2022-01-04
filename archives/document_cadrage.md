@@ -46,7 +46,7 @@ Projet 2 : Time-series Line Chart :
 
 https://bl.ocks.org/robyngit/89327a78e22d138cff19c6de7288c1cf
 
-![image-20211208120528954](./data/img/image-20211208120528954.png)
+![image-20211208120528954](../data/img/image-20211208120528954.png)
 
 Visualisation de line-chart très intéressante. Possibilité de sélectionner une tranche de date et d'afficher son visuel. Nous allons reproduire cette représentation pour notre projet.  
 
@@ -54,7 +54,7 @@ Projet 3 : Pie Multiple with Nesting
 
 http://bl.ocks.org/mbostock/1305337
 
-![image-20211208121720403](./data/img/image-20211208121720403.png)
+![image-20211208121720403](../data/img/image-20211208121720403.png)
 
 Nous comptons aussi utiliser un affichage camembert pour représenter la proportion de vue par catégories. 
 
@@ -80,5 +80,5 @@ Développement D3 : Tim - Quentin - Baptiste
 
 **Scan des esquisses finales**
 
-![Esquisse finale](./data/img/schema.jpg)
+![Esquisse finale](../data/img/schema.jpg)
 
