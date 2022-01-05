@@ -23,7 +23,7 @@ def getResponse(url):
 
     return (error,jsonData)
 
-with open('data/history/watch-history_3.json') as f:
+with open('data/history/watch-history_2.json') as f:
     data = json.load(f)
 
 #Output Data
@@ -43,9 +43,9 @@ apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
 #Api Key Timothee : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
 
 #Start and End scrapping data
-debut = 1000
-fin = 5000#len(data)-1
-last = 0
+debut = 5000
+fin = len(data)-1
+nbError = 0
 
 datasRetour = []
 error = False
@@ -61,17 +61,16 @@ for i,d in enumerate(data):
                 url = "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id="+video_id+"&key="+apiKey
                 error, jsonData = getResponse(url)
                 video['id'] = d['titleUrl']
-
                 video['date'] = d['time']
                 video['title'] = jsonData['items'][0]['snippet']['title']
                 video['channelTitle'] = jsonData['items'][0]['snippet']['channelTitle']
                 video['categoryId'] = jsonData['items'][0]['snippet']['categoryId']
 
                 datasRetour.append(video)
-                last = i
             except  Exception as e:
                 Logs.append('error type :'+str(e)+' during iteration :'+str(i)+'\n')
                 print(Fore.RED,'\n error type :',e,' during iteration :',i)
+                nbError = nbError +1
     else:
         Logs.append('error during : '+str(i)+'code error : '+str(error)+'\n')
 
@@ -82,8 +81,8 @@ logsFile = open('archives/logs.txt', 'a')
 current_time = datetime.datetime.now()
 logsFile.write("\n\n========= Scrap, Time = "+str(current_time)+" ======= \n")
 logsFile.writelines(Logs)
-logsFile.write("Start at: "+str(debut)+", Stopped at: "+str(last)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
-print(Fore.WHITE,"\nStart at: "+str(debut)+", Stopped at: "+str(last)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
+logsFile.write("Start at: "+str(debut)+", Stopped at: "+str(fin)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str((len(Logs)+nbError)/(i-debut)))
+print(Fore.WHITE,"\nStart at: "+str(debut)+", Stopped at: "+str(fin)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str((len(Logs)+nbError)/(i-debut)))
 datasRetour = previousData + datasRetour
 datasJson = json.dumps(datasRetour, ensure_ascii=False, indent=4)
 with open(dataFile, 'w') as f:

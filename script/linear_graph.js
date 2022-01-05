@@ -12,24 +12,7 @@ var svg = d3.select("#codeD3Graph").append("svg")
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
-/*
-const categories = [
-  {"id" : 1, "name" : "Film & Animation"},
-  {"id" : 2, "name" : "Autos & Vehicles"},
-  {"id" : 10, "name" : "Music"},
-  {"id" : 15, "name" : "Pets & Animals"},
-  {"id" : 17, "name" : "Sports"},
-  {"id" : 19, "name" : "Travel & Events"},
-  {"id" : 20, "name" : "Gaming"},
-  {"id" : 22, "name" : "People & Blogs"},
-  {"id" : 23, "name" : "Comedy"},
-  {"id" : 24, "name" : "Entertainment"},
-  {"id" : 25, "name" : "News & Politics"},
-  {"id" : 26, "name" : "Howto & Style"},
-  {"id" : 27, "name" : "Education"},
-  {"id" : 28, "name" : "Science & Technology"},
-  {"id" : 29, "name" : "Nonprofits & Activism"}
-];*/
+
 const colorArray = [
     "#FF6633",
     "#FFB399",
@@ -89,7 +72,6 @@ d3.json(
   var month = new Date(dateStart);
   var par = d3.timeFormat("%Y-%m")
   nbMonth = ((dateEnd.getYear()-dateStart.getYear())*12)+(dateEnd.getMonth()-dateStart.getMonth())
-  //console.log(dateStart,dateEnd)
    while(!(dateEnd.getYear() == month.getYear() && dateEnd.getMonth() == month.getMonth())){
       dates.push(par(month));
       month = new Date(month.setMonth(month.getMonth()+1))
@@ -168,7 +150,7 @@ function getStat(date1, date2){
   d3.json("data/data2.json").then(function (json){
     const d = new Date();
     let time2Load = d.getTime();
-    console.log("End of second loading :",time2Load," Duration :",(time2Load - timeStart)/ 1000)
+    printTime("SecondLoading :",timeStart)
     // On filtre le JSON pour la période sélectionnée
     var newJson = json.filter((d) => {
       const currentDate = par(new Date(d.date))
@@ -195,7 +177,7 @@ function getStat(date1, date2){
     changeStatInfo(categFav,videoFav, date1, date2)
   })
 }
-//getStat(par(dateStart),par(dateEnd))
+  //getStat(par(dateStart),par(dateEnd))
 
   let max = 0;
 
@@ -418,6 +400,7 @@ function updateView(category_hidden){
 
 
     x.domain(s.map(x2.invert, x2));
+    console.log(x.domain())
     //Line_chart.select(".line").attr("d", line);
     //focus.select(".axis--x").call(axisX);
     axisX.transition(500).call(d3.axisBottom(x));
@@ -531,7 +514,7 @@ function updateView(category_hidden){
   }
 
   function hideAllExcept(id){
-    console.log(id)
+
     if(categories_hidden.length +1 == datas.length){
 
       for(i in datas){
@@ -547,7 +530,6 @@ function updateView(category_hidden){
         categories_hidden.push(parseInt(datas[i].idCat));
       }
     }
-    console.log(categories_hidden)
     updateView(id);
   }
 

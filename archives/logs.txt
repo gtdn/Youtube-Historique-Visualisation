@@ -1388,3 +1388,702 @@ error type :'titleUrl' during iteration :4979
 error type :list index out of range during iteration :4995
 error type :list index out of range during iteration :4998
 Start at: 1000, Stopped at: 4999. Write in file: data/test.json. Resulting: 196 errors for 26060 lines. Tx error: 0.007521105141980046
+
+
+========= Scrap, Time = 2022-01-05 15:23:07.428109 ======= 
+Start at: 1018, Stopped at: 1018. Write in file: data/test2.json. Resulting: 0 errors for 28440 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:23:28.483806 ======= 
+Start at: 1019, Stopped at: 1019. Write in file: data/test2.json. Resulting: 0 errors for 28439 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:23:42.219822 ======= 
+Start at: 1019, Stopped at: 1024. Write in file: data/test2.json. Resulting: 0 errors for 28439 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:23:52.181743 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 1024. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:24:10.315877 ======= 
+Start at: 1000, Stopped at: 0. Write in file: data/test2.json. Resulting: 0 errors for 28458 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:24:18.546542 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:24:45.913479 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:25:05.994871 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:25:52.068542 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:27:51.784835 ======= 
+error type :list index out of range during iteration :1000
+Start at: 1000, Stopped at: 1001. Write in file: data/test2.json. Resulting: 1 errors for 28458 lines. Tx error: 3.513950383020592e-05
+
+========= Scrap, Time = 2022-01-05 15:33:05.121785 ======= 
+error type :list index out of range during iteration :1019
+Start at: 1018, Stopped at: 1018. Write in file: data/test2.json. Resulting: 1 errors for 26042 lines. Tx error: 3.839950848629138e-05
+
+========= Scrap, Time = 2022-01-05 15:33:16.031208 ======= 
+error type :list index out of range during iteration :1019
+Start at: 1019, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 26041 lines. Tx error: 3.840098306516647e-05
+
+========= Scrap, Time = 2022-01-05 15:33:27.980575 ======= 
+Start at: 1020, Stopped at: 0. Write in file: data/test2.json. Resulting: 0 errors for 26040 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:33:33.815290 ======= 
+error type :list index out of range during iteration :1020
+Start at: 1020, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 26040 lines. Tx error: 3.840245775729647e-05
+
+========= Scrap, Time = 2022-01-05 15:34:33.965536 ======= 
+error type :list index out of range during iteration :1020
+Start at: 1020, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 26040 lines. Tx error: 3.840245775729647e-05
+
+========= Scrap, Time = 2022-01-05 15:34:46.308620 ======= 
+error type :list index out of range during iteration :1020
+Start at: 1020, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 26040 lines. Tx error: 3.840245775729647e-05
+
+========= Scrap, Time = 2022-01-05 15:35:13.253463 ======= 
+error type :list index out of range during iteration :1020
+Start at: 1020, Stopped at: 0. Write in file: data/test2.json. Resulting: 1 errors for 26040 lines. Tx error: 3.840245775729647e-05
+
+========= Scrap, Time = 2022-01-05 15:42:54.317219 ======= 
+Start at: 5000, Stopped at: 5000. Write in file: data/test2.json. Resulting: 0 errors for 22060 lines. Tx error: 0.0
+
+========= Scrap, Time = 2022-01-05 15:43:45.770884 ======= 
+error type :list index out of range during iteration :4998
+Start at: 4998, Stopped at: 4999. Write in file: data/test2.json. Resulting: 1 errors for 22062 lines. Tx error: 4.532680627322999e-05
+
+========= Scrap, Time = 2022-01-05 15:46:49.977235 ======= 
+error type :list index out of range during iteration :4998
+Start at: 4998, Stopped at: 5000. Write in file: data/test2.json. Resulting: 1 errors for 22062 lines. Tx error: 9.065361254645998e-05
+
+========= Scrap, Time = 2022-01-05 16:04:12.727669 ======= 
+error type :list index out of range during iteration :5004
+error type :list index out of range during iteration :5014
+error type :list index out of range during iteration :5015
+error type :'titleUrl' during iteration :5035
+error type :list index out of range during iteration :5036
+error type :list index out of range during iteration :5037
+error type :list index out of range during iteration :5071
+error type :list index out of range during iteration :5088
+error type :list index out of range during iteration :5104
+error type :'titleUrl' during iteration :5108
+error type :list index out of range during iteration :5118
+error type :list index out of range during iteration :5127
+error type :list index out of range during iteration :5128
+error type :list index out of range during iteration :5131
+error type :list index out of range during iteration :5132
+error type :list index out of range during iteration :5133
+error type :list index out of range during iteration :5138
+error type :list index out of range during iteration :5144
+error type :list index out of range during iteration :5156
+error type :list index out of range during iteration :5167
+error type :list index out of range during iteration :5185
+error type :list index out of range during iteration :5186
+error type :list index out of range during iteration :5198
+error type :list index out of range during iteration :5201
+error type :list index out of range during iteration :5204
+error type :list index out of range during iteration :5210
+error type :list index out of range during iteration :5211
+error type :'titleUrl' during iteration :5213
+error type :list index out of range during iteration :5219
+error type :list index out of range during iteration :5236
+error type :list index out of range during iteration :5237
+error type :list index out of range during iteration :5239
+error type :list index out of range during iteration :5240
+error type :list index out of range during iteration :5241
+error type :list index out of range during iteration :5243
+error type :list index out of range during iteration :5247
+error type :list index out of range during iteration :5251
+error type :list index out of range during iteration :5254
+error type :list index out of range during iteration :5260
+error type :list index out of range during iteration :5321
+error type :list index out of range during iteration :5352
+error type :list index out of range during iteration :5368
+error type :list index out of range during iteration :5374
+error type :list index out of range during iteration :5389
+error type :list index out of range during iteration :5391
+error type :list index out of range during iteration :5426
+error type :list index out of range during iteration :5433
+error type :list index out of range during iteration :5448
+error type :list index out of range during iteration :5457
+error type :list index out of range during iteration :5467
+error type :list index out of range during iteration :5474
+error type :list index out of range during iteration :5475
+error type :list index out of range during iteration :5488
+error type :list index out of range during iteration :5489
+error type :list index out of range during iteration :5491
+error type :list index out of range during iteration :5505
+error type :list index out of range during iteration :5518
+error type :list index out of range during iteration :5526
+error type :list index out of range during iteration :5528
+error type :list index out of range during iteration :5534
+error type :list index out of range during iteration :5537
+error type :list index out of range during iteration :5544
+error type :list index out of range during iteration :5545
+error type :list index out of range during iteration :5559
+error type :list index out of range during iteration :5563
+error type :list index out of range during iteration :5565
+error type :list index out of range during iteration :5568
+error type :list index out of range during iteration :5584
+error type :list index out of range during iteration :5586
+error type :list index out of range during iteration :5588
+error type :list index out of range during iteration :5592
+error type :list index out of range during iteration :5599
+error type :list index out of range during iteration :5603
+error type :list index out of range during iteration :5604
+error type :list index out of range during iteration :5610
+error type :list index out of range during iteration :5614
+error type :list index out of range during iteration :5615
+error type :list index out of range during iteration :5616
+error type :list index out of range during iteration :5617
+error type :list index out of range during iteration :5622
+error type :list index out of range during iteration :5623
+error type :list index out of range during iteration :5624
+error type :list index out of range during iteration :5635
+error type :list index out of range during iteration :5639
+error type :list index out of range during iteration :5640
+error type :list index out of range during iteration :5650
+error type :list index out of range during iteration :5651
+error type :list index out of range during iteration :5652
+error type :list index out of range during iteration :5653
+error type :list index out of range during iteration :5657
+error type :list index out of range during iteration :5658
+error type :list index out of range during iteration :5659
+error type :list index out of range during iteration :5683
+error type :list index out of range during iteration :5684
+error type :list index out of range during iteration :5687
+error type :list index out of range during iteration :5688
+error type :list index out of range during iteration :5703
+error type :list index out of range during iteration :5705
+error type :list index out of range during iteration :5706
+error type :list index out of range during iteration :5707
+error type :list index out of range during iteration :5711
+error type :list index out of range during iteration :5717
+error type :list index out of range during iteration :5718
+error type :list index out of range during iteration :5734
+error type :list index out of range during iteration :5800
+error type :list index out of range during iteration :5801
+error type :list index out of range during iteration :5816
+error type :list index out of range during iteration :5817
+error type :'titleUrl' during iteration :5820
+error type :list index out of range during iteration :5828
+error type :list index out of range during iteration :5831
+error type :'titleUrl' during iteration :5838
+error type :list index out of range during iteration :5855
+error type :list index out of range during iteration :5863
+error type :list index out of range during iteration :5881
+error type :list index out of range during iteration :5897
+error type :list index out of range during iteration :5898
+error type :list index out of range during iteration :5912
+error type :list index out of range during iteration :5925
+error type :list index out of range during iteration :5930
+error type :list index out of range during iteration :5933
+error type :list index out of range during iteration :5934
+error type :list index out of range during iteration :5952
+error type :list index out of range during iteration :5986
+error type :list index out of range during iteration :5988
+error type :list index out of range during iteration :5989
+error type :list index out of range during iteration :5990
+error type :list index out of range during iteration :6000
+error type :list index out of range during iteration :6041
+error type :list index out of range during iteration :6042
+error type :list index out of range during iteration :6048
+error type :list index out of range during iteration :6049
+error type :list index out of range during iteration :6064
+error type :list index out of range during iteration :6068
+error type :list index out of range during iteration :6073
+error type :list index out of range during iteration :6122
+error type :list index out of range during iteration :6123
+error type :list index out of range during iteration :6124
+error type :list index out of range during iteration :6125
+error type :list index out of range during iteration :6151
+error type :list index out of range during iteration :6194
+error type :list index out of range during iteration :6237
+error type :list index out of range during iteration :6306
+error type :list index out of range during iteration :6341
+error type :list index out of range during iteration :6361
+error type :list index out of range during iteration :6373
+error type :list index out of range during iteration :6385
+error type :'titleUrl' during iteration :6423
+error type :list index out of range during iteration :6453
+error type :list index out of range during iteration :6474
+error type :'titleUrl' during iteration :6478
+error type :list index out of range during iteration :6495
+error type :list index out of range during iteration :6496
+error type :list index out of range during iteration :6497
+error type :list index out of range during iteration :6527
+error type :'titleUrl' during iteration :6675
+error type :'titleUrl' during iteration :6683
+error type :'titleUrl' during iteration :6700
+error type :list index out of range during iteration :6706
+error type :'titleUrl' during iteration :6753
+error type :'titleUrl' during iteration :6772
+error type :'titleUrl' during iteration :6841
+error type :list index out of range during iteration :6862
+error type :list index out of range during iteration :6896
+error type :list index out of range during iteration :6901
+error type :list index out of range during iteration :6903
+error type :list index out of range during iteration :6909
+error type :list index out of range during iteration :6911
+error type :list index out of range during iteration :6931
+error type :list index out of range during iteration :6932
+error type :list index out of range during iteration :6937
+error type :list index out of range during iteration :6955
+error type :list index out of range during iteration :6957
+error type :list index out of range during iteration :6958
+error type :'titleUrl' during iteration :6959
+error type :'titleUrl' during iteration :6973
+error type :list index out of range during iteration :6985
+error type :list index out of range during iteration :7012
+error type :list index out of range during iteration :7021
+error type :'titleUrl' during iteration :7023
+error type :list index out of range during iteration :7024
+error type :list index out of range during iteration :7026
+error type :'titleUrl' during iteration :7082
+error type :list index out of range during iteration :7185
+error type :list index out of range during iteration :7211
+error type :list index out of range during iteration :7220
+error type :list index out of range during iteration :7222
+error type :list index out of range during iteration :7223
+error type :list index out of range during iteration :7247
+error type :list index out of range during iteration :7278
+error type :list index out of range during iteration :7381
+error type :'titleUrl' during iteration :7397
+error type :list index out of range during iteration :7424
+error type :'titleUrl' during iteration :7431
+error type :'titleUrl' during iteration :7440
+error type :list index out of range during iteration :7479
+error type :'titleUrl' during iteration :7485
+error type :list index out of range during iteration :7493
+error type :list index out of range during iteration :7505
+error type :'titleUrl' during iteration :7521
+error type :list index out of range during iteration :7528
+error type :'titleUrl' during iteration :7529
+error type :list index out of range during iteration :7547
+error type :list index out of range during iteration :7563
+error type :list index out of range during iteration :7643
+error type :list index out of range during iteration :7660
+error type :list index out of range during iteration :7661
+error type :list index out of range during iteration :7733
+error type :list index out of range during iteration :7734
+error type :list index out of range during iteration :7738
+error type :list index out of range during iteration :7739
+error type :list index out of range during iteration :7741
+error type :list index out of range during iteration :7754
+error type :list index out of range during iteration :7757
+error type :list index out of range during iteration :7771
+error type :list index out of range during iteration :7784
+error type :list index out of range during iteration :7821
+error type :list index out of range during iteration :7826
+error type :list index out of range during iteration :7833
+error type :list index out of range during iteration :7867
+error type :list index out of range during iteration :7868
+error type :list index out of range during iteration :7869
+error type :'titleUrl' during iteration :7870
+error type :list index out of range during iteration :7883
+error type :list index out of range during iteration :7888
+error type :list index out of range during iteration :7919
+error type :list index out of range during iteration :7922
+error type :'titleUrl' during iteration :7924
+error type :list index out of range during iteration :7930
+error type :list index out of range during iteration :7935
+error type :list index out of range during iteration :7953
+error type :list index out of range during iteration :8033
+error type :list index out of range during iteration :8119
+error type :list index out of range during iteration :8142
+error type :'titleUrl' during iteration :8150
+error type :list index out of range during iteration :8180
+error type :'titleUrl' during iteration :8186
+error type :list index out of range during iteration :8187
+error type :list index out of range during iteration :8190
+error type :'titleUrl' during iteration :8255
+error type :list index out of range during iteration :8311
+error type :'titleUrl' during iteration :8324
+error type :'titleUrl' during iteration :8330
+error type :list index out of range during iteration :8333
+error type :'titleUrl' during iteration :8367
+error type :list index out of range during iteration :8368
+error type :'titleUrl' during iteration :8394
+error type :list index out of range during iteration :8448
+error type :list index out of range during iteration :8461
+error type :list index out of range during iteration :8462
+error type :list index out of range during iteration :8469
+error type :list index out of range during iteration :8482
+error type :'titleUrl' during iteration :8494
+error type :list index out of range during iteration :8528
+error type :list index out of range during iteration :8535
+error type :list index out of range during iteration :8536
+error type :list index out of range during iteration :8547
+error type :list index out of range during iteration :8549
+error type :list index out of range during iteration :8554
+error type :'titleUrl' during iteration :8566
+error type :list index out of range during iteration :8568
+error type :'titleUrl' during iteration :8576
+error type :list index out of range during iteration :8588
+error type :list index out of range during iteration :8600
+error type :'titleUrl' during iteration :8618
+error type :'titleUrl' during iteration :8630
+error type :list index out of range during iteration :8631
+error type :'titleUrl' during iteration :8636
+error type :list index out of range during iteration :8643
+error type :list index out of range during iteration :8662
+error type :'titleUrl' during iteration :8664
+error type :'titleUrl' during iteration :8675
+error type :'titleUrl' during iteration :8683
+error type :list index out of range during iteration :8693
+error type :'titleUrl' during iteration :8702
+error type :list index out of range during iteration :8712
+error type :'titleUrl' during iteration :8717
+error type :list index out of range during iteration :8732
+error type :list index out of range during iteration :8733
+error type :'titleUrl' during iteration :8752
+error type :'titleUrl' during iteration :8767
+error type :'titleUrl' during iteration :8770
+error type :list index out of range during iteration :8774
+error type :list index out of range during iteration :8778
+error type :list index out of range during iteration :8784
+error type :'titleUrl' during iteration :8787
+error type :list index out of range during iteration :8827
+error type :'titleUrl' during iteration :8867
+error type :list index out of range during iteration :8880
+error type :'titleUrl' during iteration :8890
+error type :list index out of range during iteration :8897
+error type :list index out of range during iteration :8909
+error type :'titleUrl' during iteration :8913
+error type :list index out of range during iteration :8957
+error type :list index out of range during iteration :8975
+error type :'titleUrl' during iteration :8977
+error type :list index out of range during iteration :8979
+error type :list index out of range during iteration :8981
+error type :'titleUrl' during iteration :8982
+error type :list index out of range during iteration :9078
+error type :'titleUrl' during iteration :9095
+error type :list index out of range during iteration :9143
+error type :list index out of range during iteration :9216
+error type :list index out of range during iteration :9250
+error type :list index out of range during iteration :9251
+error type :list index out of range during iteration :9252
+error type :list index out of range during iteration :9253
+error type :list index out of range during iteration :9254
+error type :list index out of range during iteration :9267
+error type :list index out of range during iteration :9268
+error type :'titleUrl' during iteration :9271
+error type :list index out of range during iteration :9276
+error type :list index out of range during iteration :9279
+error type :'titleUrl' during iteration :9298
+error type :'titleUrl' during iteration :9310
+error type :list index out of range during iteration :9328
+error type :list index out of range during iteration :9337
+error type :'titleUrl' during iteration :9338
+error type :list index out of range during iteration :9349
+error type :list index out of range during iteration :9362
+error type :list index out of range during iteration :9387
+error type :list index out of range during iteration :9424
+error type :list index out of range during iteration :9437
+error type :list index out of range during iteration :9445
+error type :list index out of range during iteration :9457
+error type :list index out of range during iteration :9464
+error type :list index out of range during iteration :9491
+error type :list index out of range during iteration :9541
+error type :list index out of range during iteration :9565
+error type :list index out of range during iteration :9569
+error type :list index out of range during iteration :9576
+error type :'titleUrl' during iteration :9584
+error type :list index out of range during iteration :9589
+error type :list index out of range during iteration :9597
+error type :list index out of range during iteration :9604
+error type :'titleUrl' during iteration :9612
+error type :list index out of range during iteration :9633
+error type :list index out of range during iteration :9635
+error type :'titleUrl' during iteration :9653
+error type :list index out of range during iteration :9664
+error type :list index out of range during iteration :9666
+error type :list index out of range during iteration :9680
+error type :list index out of range during iteration :9682
+error type :'titleUrl' during iteration :9743
+error type :list index out of range during iteration :9748
+error type :list index out of range during iteration :9764
+error type :list index out of range during iteration :9796
+error type :list index out of range during iteration :9827
+error type :list index out of range during iteration :9828
+error type :list index out of range during iteration :9832
+error type :list index out of range during iteration :9860
+error type :'titleUrl' during iteration :9907
+error type :list index out of range during iteration :9988
+error type :list index out of range during iteration :10000
+error type :'titleUrl' during iteration :10001
+error type :list index out of range during iteration :10063
+error type :list index out of range during iteration :10067
+error type :list index out of range during iteration :10069
+error type :list index out of range during iteration :10073
+error type :list index out of range during iteration :10076
+error type :list index out of range during iteration :10077
+error type :list index out of range during iteration :10078
+error type :list index out of range during iteration :10081
+error type :list index out of range during iteration :10082
+error type :list index out of range during iteration :10083
+error type :list index out of range during iteration :10084
+error type :list index out of range during iteration :10085
+error type :list index out of range during iteration :10087
+error type :list index out of range during iteration :10088
+error type :'titleUrl' during iteration :10111
+error type :list index out of range during iteration :10112
+error type :list index out of range during iteration :10118
+error type :list index out of range during iteration :10190
+error type :list index out of range during iteration :10205
+error type :list index out of range during iteration :10206
+error type :list index out of range during iteration :10207
+error type :list index out of range during iteration :10208
+error type :list index out of range during iteration :10209
+error type :list index out of range during iteration :10210
+error type :'titleUrl' during iteration :10240
+error type :'titleUrl' during iteration :10290
+error type :'titleUrl' during iteration :10318
+error type :'titleUrl' during iteration :10335
+error type :list index out of range during iteration :10337
+error type :'titleUrl' during iteration :10338
+error type :list index out of range during iteration :10369
+error type :list index out of range during iteration :10427
+error type :list index out of range during iteration :10429
+error type :'titleUrl' during iteration :10442
+error type :'titleUrl' during iteration :10451
+error type :list index out of range during iteration :10468
+error type :'titleUrl' during iteration :10470
+error type :'titleUrl' during iteration :10518
+error type :list index out of range during iteration :10520
+error type :list index out of range during iteration :10521
+error type :list index out of range during iteration :10546
+error type :'titleUrl' during iteration :10557
+error type :list index out of range during iteration :10560
+error type :list index out of range during iteration :10583
+error type :list index out of range during iteration :10616
+error type :list index out of range during iteration :10705
+error type :'titleUrl' during iteration :10708
+error type :list index out of range during iteration :10714
+error type :list index out of range during iteration :10743
+error type :'titleUrl' during iteration :10780
+error type :list index out of range during iteration :10790
+error type :list index out of range during iteration :10806
+error type :'titleUrl' during iteration :10807
+error type :'titleUrl' during iteration :10813
+error type :'titleUrl' during iteration :10833
+error type :list index out of range during iteration :10836
+error type :list index out of range during iteration :10840
+error type :'titleUrl' during iteration :10852
+error type :'titleUrl' during iteration :10858
+error type :'titleUrl' during iteration :10869
+error type :'titleUrl' during iteration :10930
+error type :list index out of range during iteration :10954
+error type :list index out of range during iteration :10957
+error type :list index out of range during iteration :10958
+error type :list index out of range during iteration :10959
+error type :list index out of range during iteration :10960
+error type :list index out of range during iteration :10974
+error type :list index out of range during iteration :10995
+error type :list index out of range during iteration :11009
+error type :list index out of range during iteration :11036
+error type :'titleUrl' during iteration :11076
+error type :list index out of range during iteration :11083
+error type :list index out of range during iteration :11122
+error type :list index out of range during iteration :11124
+error type :'titleUrl' during iteration :11132
+error type :list index out of range during iteration :11157
+error type :'titleUrl' during iteration :11209
+error type :list index out of range during iteration :11222
+error type :'titleUrl' during iteration :11231
+error type :list index out of range during iteration :11236
+error type :list index out of range during iteration :11238
+error type :'titleUrl' during iteration :11307
+error type :list index out of range during iteration :11344
+error type :list index out of range during iteration :11361
+error type :list index out of range during iteration :11372
+error type :list index out of range during iteration :11373
+error type :list index out of range during iteration :11374
+error type :'titleUrl' during iteration :11381
+error type :'titleUrl' during iteration :11397
+error type :list index out of range during iteration :11405
+error type :list index out of range during iteration :11406
+error type :list index out of range during iteration :11410
+error type :list index out of range during iteration :11417
+error type :list index out of range during iteration :11481
+error type :list index out of range during iteration :11512
+error type :list index out of range during iteration :11546
+error type :list index out of range during iteration :11547
+error type :'titleUrl' during iteration :11556
+error type :list index out of range during iteration :11558
+error type :list index out of range during iteration :11567
+error type :list index out of range during iteration :11568
+error type :list index out of range during iteration :11569
+error type :list index out of range during iteration :11572
+error type :list index out of range during iteration :11616
+error type :list index out of range during iteration :11621
+error type :list index out of range during iteration :11628
+error type :list index out of range during iteration :11632
+error type :list index out of range during iteration :11633
+error type :list index out of range during iteration :11674
+error type :list index out of range during iteration :11675
+error type :list index out of range during iteration :11676
+error type :list index out of range during iteration :11677
+error type :list index out of range during iteration :11678
+error type :list index out of range during iteration :11679
+error type :list index out of range during iteration :11798
+error type :'titleUrl' during iteration :11824
+error type :list index out of range during iteration :11918
+error type :'titleUrl' during iteration :11943
+error type :list index out of range during iteration :11944
+error type :list index out of range during iteration :11945
+error type :list index out of range during iteration :11946
+error type :list index out of range during iteration :11950
+error type :list index out of range during iteration :11968
+error type :list index out of range during iteration :12005
+error type :list index out of range during iteration :12016
+error type :list index out of range during iteration :12095
+error type :list index out of range during iteration :12098
+error type :list index out of range during iteration :12101
+error type :list index out of range during iteration :12117
+error type :list index out of range during iteration :12119
+error type :list index out of range during iteration :12145
+error type :list index out of range during iteration :12147
+error type :list index out of range during iteration :12150
+error type :list index out of range during iteration :12151
+error type :list index out of range during iteration :12182
+error type :list index out of range during iteration :12193
+error type :list index out of range during iteration :12257
+error type :'titleUrl' during iteration :12264
+error type :list index out of range during iteration :12307
+error type :list index out of range during iteration :12311
+error type :'titleUrl' during iteration :12315
+error type :list index out of range during iteration :12349
+error type :list index out of range during iteration :12428
+error type :list index out of range during iteration :12442
+error type :list index out of range during iteration :12446
+error type :list index out of range during iteration :12458
+error type :'titleUrl' during iteration :12471
+error type :list index out of range during iteration :12497
+error type :list index out of range during iteration :12507
+error type :list index out of range during iteration :12517
+error type :list index out of range during iteration :12541
+error type :list index out of range during iteration :12650
+error type :'titleUrl' during iteration :12663
+error type :list index out of range during iteration :12701
+error type :list index out of range during iteration :12710
+error type :'titleUrl' during iteration :12741
+error type :list index out of range during iteration :12746
+error type :list index out of range during iteration :12781
+error type :'titleUrl' during iteration :12782
+error type :list index out of range during iteration :12804
+error type :list index out of range during iteration :12805
+error type :list index out of range during iteration :12806
+error type :list index out of range during iteration :12807
+error type :list index out of range during iteration :12813
+error type :'titleUrl' during iteration :12831
+error type :list index out of range during iteration :12835
+error type :list index out of range during iteration :12851
+error type :'titleUrl' during iteration :12934
+error type :'titleUrl' during iteration :12976
+error type :list index out of range during iteration :13057
+error type :list index out of range during iteration :13077
+error type :list index out of range during iteration :13153
+error type :list index out of range during iteration :13188
+error type :'titleUrl' during iteration :13236
+error type :'titleUrl' during iteration :13278
+error type :list index out of range during iteration :13303
+error type :list index out of range during iteration :13309
+error type :list index out of range during iteration :13313
+error type :list index out of range during iteration :13337
+error type :list index out of range during iteration :13343
+error type :'titleUrl' during iteration :13409
+error type :'titleUrl' during iteration :13463
+error type :'titleUrl' during iteration :13502
+error type :list index out of range during iteration :13528
+error type :list index out of range during iteration :13682
+error type :list index out of range during iteration :13692
+error type :list index out of range during iteration :13702
+error type :list index out of range during iteration :13742
+error type :'titleUrl' during iteration :13755
+error type :list index out of range during iteration :13790
+error type :list index out of range during iteration :13881
+error type :list index out of range during iteration :13934
+error type :'titleUrl' during iteration :13945
+error type :'titleUrl' during iteration :13947
+error type :list index out of range during iteration :13958
+error type :'titleUrl' during iteration :13964
+error type :list index out of range during iteration :13978
+error type :'titleUrl' during iteration :14004
+error type :'titleUrl' during iteration :14008
+error type :'titleUrl' during iteration :14012
+error type :'titleUrl' during iteration :14013
+error type :'titleUrl' during iteration :14023
+error type :'titleUrl' during iteration :14024
+error type :'titleUrl' during iteration :14042
+error type :'titleUrl' during iteration :14044
+error type :'titleUrl' during iteration :14045
+error type :'titleUrl' during iteration :14052
+error type :'titleUrl' during iteration :14057
+error type :'titleUrl' during iteration :14060
+error type :'titleUrl' during iteration :14067
+error type :'titleUrl' during iteration :14074
+error type :'titleUrl' during iteration :14075
+error type :'titleUrl' during iteration :14085
+error type :'titleUrl' during iteration :14086
+error type :list index out of range during iteration :14113
+error type :list index out of range during iteration :14124
+error type :list index out of range during iteration :14134
+error type :'titleUrl' during iteration :14145
+error type :'titleUrl' during iteration :14223
+error type :'titleUrl' during iteration :14229
+error type :'titleUrl' during iteration :14230
+error type :list index out of range during iteration :14249
+error type :'titleUrl' during iteration :14256
+error type :list index out of range during iteration :14258
+error type :'titleUrl' during iteration :14269
+error type :'titleUrl' during iteration :14270
+error type :list index out of range during iteration :14271
+error type :'titleUrl' during iteration :14272
+error type :'titleUrl' during iteration :14284
+error type :'titleUrl' during iteration :14289
+error type :list index out of range during iteration :14305
+error type :'titleUrl' during iteration :14319
+error type :'titleUrl' during iteration :14338
+error type :list index out of range during iteration :14339
+error type :list index out of range during iteration :14356
+error type :list index out of range during iteration :14362
+error type :'titleUrl' during iteration :14388
+error type :'titleUrl' during iteration :14417
+error type :'titleUrl' during iteration :14431
+error type :'titleUrl' during iteration :14462
+error type :'titleUrl' during iteration :14514
+error type :'titleUrl' during iteration :14541
+error type :'titleUrl' during iteration :14568
+error type :'titleUrl' during iteration :14577
+error type :'titleUrl' during iteration :14591
+error type :'titleUrl' during iteration :14596
+error type :'titleUrl' during iteration :14602
+error type :'titleUrl' during iteration :14646
+error type :'titleUrl' during iteration :14650
+error type :'titleUrl' during iteration :14666
+error type :'titleUrl' during iteration :14669
+error type :list index out of range during iteration :14677
+error type :'titleUrl' during iteration :14698
+error type :'titleUrl' during iteration :14700
+error type :'titleUrl' during iteration :14701
+error type :'titleUrl' during iteration :14702
+error type :'titleUrl' during iteration :14708
+error type :'titleUrl' during iteration :14721
+error type :'titleUrl' during iteration :14722
+error type :'titleUrl' during iteration :14723
+error type :'titleUrl' during iteration :14726
+error type :'titleUrl' during iteration :14732
+
+HTTP Error 403: Forbidden,
+error while getting ressources from url: https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=D0KrWq0i1QI&key=AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaIerror type :list indices must be integers or slices, not str during iteration :14779
+error during : 14780code error : True
+Start at: 5000, Stopped at: 27060. Write in file: data/test.json. Resulting: 620 errors for 9780 lines. Tx error: 0.12658486707566463
