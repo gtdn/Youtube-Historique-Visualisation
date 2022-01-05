@@ -443,7 +443,7 @@ function updateView(category_hidden){
     .attr("fill", "none")
     .attr("class","lines")
     .attr("id","line_"+data.idCat)
-    .attr("stroke", colorArray[i])
+    .attr("stroke", color(data.idCat))
     .attr("data-id",data.idCat)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
@@ -475,7 +475,8 @@ function updateView(category_hidden){
     .attr("data_id",data.idCat)
     .attr("id","label_"+data.idCat)
     .attr('class', 'label_rect')
-    .style('fill', colorArray[i]).on('mouseover', function (d, i) {
+    .style('fill', color(data.idCat))
+    .on('mouseover', function (d, i) {
       //TODO Stay low opacity when path removed
       d3.select(this).transition()
       .duration('50')
