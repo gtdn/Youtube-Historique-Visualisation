@@ -12,45 +12,16 @@ var svg = d3.select("#codeD3Graph").append("svg")
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
-/*
-const categories = [
-  {"id" : 1, "name" : "Film & Animation"},
-  {"id" : 2, "name" : "Autos & Vehicles"},
-  {"id" : 10, "name" : "Music"},
-  {"id" : 15, "name" : "Pets & Animals"},
-  {"id" : 17, "name" : "Sports"},
-  {"id" : 19, "name" : "Travel & Events"},
-  {"id" : 20, "name" : "Gaming"},
-  {"id" : 22, "name" : "People & Blogs"},
-  {"id" : 23, "name" : "Comedy"},
-  {"id" : 24, "name" : "Entertainment"},
-  {"id" : 25, "name" : "News & Politics"},
-  {"id" : 26, "name" : "Howto & Style"},
-  {"id" : 27, "name" : "Education"},
-  {"id" : 28, "name" : "Science & Technology"},
-  {"id" : 29, "name" : "Nonprofits & Activism"}
-];*/
-const colorArray = [
-    "#FF6633",
-    "#FFB399",
-    "#FF33FF",
-    "#FFFF99",
-    "#00B3E6",
-    "#E6B333",
-    "#3366E6",
-    "#999966",
-    "#809980",
-    "#E6FF80",
-    "#1AFF33",
-    "#999933",
-    "#FF3380",
-    "#CCCC00",
-    "#66E64D",
-    "#4D80CC",
-    "#FF4D4D",
-    "#99E6E6",
-    "#6666FF"
-];
+
+
+var svgCam = d3.select("#codeD3Cam").append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
+  .attr("transform",
+  "translate(" + width / 2 + "," + height / 2 + ")");
+
+var boolPie = 0;
 
 const categoriesDict = {
   1  : "Film & Animation",
@@ -161,41 +132,39 @@ function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
 }
 // Fonction pour récupérer les stats pour une range de date
 function getStat(date1, date2){
-  const dateTest1 = "2021-01"
-  const dateTest2 = "2021-12"
+  console.log(date1)
   var categFav = new Object();
   var videoFav = new Object();
-  d3.json("data/data2.json").then(function (json){
-    const d = new Date();
-    let time2Load = d.getTime();
-    console.log("End of second loading :",time2Load," Duration :",(time2Load - timeStart)/ 1000)
-    // On filtre le JSON pour la période sélectionnée
-    var newJson = json.filter((d) => {
-      const currentDate = par(new Date(d.date))
-      if(currentDate > date1 && currentDate < date2){
-        return d;
-      }
-    })
-    // On compte le nombre de visionnage par catégorie
-    for (var i = 0; i < newJson.length; i++) {
-      if(newJson[i].items[0] !== undefined){
-        const itemCat = newJson[i].items[0].snippet.categoryId
-        if (categFav[itemCat] == null) categFav[itemCat] = 1
-        else categFav[itemCat] ++
-
-        const itemVid = newJson[i].items[0].snippet.localized.title
-        if (videoFav[itemVid] == null) videoFav[itemVid] = 1
-        else videoFav[itemVid] ++
-      }
+  
+  const d = new Date();
+  let time2Load = d.getTime();
+  console.log("End of second loading :",time2Load," Duration :",(time2Load - timeStart)/ 1000)
+  // On filtre le JSON pour la période sélectionnée
+  var newJson = json.filter((d) => {
+    const currentDate = par(new Date(d.date))
+    if(currentDate > date1 && currentDate < date2){
+      return d;
     }
-    categFav = sortObject(categFav)
-
-    videoFav = sortObject(videoFav)
-
-    changeStatInfo(categFav,videoFav, date1, date2)
   })
+  // On compte le nombre de visionnage par catégorie
+  for (var i = 0; i < newJson.length; i++) {
+    const itemCat = newJson[i].categoryId
+    if (categFav[itemCat] == null) categFav[itemCat] = 1
+    else categFav[itemCat] ++
+
+    const itemVid = newJson[i].title
+    if (videoFav[itemVid] == null) videoFav[itemVid] = 1
+    else videoFav[itemVid] ++
+  }
+  categFav = sortObject(categFav)
+  videoFav = sortObject(videoFav)
+  if (boolPie == 0) {
+    createPie(svgCam, categFav)
+    boolPie ++;
+  } else updatePie(svgCam, categFav)
+  
+  changeStatInfo(categFav,videoFav, date1, date2)
 }
-//getStat(par(dateStart),par(dateEnd))
 
   let max = 0;
 
@@ -415,9 +384,9 @@ function updateView(category_hidden){
   function brushed(event) {
     if (event.sourceEvent && event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = event.selection || x2.range();
-
-
-    x.domain(s.map(x2.invert, x2));
+    
+    x.domain(s.map(x2.invert, x2));   
+    
     //Line_chart.select(".line").attr("d", line);
     //focus.select(".axis--x").call(axisX);
     axisX.transition(500).call(d3.axisBottom(x));
@@ -427,6 +396,9 @@ function updateView(category_hidden){
         .translate(-s[0], 0));
 
     updatePath([])
+
+    /* On met à jour les statistiques*/
+    getStat(par((x.domain()[0])), par((x.domain()[1])))
 
   }
 
