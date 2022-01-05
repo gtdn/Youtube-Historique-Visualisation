@@ -1,6 +1,6 @@
 const categ = [["29",1],["44",1],["2",2],["15",4],["19",7],["17",25],["27",64],["1",70],["26",76],["28",77],["25",106],["22",157],["23",236],["24",426],["10",799],["20",1195]]
 
-const palette = [
+const colorArray = [
     '#6c9ea3',
     '#e5d4be',
     '#262859',
@@ -17,26 +17,15 @@ const palette = [
     '#86cbe0',
     '#6bae55',
     '#554e47'
-]
-
-
+];
 
 const color = d3.scaleOrdinal()
   .domain([1,2,10,15,17,19,20,22,23,24,25,26,27,28,29,44])
-  .range(palette);
-
-
-
-var svgCam = d3.select("#codeD3Cam").append("svg")
-  .attr("width", width)
-  .attr("height", height)
-  .append("g")
-  .attr("transform",
-  "translate(" + width / 2 + "," + height / 2 + ")");
+  .range(colorArray);
 
 const radius = 150
 
-function createPie(svg) {
+function createPie(svg, categ) {
   const pie = d3.pie()
   .sort(null)
   .value((d) => d[1]);
@@ -68,20 +57,15 @@ function createPie(svg) {
         .append("title")
         .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
 
-  arcs.filter(function(d) { return d.endAngle - d.startAngle > .4; }).append("text")
+  arcs.filter((d) => d.endAngle - d.startAngle > .4)
+      .append("text")
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
-      .attr("transform",(d)=>{
-                    return "translate("+
-                    arc.centroid(d) + ")";
-            })
+      .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
       .text((d) => categoriesDict[d.data[0]]);
 
   }
 
 function updatePie(svg){
-  svg.selectAll("arc")
-    .data(pie(data));
+  console.log("its ok")
 }
-
-createPie(svgCam)
