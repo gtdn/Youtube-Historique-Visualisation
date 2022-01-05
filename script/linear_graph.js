@@ -12,7 +12,7 @@ var svg = d3.select("#codeD3Graph").append("svg")
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
-
+/*
 const categories = [
   {"id" : 1, "name" : "Film & Animation"},
   {"id" : 2, "name" : "Autos & Vehicles"},
@@ -29,7 +29,7 @@ const categories = [
   {"id" : 27, "name" : "Education"},
   {"id" : 28, "name" : "Science & Technology"},
   {"id" : 29, "name" : "Nonprofits & Activism"}
-];
+];*/
 const colorArray = [
     "#FF6633",
     "#FFB399",
@@ -76,22 +76,7 @@ var lines = {};
 d3.json(
   "data/test.json"
 ).then(function (json) {
-
-  const d = new Date();
-  let timeLoad = d.getTime();
-  console.log("End of loading :",timeLoad," Duration :",(timeLoad - timeStart)/ 1000)
-  //Create an array of datas By categories
-  var structByCategories={};
-//  console.log(categories)
-  for (i in categories){
-    let cat_video = json.filter(function(d){
-      if(d.items[0] !== undefined){
-        return d.items[0].snippet.categoryId == categories[i].id;
-      }
-    });
-    structByCategories[i] = cat_video;
-  }
-//  console.log(structByCategories);
+  printTime("first Loading",timeStart)
 
   //Create an array of all month between first and last video :
   var dates = [];
@@ -100,7 +85,7 @@ d3.json(
 
   var dateEnd = new Date(json[0].date);
   var dateStart = new Date(json[json.length-1].date);
-  console.log(json[json.length-1])
+
   var month = new Date(dateStart);
   var par = d3.timeFormat("%Y-%m")
   nbMonth = ((dateEnd.getYear()-dateStart.getYear())*12)+(dateEnd.getMonth()-dateStart.getMonth())
@@ -111,9 +96,32 @@ d3.json(
   }
   dates.push(par(month));
 
+  //Create a structure of video by Categories AND Month
+  let datas = [];
+  //Create Value Table
+  for (idCat in categoriesDict){
+    let obj = {};
+    obj.idCat = idCat;
+    obj.values = []
+    for(i in dates){
+      let value = {}
+      const da = new Date(dates[i]);
+
+      value.date = da;
+      let values_cat = []
+      value.value = json.filter( (d) =>
+        (da.getYear() == new Date(d.date).getYear() &&
+         da.getMonth() == new Date(d.date).getMonth() &&
+         idCat == d.categoryId)
+      ).length
+      obj.values.push(value)
+    }
+    datas.push(obj)
+  }
+
+
 // add statistique date start and dateEnd
 d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
-
 
 // Fonction pour trier des objets
 function sortObject(obj){
@@ -126,7 +134,6 @@ function sortObject(obj){
   });
   return sortable;
 }
-
 // Fonction pour mettre à jour les stats
 function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   // On met a jour le titre
@@ -152,7 +159,6 @@ function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
   d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
 }
-
 // Fonction pour récupérer les stats pour une range de date
 function getStat(date1, date2){
   const dateTest1 = "2021-01"
@@ -183,39 +189,16 @@ function getStat(date1, date2){
       }
     }
     categFav = sortObject(categFav)
-    console.log(categFav)
+
     videoFav = sortObject(videoFav)
 
     changeStatInfo(categFav,videoFav, date1, date2)
   })
 }
+//getStat(par(dateStart),par(dateEnd))
 
-getStat(par(dateStart),par(dateEnd))
-
-
-//Create a structure of video by Categories AND Month
   let max = 0;
-  let datas = []
-  //Create Value Table
 
-  for(i in dates){
-
-    const da = new Date(dates[i]);
-    let obj = {}
-    obj.dates = da
-    let values_cat = []
-    for (j in structByCategories){
-      //console.log(structByCategories[j])
-
-      values_cat[j] = structByCategories[j].filter((d) =>
-      (da.getYear() == new Date(d.date).getYear() &&
-      da.getMonth() == new Date(d.date).getMonth())).length;
-
-    }
-
-    obj.values = values_cat;
-    datas.push(obj)
-  }
 //Initialize vertical line
   var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
     .attr("class","mouseLine")
@@ -227,16 +210,12 @@ getStat(par(dateStart),par(dateEnd))
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
-
-
   //Initialize scales for Line Chart and add axis
-  var x = d3.scaleTime().range([0, width]).domain(d3.extent(datas,(d)=> d.dates));
+  var x = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
 
   var y = d3.scaleLinear()
-      .domain([0, d3.max(datas,(d)=> Math.max(...d.values) )])
+      .domain([0, d3.max(datas,(d)=> d3.max(d.values, (de) => de.value ) )])
       .range([ height, 0 ]);
-
-
 
   var  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
        y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
@@ -262,7 +241,7 @@ getStat(par(dateStart),par(dateEnd))
     .attr("transform", `translate(-1,0)`)
     .attr("class", "axis axis--y")
     .call(d3.axisLeft(y));
-    console.log(datas)
+
  //Initialize Rect to catch mouse position on the svg (For the vertical line)
    svg
      .append('rect')
@@ -273,7 +252,7 @@ getStat(par(dateStart),par(dateEnd))
      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
      .on('mouseover', mouseover)
      .on('mousemove', mousemove)
-     .on('mouseout', mouseout);
+     .on('mouseout',  mouseout);
 
    //Pour brush :
    var Line_chart = svg.append("g")
@@ -288,50 +267,17 @@ getStat(par(dateStart),par(dateEnd))
 
 
 //For each categories add a line and legend from datas
-for(i in categories){
+for(i in datas){
   //append Line
-    path = createPath(i)
+  path = createPath(datas[i],i);
 
   //Set Path in dictionnary of lines
-  lines[categories[i].id] = path;
+  lines[datas[i].idCat] = path;
 
   // Append colored square legend
-  legend.append('rect')
-  .attr('x', width - 130)
-  .attr('y', i* 20 -10 )
-  .attr('width', 10)
-  .attr('height', 10)
-  .attr("data_id",categories[i].id)
-  .attr("id","label_"+categories[i].id)
-  .attr('class', 'label_rect')
-  .style('fill', colorArray[i]).on('mouseover', function (d, i) {
-    //TODO Stay low opacity when path removed
-    d3.select(this).transition()
-    .duration('50')
-    .attr('opacity', '.85');
-  }).on('mouseout', function (d, i) {
-    d3.select(this).transition()
-    .duration('50')
-    .attr('opacity', '1');
-  }).on("dblclick",function(d){
-    TODO //On Double click remove all other Lines
-  }).on('click', function (d, i) {
-    //On Click remove this line
-    var id_cat = d3.select("#"+this.id).attr('data_id');
-    updateView(id_cat);
-  });
-
-  //Add text to legend
-  legend.append('text')
-    .attr('x', width - 115)
-    .attr('y', i * 20)
-    .style('font','icon')
-    .attr('id',"labelText_"+categories[i].id)
-    .attr('class', "labelText")
-    .text(categories[i].name);
-
-
+  createLegend(datas[i],i);
 }
+
 // Tentative pour le brush
 var brush = d3.brushX()
   .extent([[0, 0], [width, height2]])
@@ -349,23 +295,20 @@ context.append("g")
   .call(brush)
   .call(brush.move, x.range());
 
-
 // Todo : Pour le brush
 
   i = 6;
   context.append("path")
-    .datum(datas)
+    .datum(datas[i].values)
     .attr("class", "line")
     .attr('fill','none')
-    .attr("id","line_"+categories[i].id)
+    .attr("id","line_"+datas[i].idCat)
     .attr("stroke", colorArray[i])
-    .attr("data-id",categories[i].id)
+    .attr("data-id",datas[i].idCat)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
-    .x(function(d) { return x2(d.dates) })
-    .y(function(d) { return y2(d.values[i]) }));
-
-
+    .x(function(d) { return x2(d.date) })
+    .y(function(d) { return y2(d.value) }));
 
   context.append("g")
     .attr("class", "brush")//
@@ -407,10 +350,10 @@ function updateView(category_hidden){
     //FInd New Max of line Graph
     let max = 0;
     datas.map(function(d){
-      for (i in categories){
-        if(!categories_hidden.includes(categories[i].id)){
-          max = (max >= d.values[i]) ? max : d.values[i];
-        }
+      if(!categories_hidden.includes(parseInt(d.idCat))){
+
+        const localMax = Math.max(...d.values.map(de => de.value));
+        max = (max >= localMax) ? max : localMax;
       }
     });
     //Change domain to fit the line we want to show
@@ -418,8 +361,7 @@ function updateView(category_hidden){
     axisY.transition(500).call(d3.axisLeft(y));
 
     let index = updatePath(categories_hidden, category_hidden);
-
-    lines[category_hidden] = createPath(index);
+    lines[category_hidden] = createPath(datas[index],index);
 
   }else{
     //Change Opacity of legend
@@ -434,10 +376,9 @@ function updateView(category_hidden){
     //We're looking for the max of all lines without the current category
     let max = 0;
     datas.map(function(d){
-      for (i in categories){
-        if(!categories_hidden.includes(categories[i].id)){
-          max = (max >= d.values[i]) ? max : d.values[i];
-        }
+      if(!categories_hidden.includes(parseInt(d.idCat))){
+        const localMax = Math.max(...d.values.map(de => de.value));
+        max = (max >= localMax) ? max : localMax;
       }
     });
 
@@ -448,8 +389,6 @@ function updateView(category_hidden){
     //Upgrade Others Paths :
     updatePath(categories_hidden);
   }
-
-
 }
 
 //Function mouse action on svg
@@ -509,34 +448,35 @@ function updateView(category_hidden){
   //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
   function updatePath(categories_hidden, category_hidden = -1){
     let index;
-    for(i in categories){
-      if(!categories_hidden.includes(categories[i].id)){
-        if(categories[i].id == category_hidden){
+    for(i in datas){
+      if(!categories_hidden.includes(datas[i].idCat)){
+        if(datas[i].idCat == category_hidden){
           index = i;
         }
-        lines[categories[i].id].transition(500)
+        lines[datas[i].idCat].transition(500)
         .attr("d", d3.line()
-        .x(function(d) { return x(d.dates) })
-        .y(function(d) { return y(d.values[i]) })
+        .x(function(d) { ;return x(d.date) })
+        .y(function(d) { return y(d.value) })
         )
       }
     }
+
     return index
   }
 
   //Function Creation of lines, argument : Id of the line
-  function createPath(i){
+  function createPath(data,i){
     return svg.append("path")
-    .datum(datas)
+    .datum(data.values)
     .attr("fill", "none")
     .attr("class","lines")
-    .attr("id","line_"+categories[i].id)
+    .attr("id","line_"+data.idCat)
     .attr("stroke", colorArray[i])
-    .attr("data-id",categories[i].id)
+    .attr("data-id",data.idCat)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
-    .x(function(d) { return x(d.dates) })
-    .y(function(d) { return y(d.values[i]) })
+    .x(function(d) {return x(d.date) })
+    .y(function(d) { return y(d.value) })
     ).on('mouseover', function (d, i) {
       //On MouseOver of Each Line
       const id = this.id
@@ -547,29 +487,67 @@ function updateView(category_hidden){
       d3.selectAll(".lines").filter(function() {
       return !(this.attributes.class.value.includes("hide"))
     }).attr('opacity', 1);
-  }).on('click',function(){
+    }).on('click',function(){
 
-      hideAllExcept(this.getAttribute("data-id"))
+        hideAllExcept(this.getAttribute("data-id"))
 
-  });
+    });
+  }
+
+  function createLegend(data,i){
+    legend.append('rect')
+    .attr('x', width - 130)
+    .attr('y', i* 20 -10 )
+    .attr('width', 10)
+    .attr('height', 10)
+    .attr("data_id",data.idCat)
+    .attr("id","label_"+data.idCat)
+    .attr('class', 'label_rect')
+    .style('fill', colorArray[i]).on('mouseover', function (d, i) {
+      //TODO Stay low opacity when path removed
+      d3.select(this).transition()
+      .duration('50')
+      .attr('opacity', '.85');
+    }).on('mouseout', function (d, i) {
+      d3.select(this).transition()
+      .duration('50')
+      .attr('opacity', '1');
+    }).on("dblclick",function(d){
+      TODO //On Double click remove all other Lines
+    }).on('click', function (d, i) {
+      //On Click remove this line
+      var id_cat = d3.select("#"+this.id).attr('data_id');
+      updateView(id_cat);
+    });
+
+    //Add text to legend
+    legend.append('text')
+      .attr('x', width - 115)
+      .attr('y', i * 20)
+      .style('font','icon')
+      .attr('id',"labelText_"+data.idCat)
+      .attr('class', "labelText")
+      .text(categoriesDict[data.idCat]);
   }
 
   function hideAllExcept(id){
+    console.log(id)
+    if(categories_hidden.length +1 == datas.length){
 
-    if(categories_hidden.length +1 == categories.length){
-      for(i in categories){
-        updateView(categories[i].id)
+      for(i in datas){
+        updateView(parseInt(datas[i].idCat))
       }
     }else{
-      categories_hidden = [];
+
       for( i in lines){
         lines[i].remove();
       }
-      for(i in categories){
-        categories_hidden.push(categories[i].id);
+      categories_hidden = [];
+      for(i in datas){
+        categories_hidden.push(parseInt(datas[i].idCat));
       }
     }
-
+    console.log(categories_hidden)
     updateView(id);
   }
 

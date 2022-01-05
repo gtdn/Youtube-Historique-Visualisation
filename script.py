@@ -43,8 +43,8 @@ apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
 #Api Key Timothee : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
 
 #Start and End scrapping data
-debut = 0
-fin = 2#len(data)-1
+debut = 1000
+fin = 5000#len(data)-1
 last = 0
 
 datasRetour = []
@@ -82,8 +82,8 @@ logsFile = open('archives/logs.txt', 'a')
 current_time = datetime.datetime.now()
 logsFile.write("\n\n========= Scrap, Time = "+str(current_time)+" ======= \n")
 logsFile.writelines(Logs)
-logsFile.write("Start at: "+str(debut)+", Stopped at: "+str(i)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
-print(Fore.WHITE,"\nStart at: "+str(debut)+", Stopped at: "+str(i)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
+logsFile.write("Start at: "+str(debut)+", Stopped at: "+str(last)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
+print(Fore.WHITE,"\nStart at: "+str(debut)+", Stopped at: "+str(last)+". Write in file: "+str(dataFile)+". Resulting: "+str(len(Logs))+" errors for "+str(i - debut)+" lines. Tx error: "+str(len(Logs)/(i-debut)))
 datasRetour = previousData + datasRetour
 datasJson = json.dumps(datasRetour, ensure_ascii=False, indent=4)
 with open(dataFile, 'w') as f:
