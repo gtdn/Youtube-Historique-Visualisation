@@ -19,23 +19,6 @@ const palette = [
     '#554e47'
 ]
 
-const categoriesDict = {
-  1  : "Film & Animation",
-  2  : "Autos & Vehicles",
-  10 : "Music",
-  15 : "Pets & Animals",
-  17 : "Sports",
-  19 : "Travel & Events",
-  20 : "Gaming",
-  22 : "People & Blogs",
-  23 : "Comedy",
-  24 : "Entertainment",
-  25 : "News & Politics",
-  26 : "Howto & Style",
-  27 : "Education",
-  28 : "Science & Technology",
-  29 : "Nonprofits & Activism"
-}
 
 
 const color = d3.scaleOrdinal()
@@ -75,7 +58,7 @@ function createPie(svg) {
   d3.select(".arc").append("text")
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
-      .text("Camanbert Catégorie");
+      .text("Camembert Catégorie");
 
   arcs.append("path")
         .attr("fill", d => color(d.data[0]))
@@ -88,9 +71,9 @@ function createPie(svg) {
   arcs.filter(function(d) { return d.endAngle - d.startAngle > .4; }).append("text")
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
-      .attr("transform",(d)=>{ 
-                    return "translate("+ 
-                    arc.centroid(d) + ")"; 
+      .attr("transform",(d)=>{
+                    return "translate("+
+                    arc.centroid(d) + ")";
             })
       .text((d) => categoriesDict[d.data[0]]);
 
@@ -98,13 +81,7 @@ function createPie(svg) {
 
 function updatePie(svg){
   svg.selectAll("arc")
-    .data(pie(data));   
+    .data(pie(data));
 }
 
 createPie(svgCam)
-
-
-
-
-
-
