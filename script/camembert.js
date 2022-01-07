@@ -3,7 +3,7 @@ const categ = [["29",1],["44",1],["2",2],["15",4],["19",7],["17",25],["27",64],[
 const colorArray = [
     '#6c9ea3',
     '#e5d4be',
-    '#262859',
+    '#F57C00',
     '#e38839',
     '#9c3546',
     '#6879a4',
@@ -62,7 +62,7 @@ function createPie(svg, categ) {
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
       .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
-      .text((d) => categoriesDict[d.data[0]]);
+      .text((d) => categoriesDictShort[d.data[0]]);
 
   }
 

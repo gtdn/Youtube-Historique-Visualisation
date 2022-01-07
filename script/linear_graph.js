@@ -34,6 +34,7 @@ var svgCamTen = d3.select("#codeD3CamTen").append("svg")
   .attr("transform",
   "translate(" + width / 2 + "," + height / 2 + ")");
 
+/* Tableau contenant les categories favaories*/
 var categFavFive = []
 var categFavTen  = []
 
@@ -44,7 +45,7 @@ const categoriesDict = {
   1  : "Film & Animation",
   2  : "Autos & Vehicles",
   10 : "Music",
-  15 :"Pets & Animals",
+  15 : "Pets & Animals",
   17 : "Sports",
   19 : "Travel & Events",
   20 : "Gaming",
@@ -58,6 +59,23 @@ const categoriesDict = {
   29 : "Nonprofits & Activism"
 }
 
+const categoriesDictShort = {
+  1  : "F & A",
+  2  : "A & V",
+  10 : "Music",
+  15 : "P & A",
+  17 : "Sport",
+  19 : "T & E",
+  20 : "Gaming",
+  22 : "P & B",
+  23 : "Comedy",
+  24 : "Entr.",
+  25 : "N & P",
+  26 : "H & S",
+  27 : "Educ.",
+  28 : "S & T",
+  29 : "N & A"
+}
 
 //Stock All Lines for later utilisation
 var lines = {};
@@ -106,10 +124,6 @@ d3.json(
     datas.push(obj)
   }
 
-
-// add statistique date start and dateEnd
-d3.select("#periodeDate").text(par(dateStart) +" - "+par(dateEnd))
-
 // Fonction pour trier des objets
 function sortObject(obj){
   var sortable = [];
@@ -121,6 +135,7 @@ function sortObject(obj){
   });
   return sortable;
 }
+
 // Fonction pour mettre à jour les stats
 function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   // On met a jour le titre
@@ -146,6 +161,7 @@ function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
   d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
 }
+
 // Fonction pour récupérer les stats pour une range de date
 function getStat(date1, date2){
   console.log(date1)
@@ -174,13 +190,16 @@ function getStat(date1, date2){
   }
   categFav = sortObject(categFav)
   videoFav = sortObject(videoFav)
-  if (boolPie == 0) {
-    createPie(svgCamFive, categFav)
-    createPie(svgCamTen, categFav)
-    boolPie ++;
-  } else updatePie(svgCamFive, categFav)
 
-  changeStatInfo(categFav,videoFav, date1, date2)
+  categFavFive = []
+  categFavTen  = []
+
+  categFavFive = categFav.slice(11,categFav.length)
+  categFavTen = categFav.slice(0,10)
+
+  console.log(categFavFive)
+
+  changeStatInfo(categFavFive,videoFav, date1, date2)
 }
 
 var mouseLine = [];
@@ -421,6 +440,16 @@ function updateView(category_hidden){
 
     /* On met à jour les statistiques*/
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
+
+    if(boolPie == 0){
+      createPie(svgCamFive, categFavFive)
+      createPie(svgCamTen, categFavTen)
+      boolPie ++
+    }
+    else {
+      // updatePie(svgCamFive, categFavFive)
+      // updatePie(svgCamTen, categFavTen)
+    }
 
   }
 
