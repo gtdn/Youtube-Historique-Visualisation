@@ -14,12 +14,23 @@ var svg = d3.select("#codeD3Graph").append("svg")
   "translate(" + margin.left + "," + margin.top + ")");
 
 
-var svgCam = d3.select("#codeD3Cam").append("svg")
+var svgCamFive = d3.select("#codeD3CamFive").append("svg")
   .attr("width", width)
   .attr("height", height)
   .append("g")
   .attr("transform",
   "translate(" + width / 2 + "," + height / 2 + ")");
+
+var svgCamTen = d3.select("#codeD3CamTen").append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
+  .attr("transform",
+  "translate(" + width / 2 + "," + height / 2 + ")");
+
+var categFavFive = []
+var categFavTen  = []
+
 
 var boolPie = 0;
 
@@ -158,9 +169,10 @@ function getStat(date1, date2){
   categFav = sortObject(categFav)
   videoFav = sortObject(videoFav)
   if (boolPie == 0) {
-    createPie(svgCam, categFav)
+    createPie(svgCamFive, categFav)
+    createPie(svgCamTen, categFav)
     boolPie ++;
-  } else updatePie(svgCam, categFav)
+  } else updatePie(svgCamFive, categFav)
 
   changeStatInfo(categFav,videoFav, date1, date2)
 }

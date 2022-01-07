@@ -38,7 +38,7 @@ function createPie(svg, categ) {
               .outerRadius(radius)
               .innerRadius(radius - 80);
 
-  const arcs = svgCam.selectAll("arc")
+  const arcs = svg.selectAll("arc")
                   .data(pie(categ))
                   .enter()
                   .append("g")
