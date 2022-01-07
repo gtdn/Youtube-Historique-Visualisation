@@ -165,105 +165,108 @@ function getStat(date1, date2){
   changeStatInfo(categFav,videoFav, date1, date2)
 }
 
-  let max = 0;
+var mouseLine = [];
+var legend = [];
+var x, y;
+var axisX = [];
+var axisY = [];
+function createLineChart(arrayData, svg1, idGraph){
+  //Initialize vertical line
+    mouseLine[idGraph] = svg1.append("line") // this is the black vertical line to follow mouse
+      .attr("class","mouseLine")
+      .attr('x1', 0)
+      .attr('y1', 0+margin.top)
+      .attr('x2', 0)
+      .attr('y2', height+margin.top)
+      .style("stroke","black")
+      .style("stroke-width", "1px")
+      .style("opacity", "0");
+      //Initialize scales for Line Chart and add axis
+      x = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
 
-//Initialize vertical line
-  var mouseLine = svg.append("line") // this is the black vertical line to follow mouse
-    .attr("class","mouseLine")
-    .attr('x1', 0)
-    .attr('y1', 0+margin.top)
-    .attr('x2', 0)
-    .attr('y2', height+margin.top)
-    .style("stroke","black")
-    .style("stroke-width", "1px")
-    .style("opacity", "0");
+      y = d3.scaleLinear()
+          .domain([0, d3.max(datas,(d)=> d3.max(d.values, (de) => de.value ) )])
+          .range([ height, 0 ]);
 
-  //Initialize scales for Line Chart and add axis
-  var x = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
-
-  var y = d3.scaleLinear()
-      .domain([0, d3.max(datas,(d)=> d3.max(d.values, (de) => de.value ) )])
-      .range([ height, 0 ]);
-
-  var  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
-       y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
-  xAxis2 = d3.axisBottom(x2);
-
-  var focus = svg.append("g")
-    .attr("class", "focus")
-    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  var context = svg.append("g")
-    .attr("class", "context")
-    .attr("transform", "translate(0," + margin2.top + ")");
-  context.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height2 + ")")
-    .call(xAxis2);
+          let focus = svg1.append("g")
+            .attr("class", "focus")
+            //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-  var axisX = focus.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x));
-  var axisY = focus.append("g")
-    .attr("transform", `translate(-1,0)`)
-    .attr("class", "axis axis--y")
-    .call(d3.axisLeft(y));
+      axisX[idGraph] = focus.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x));
+      axisY[idGraph] = focus.append("g")
+        .attr("transform", `translate(-1,0)`)
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y));
 
- //Initialize Rect to catch mouse position on the svg (For the vertical line)
-   svg
-     .append('rect')
-     .style("fill", "none")
-     .style("pointer-events", "all")
-     .attr('width', width )
-     .attr('height', height  )
-     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-     .on('mouseover', mouseover)
-     .on('mousemove', mousemove)
-     .on('mouseout',  mouseout);
+     //Initialize Rect to catch mouse position on the svg (For the vertical line)
+       svg1
+         .append('rect')
+         .style("fill", "none")
+         .style("pointer-events", "all")
+         .attr('width', width )
+         .attr('height', height  )
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .on('mouseover', mouseover)
+         .on('mousemove', mousemove)
+         .on('mouseout',  mouseout);
 
-   //Pour brush :
-   var Line_chart = svg.append("g")
-     .attr("class", "focus")
-     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-     .attr("clip-path", "url(#clip)");
+       //Pour brush :
+       let Line_chart = svg1.append("g")
+         .attr("class", "focus")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .attr("clip-path", "url(#clip)");
 
-//Initialize Legend :
-  var legend = svg
-    .append('g')
-    .attr('class', 'legend')
+    //Initialize Legend :
+    legend[idGraph] = svg1
+        .append('g')
+        .attr('class', 'legend')
 
 
-//For each categories add a line and legend from datas
-for(i in datas){
-  //append Line
-  path = createPath(datas[i],i);
+    //For each categories add a line and legend from datas
+    for(i in arrayData){
+      //append Line
+      path = createPath(arrayData[i],i);
 
-  //Set Path in dictionnary of lines
-  lines[datas[i].idCat] = path;
+      //Set Path in dictionnary of lines
+      lines[arrayData[i].idCat] = path;
 
-  // Append colored square legend
-  createLegend(datas[i],i);
+      // Append colored square legend
+      createLegend(arrayData[i],i,idGraph);
+    }
+
+
 }
-
-// Tentative pour le brush
-var brush = d3.brushX()
-  .extent([[0, 0], [width, height2]])
-  .on("brush end", brushed);
-
-var zoom = d3.zoom()
-  .scaleExtent([1, Infinity])
-  .translateExtent([[0, 0], [width, height]])
-  .extent([[0, 0], [width, height]])
-  .on("zoom", zoomed);
+    createLineChart(datas,svg,1)
+    let  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
+         y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
+    xAxis2 = d3.axisBottom(x2);
 
 
-context.append("g")
-  .attr("class", "brush")
-  .call(brush)
-  .call(brush.move, x.range());
+    let context = svg.append("g")
+      .attr("class", "context")
+      .attr("transform", "translate(0," + margin2.top + ")");
+    context.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height2 + ")")
+      .call(xAxis2);
 
-// Todo : Pour le brush
+    // Tentative pour le brush
+    var brush = d3.brushX()
+      .extent([[0, 0], [width, height2]])
+      .on("brush end", brushed);
+
+    context.append("g")
+      .attr("class", "brush")
+      .call(brush)
+      .call(brush.move, x.range());
+
+    // Todo : Pour le brush
+
+
 
   i = 6;
   context.append("path")
@@ -326,7 +329,7 @@ function updateView(category_hidden){
     });
     //Change domain to fit the line we want to show
     y.domain([0,max])
-    axisY.transition(500).call(d3.axisLeft(y));
+    axisY[1].transition(500).call(d3.axisLeft(y));
 
     let index = updatePath(categories_hidden, category_hidden);
     lines[category_hidden] = createPath(datas[index],index);
@@ -352,7 +355,7 @@ function updateView(category_hidden){
 
     //Upgrade y axis
     y.domain([0,max])
-    axisY.transition(500).call(d3.axisLeft(y));
+    axisY[1].transition(500).call(d3.axisLeft(y));
 
     //Upgrade Others Paths :
     updatePath(categories_hidden);
@@ -365,34 +368,29 @@ function updateView(category_hidden){
     var cooX = coordinates[0];
     var cooY = coordinates[1];
     //Move verticalLine on the SVG
-    mouseLine.attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
+    mouseLine[1].attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
   }
 
   function mouseover() {
-    mouseLine
+    mouseLine[1]
   .style("opacity", "0.5");
   }
 
   function mouseout() {
-    mouseLine
+    mouseLine[1]
   .style("opacity", "0");
 
   }
 
 //brush moved
   function brushed(event) {
-    if (event.sourceEvent && event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = event.selection || x2.range();
 
     x.domain(s.map(x2.invert, x2));
 
     //Line_chart.select(".line").attr("d", line);
     //focus.select(".axis--x").call(axisX);
-    axisX.transition(500).call(d3.axisBottom(x));
-
-    svg.select(".zoom").transition(500).call(zoom.transform, d3.zoomIdentity
-        .scale(width / (s[1] - s[0]))
-        .translate(-s[0], 0));
+    axisX[1].transition(500).call(d3.axisBottom(x));
 
     updatePath([])
 
@@ -401,14 +399,6 @@ function updateView(category_hidden){
 
   }
 
-  function zoomed(event) {
-    if (event.sourceEvent && event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
-    var t = event.transform;
-    x.domain(t.rescaleX(x2).domain());
-    //Line_chart.select(".line").attr("d", line);
-    focus.select(".axis--x").call(xAxis);
-    context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
-  }
 
   function type(d) {
     d.Date = parseDate(d.Date);
@@ -465,8 +455,8 @@ function updateView(category_hidden){
     });
   }
 
-  function createLegend(data,i){
-    legend.append('rect')
+  function createLegend(data,i,idGraph){
+    legend[idGraph].append('rect')
     .attr('x', width - 130)
     .attr('y', i* 20 -10 )
     .attr('width', 10)
@@ -493,7 +483,7 @@ function updateView(category_hidden){
     });
 
     //Add text to legend
-    legend.append('text')
+    legend[idGraph].append('text')
       .attr('x', width - 115)
       .attr('y', i * 20)
       .style('font','icon')
