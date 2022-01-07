@@ -197,8 +197,6 @@ function getStat(date1, date2){
   categFavFive = categFav.slice(11,categFav.length)
   categFavTen = categFav.slice(0,10)
 
-  console.log(categFavFive)
-
   changeStatInfo(categFavFive,videoFav, date1, date2)
 }
 
@@ -442,13 +440,13 @@ function updateView(category_hidden){
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
 
     if(boolPie == 0){
-      createPie(svgCamFive, categFavFive)
-      createPie(svgCamTen, categFavTen)
+      createPie(svgCamFive, categFavFive,0)
+      createPie(svgCamTen, categFavTen,1)
       boolPie ++
     }
     else {
-      // updatePie(svgCamFive, categFavFive)
-      // updatePie(svgCamTen, categFavTen)
+      updatePie(svgCamFive, categFavFive,0)
+      updatePie(svgCamTen, categFavTen,1)
     }
 
   }

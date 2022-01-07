@@ -25,10 +25,14 @@ const color = d3.scaleOrdinal()
 
 const radius = 150
 
-function createPie(svg, categ) {
-  const pie = d3.pie()
+var arcs = []
+
+const pie = d3.pie()
   .sort(null)
   .value((d) => d[1]);
+
+function createPie(svg, categ, element) {
+  console.log(categ)
 
   const arc = d3.arc()
       .innerRadius(radius / 2)
@@ -38,18 +42,18 @@ function createPie(svg, categ) {
               .outerRadius(radius)
               .innerRadius(radius - 80);
 
-  const arcs = svg.selectAll("arc")
-                  .data(pie(categ))
-                  .enter()
-                  .append("g")
-                  .attr("class", "arc")
+  arcs[element] = svg.selectAll("arc")
+          .data(pie(categ))
+          .enter()
+          .append("g")
+          .attr("class", "arc")
 
   d3.select(".arc").append("text")
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
       .text("Camembert Catégorie");
 
-  arcs.append("path")
+  arcs[element].append("path")
         .attr("fill", d => color(d.data[0]))
         .attr("d", arc)
         .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
@@ -57,7 +61,7 @@ function createPie(svg, categ) {
         .append("title")
         .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
 
-  arcs.filter((d) => d.endAngle - d.startAngle > .4)
+  arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
       .append("text")
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
@@ -66,6 +70,16 @@ function createPie(svg, categ) {
 
   }
 
-function updatePie(svg){
-  console.log("its ok")
+function updatePie(svg, categ, element){
+  console.log(categ)
+
+  arcs[element].selectAll("arc")
+      .data(pie(categ))
+
+  arcs[element].attr("fill", d => color(d.data[0]))
+    .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
+
+  arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
+    .text((d) => categoriesDictShort[d.data[0]]);
+
 }
