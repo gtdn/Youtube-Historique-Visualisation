@@ -5,14 +5,20 @@ width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
 margin2 = {top: 430, right: 100, bottom: 40, left: 40}
 height2 = 500 - margin2.top - margin2.bottom;
-
-var svg = d3.select("#codeD3Graph").append("svg")
+ var svg = [];
+ svg[0] = d3.select("#codeD3GraphFive").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
 
+ svg[1] = d3.select("#codeD3GraphTen").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform",
+  "translate(" + margin.left + "," + margin.top + ")");
 
 var svgCamFive = d3.select("#codeD3CamFive").append("svg")
   .attr("width", width)
@@ -31,7 +37,7 @@ var svgCamTen = d3.select("#codeD3CamTen").append("svg")
 var categFavFive = []
 var categFavTen  = []
 
-
+//if First time then createPie, else update
 var boolPie = 0;
 
 const categoriesDict = {
@@ -179,12 +185,13 @@ function getStat(date1, date2){
 
 var mouseLine = [];
 var legend = [];
-var x, y;
+var x = [];
+var y;
 var axisX = [];
 var axisY = [];
-function createLineChart(arrayData, svg1, idGraph){
+function createLineChart(arrayData, svgId, idGraph){
   //Initialize vertical line
-    mouseLine[idGraph] = svg1.append("line") // this is the black vertical line to follow mouse
+    mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
       .attr("class","mouseLine")
       .attr('x1', 0)
       .attr('y1', 0+margin.top)
@@ -194,13 +201,13 @@ function createLineChart(arrayData, svg1, idGraph){
       .style("stroke-width", "1px")
       .style("opacity", "0");
       //Initialize scales for Line Chart and add axis
-      x = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
+      x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
 
       y = d3.scaleLinear()
           .domain([0, d3.max(datas,(d)=> d3.max(d.values, (de) => de.value ) )])
           .range([ height, 0 ]);
 
-          let focus = svg1.append("g")
+          let focus = svgId.append("g")
             .attr("class", "focus")
             //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -208,14 +215,14 @@ function createLineChart(arrayData, svg1, idGraph){
       axisX[idGraph] = focus.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x[idGraph]));
       axisY[idGraph] = focus.append("g")
         .attr("transform", `translate(-1,0)`)
         .attr("class", "axis axis--y")
         .call(d3.axisLeft(y));
 
      //Initialize Rect to catch mouse position on the svg (For the vertical line)
-       svg1
+       svgId
          .append('rect')
          .style("fill", "none")
          .style("pointer-events", "all")
@@ -227,13 +234,13 @@ function createLineChart(arrayData, svg1, idGraph){
          .on('mouseout',  mouseout);
 
        //Pour brush :
-       let Line_chart = svg1.append("g")
+       let Line_chart = svgId.append("g")
          .attr("class", "focus")
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
          .attr("clip-path", "url(#clip)");
 
     //Initialize Legend :
-    legend[idGraph] = svg1
+    legend[idGraph] = svgId
         .append('g')
         .attr('class', 'legend')
 
@@ -241,7 +248,7 @@ function createLineChart(arrayData, svg1, idGraph){
     //For each categories add a line and legend from datas
     for(i in arrayData){
       //append Line
-      path = createPath(arrayData[i],i);
+      path = createPath(idGraph,arrayData[i],i);
 
       //Set Path in dictionnary of lines
       lines[arrayData[i].idCat] = path;
@@ -252,13 +259,19 @@ function createLineChart(arrayData, svg1, idGraph){
 
 
 }
-    createLineChart(datas,svg,1)
-    let  x2 = d3.scaleTime().range([0, width]).domain(x.domain()),
+  let datas1 = [];
+  let datas2 = [];
+  datas1 = datas.slice(0, 5);
+  datas2 = datas.slice(5, datas.length);
+  createLineChart(datas1,svg[0],0);
+  createLineChart(datas2,svg[1],1);
+
+  let  x2 = d3.scaleTime().range([0, width]).domain(x[1].domain()),
          y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
     xAxis2 = d3.axisBottom(x2);
 
 
-    let context = svg.append("g")
+    let context = svg[0].append("g")
       .attr("class", "context")
       .attr("transform", "translate(0," + margin2.top + ")");
     context.append("g")
@@ -274,7 +287,7 @@ function createLineChart(arrayData, svg1, idGraph){
     context.append("g")
       .attr("class", "brush")
       .call(brush)
-      .call(brush.move, x.range());
+      .call(brush.move, x[1].range());
 
     // Todo : Pour le brush
 
@@ -398,16 +411,16 @@ function updateView(category_hidden){
   function brushed(event) {
     var s = event.selection || x2.range();
 
-    x.domain(s.map(x2.invert, x2));
+    x[1].domain(s.map(x2.invert, x2));
 
     //Line_chart.select(".line").attr("d", line);
     //focus.select(".axis--x").call(axisX);
-    axisX[1].transition(500).call(d3.axisBottom(x));
+    axisX[1].transition(500).call(d3.axisBottom(x[1]));
 
     updatePath([])
 
     /* On met à jour les statistiques*/
-    getStat(par((x.domain()[0])), par((x.domain()[1])))
+    getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
 
   }
 
@@ -428,7 +441,7 @@ function updateView(category_hidden){
         }
         lines[datas[i].idCat].transition(500)
         .attr("d", d3.line()
-        .x(function(d) { ;return x(d.date) })
+        .x(function(d) { ;return x[1](d.date) })
         .y(function(d) { return y(d.value) })
         )
       }
@@ -438,8 +451,9 @@ function updateView(category_hidden){
   }
 
   //Function Creation of lines, argument : Id of the line
-  function createPath(data,i){
-    return svg.append("path")
+  function createPath(graphId,data,i){
+    console.log(svg, graphId)
+    return svg[graphId].append("path")
     .datum(data.values)
     .attr("fill", "none")
     .attr("class","lines")
@@ -448,7 +462,7 @@ function updateView(category_hidden){
     .attr("data-id",data.idCat)
     .attr("stroke-width", 3)
     .attr("d", d3.line()
-    .x(function(d) {return x(d.date) })
+    .x(function(d) {return x[graphId](d.date) })
     .y(function(d) { return y(d.value) })
     ).on('mouseover', function (d, i) {
       //On MouseOver of Each Line
