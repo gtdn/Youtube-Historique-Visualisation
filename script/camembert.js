@@ -71,7 +71,8 @@ function createPie(svg, categ, element) {
   }
 
 function updatePie(svg, categ, element){
-  console.log(categ)
+  console.log("Updtate")
+  /*console.log(categ)
 
   arcs[element].selectAll("arc")
       .data(pie(categ))
@@ -81,5 +82,5 @@ function updatePie(svg, categ, element){
 
   arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
     .text((d) => categoriesDictShort[d.data[0]]);
-
+*/
 }

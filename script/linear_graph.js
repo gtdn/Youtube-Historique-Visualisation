@@ -77,8 +77,7 @@ const categoriesDictShort = {
   29 : "N & A"
 }
 
-//Stock All Lines for later utilisation
-var lines = {};
+
 d3.json(
   "data/test.json"
 ).then(function (json) {
@@ -203,9 +202,12 @@ function getStat(date1, date2){
 var mouseLine = [];
 var legend = [];
 var x = [];
-var y;
+var y = [];
 var axisX = [];
 var axisY = [];
+lines = [];
+//Stock All Lines for later utilisation
+var lines = {};
 function createLineChart(arrayData, svgId, idGraph){
   //Initialize vertical line
     mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
@@ -220,8 +222,8 @@ function createLineChart(arrayData, svgId, idGraph){
       //Initialize scales for Line Chart and add axis
       x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
 
-      y = d3.scaleLinear()
-          .domain([0, d3.max(datas,(d)=> d3.max(d.values, (de) => de.value ) )])
+      y[idGraph] = d3.scaleLinear()
+          .domain([0, d3.max(arrayData,(d)=> d3.max(d.values, (de) => de.value ) )])
           .range([ height, 0 ]);
 
           let focus = svgId.append("g")
@@ -236,7 +238,7 @@ function createLineChart(arrayData, svgId, idGraph){
       axisY[idGraph] = focus.append("g")
         .attr("transform", `translate(-1,0)`)
         .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y[idGraph]));
 
      //Initialize Rect to catch mouse position on the svg (For the vertical line)
        svgId
@@ -284,7 +286,7 @@ function createLineChart(arrayData, svgId, idGraph){
   createLineChart(datas2,svg[1],1);
 
   let  x2 = d3.scaleTime().range([0, width]).domain(x[1].domain()),
-         y2 = d3.scaleLinear().range([height2, 0]).domain(y.domain());
+       y2 = d3.scaleLinear().range([height2, 0]).domain(y[1].domain());
     xAxis2 = d3.axisBottom(x2);
 
 
@@ -346,7 +348,7 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 var categories_hidden = []
 
 //Function to update view when a category is hidden
-function updateView(category_hidden){
+function updateView(category_hidden, idGraph = 0){
 
   let square = d3.select("#label_"+category_hidden);
 
@@ -370,11 +372,11 @@ function updateView(category_hidden){
       }
     });
     //Change domain to fit the line we want to show
-    y.domain([0,max])
-    axisY[1].transition(500).call(d3.axisLeft(y));
+    y[idGraph].domain([0,max])
+    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
 
-    let index = updatePath(categories_hidden, category_hidden);
-    lines[category_hidden] = createPath(datas[index],index);
+    let index = updatePath(idGraph,categories_hidden, category_hidden);
+    lines[category_hidden] = createPath(idGraph,datas[index],index);
 
   }else{
     //Change Opacity of legend
@@ -394,13 +396,13 @@ function updateView(category_hidden){
         max = (max >= localMax) ? max : localMax;
       }
     });
-
+    console.log(y,idGraph)
     //Upgrade y axis
-    y.domain([0,max])
-    axisY[1].transition(500).call(d3.axisLeft(y));
+    y[idGraph].domain([0,max])
+    axisY[1].transition(500).call(d3.axisLeft(y[idGraph]));
 
     //Upgrade Others Paths :
-    updatePath(categories_hidden);
+    updatePath(idGraph,categories_hidden);
   }
 }
 
@@ -434,7 +436,7 @@ function updateView(category_hidden){
     //focus.select(".axis--x").call(axisX);
     axisX[1].transition(500).call(d3.axisBottom(x[1]));
 
-    updatePath([])
+    updatePath(0,[])
 
     /* On met à jour les statistiques*/
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
@@ -459,7 +461,7 @@ function updateView(category_hidden){
   }
 
   //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
-  function updatePath(categories_hidden, category_hidden = -1){
+  function updatePath(idGraph,categories_hidden, category_hidden = -1){
     let index;
     for(i in datas){
       if(!categories_hidden.includes(datas[i].idCat)){
@@ -469,7 +471,7 @@ function updateView(category_hidden){
         lines[datas[i].idCat].transition(500)
         .attr("d", d3.line()
         .x(function(d) { ;return x[1](d.date) })
-        .y(function(d) { return y(d.value) })
+        .y(function(d) { return y[0](d.value) })
         )
       }
     }
@@ -490,7 +492,7 @@ function updateView(category_hidden){
     .attr("stroke-width", 3)
     .attr("d", d3.line()
     .x(function(d) {return x[graphId](d.date) })
-    .y(function(d) { return y(d.value) })
+    .y(function(d) { return y[graphId](d.value) })
     ).on('mouseover', function (d, i) {
       //On MouseOver of Each Line
       const id = this.id
@@ -502,9 +504,7 @@ function updateView(category_hidden){
       return !(this.attributes.class.value.includes("hide"))
     }).attr('opacity', 1);
     }).on('click',function(){
-
         hideAllExcept(this.getAttribute("data-id"))
-
     });
   }
 
