@@ -27,20 +27,22 @@ const radius = 150
 
 var arcs = []
 
-const pie = d3.pie()
-  .sort(null)
-  .value((d) => d[1]);
+
+
+
+const arc = d3.arc()
+    .innerRadius(radius / 2)
+    .outerRadius(radius);
+
+const label = d3.arc()
+            .outerRadius(radius)
+            .innerRadius(radius - 80);
 
 function createPie(svg, categ, element) {
-  console.log(categ)
 
-  const arc = d3.arc()
-      .innerRadius(radius / 2)
-      .outerRadius(radius);
-
-  const label = d3.arc()
-              .outerRadius(radius)
-              .innerRadius(radius - 80);
+  const pie = d3.pie()
+  .sort(null)
+  .value((d) => d[1]);
 
   arcs[element] = svg.selectAll("arc")
           .data(pie(categ))
@@ -53,7 +55,9 @@ function createPie(svg, categ, element) {
       .attr("text-anchor", "middle")
       .text("Camembert Catégorie");
 
-  arcs[element].append("path")
+  arcs[element]
+        .append("path")
+        .merge(arcs[element])
         .attr("fill", d => color(d.data[0]))
         .attr("d", arc)
         .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
@@ -68,19 +72,45 @@ function createPie(svg, categ, element) {
       .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
       .text((d) => categoriesDictShort[d.data[0]]);
 
-  }
+  arcs[element].exit()
+    .remove()
+
+}
 
 function updatePie(svg, categ, element){
-  console.log("Updtate")
-  /*console.log(categ)
 
-  arcs[element].selectAll("arc")
-      .data(pie(categ))
+  const pie = d3.pie()
+  .sort(null)
+  .value((d) => d[1]);
 
-  arcs[element].attr("fill", d => color(d.data[0]))
-    .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
+  arcs[element] = svg.selectAll("arc")
+          .data(pie(categ))
+          .enter()
+          .append("g")
+          .attr("class", "arc")
+
+  d3.select(".arc").append("text")
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .text("Camembert Catégorie");
+
+  arcs[element]
+        .append("path")
+        .merge(arcs[element])
+        .attr("fill", d => color(d.data[0]))
+        .attr("d", arc)
+        .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
+        .on('mouseout', function (d){ d3.select(this).style("opacity", 1)})
+        .append("title")
+        .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
 
   arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
-    .text((d) => categoriesDictShort[d.data[0]]);
-*/
+      .append("text") //.text((d) => categoriesDictShort[d.data[0]]);
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
+      .text((d) => categoriesDictShort[d.data[0]]);
+
+  arcs[element].exit()
+    .remove()
 }
