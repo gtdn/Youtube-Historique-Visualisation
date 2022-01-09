@@ -350,7 +350,7 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 
 //Function to update view when a category is hidden
 function updateView(category_hidden, idGraph){
-
+  console.log(idGraph,"UpdateView  !! ", category_hidden)
   let square = d3.select("#label_"+category_hidden);
 
   category_hidden = parseInt(category_hidden);
@@ -366,7 +366,7 @@ function updateView(category_hidden, idGraph){
     //FInd New Max of line Graph
     let max = 0;
     datas1[idGraph].map(function(d){
-      if(!categories_hidden.includes(parseInt(d.idCat))){
+      if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
 
         const localMax = Math.max(...d.values.map(de => de.value));
         max = (max >= localMax) ? max : localMax;
@@ -397,7 +397,7 @@ function updateView(category_hidden, idGraph){
         max = (max >= localMax) ? max : localMax;
       }
     });
-    
+
     //Upgrade y axis
     y[idGraph].domain([0,max])
     axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
@@ -550,14 +550,20 @@ function updateView(category_hidden, idGraph){
 
   function hideAllExcept(id, idGraph){
     if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
-
+      console.log("If")
       for(i in datas1[idGraph]){
         updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
       }
     }else{
+      // console.log(datas1[idGraph]);
+      // y[idGraph].domain(0,300);
+      // axisY[idGraph].transition(500).call(d3.axisLeft(x[idGraph]));
+      console.log("Else")
       for(i in lines[idGraph]){
 
         lines[idGraph][i].remove();
+
+
       }
       categories_hidden[idGraph] = [];
       for(i in datas1[idGraph]){
