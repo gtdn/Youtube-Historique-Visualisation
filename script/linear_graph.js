@@ -349,13 +349,15 @@ var bisect = d3.bisector(function(d) { return d.x; }).left;
 
 
 //Function to update view when a category is hidden
-function updateView(category_hidden, idGraph){
-  console.log(idGraph,"UpdateView  !! ", category_hidden)
+function updateView(category_hidden, idGraph, isTheOne = 0){
+
   let square = d3.select("#label_"+category_hidden);
 
   category_hidden = parseInt(category_hidden);
+
   // If Already hide / Else
   if(categories_hidden[idGraph].includes(category_hidden)){
+
     //Change opacity of legend
     square.attr("opacity",1)
     d3.select("#labelText_"+category_hidden).style('fill', 'black')
@@ -378,8 +380,11 @@ function updateView(category_hidden, idGraph){
 
     let index = updatePath(idGraph,categories_hidden[idGraph], category_hidden);
 
-    lines[idGraph][category_hidden] = createPath(idGraph,datas1[idGraph][index],index);
-
+    if(!isTheOne){
+      lines[idGraph][category_hidden] = createPath(idGraph,datas1[idGraph][index],index);
+    }else{
+      isTheOne
+    }
   }else{
     //Change Opacity of legend
     square.attr("opacity",0.5)
@@ -468,6 +473,7 @@ function updateView(category_hidden, idGraph){
     let index;
     for(i in datas1[idGraph]){
       if(!categories_hidden.includes(datas1[idGraph][i].idCat)){
+
         if(datas1[idGraph][i].idCat == category_hidden){
           index = i;
         }
@@ -549,28 +555,32 @@ function updateView(category_hidden, idGraph){
   }
 
   function hideAllExcept(id, idGraph){
+    //If only one is left / else
     if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
-      console.log("If")
+
       for(i in datas1[idGraph]){
-        updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
+        if(datas1[idGraph][i].idCat != id){
+          updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
+        }
       }
     }else{
-      // console.log(datas1[idGraph]);
-      // y[idGraph].domain(0,300);
-      // axisY[idGraph].transition(500).call(d3.axisLeft(x[idGraph]));
-      console.log("Else")
+
       for(i in lines[idGraph]){
-
-        lines[idGraph][i].remove();
-
-
+        if(i != id){
+          lines[idGraph][i].remove();
+        }
       }
+
       categories_hidden[idGraph] = [];
+
       for(i in datas1[idGraph]){
+        // if(datas1[idGraph][i].idCat != id){
         categories_hidden[idGraph].push(parseInt(datas1[idGraph][i].idCat));
+        // }
       }
+      updateView(id,idGraph,1);
+
     }
-    updateView(id,idGraph);
   }
 
 });
