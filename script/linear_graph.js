@@ -358,9 +358,9 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
   // If Already hide / Else
   if(categories_hidden[idGraph].includes(category_hidden)){
 
-    //Change opacity of legend
-    square.attr("opacity",1)
-    d3.select("#labelText_"+category_hidden).style('fill', 'black')
+    // //Change opacity of legend
+    // square.attr("opacity",1)
+    // d3.select("#labelText_"+category_hidden).style('fill', 'black')
 
     //Remove from hidden
     categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(category_hidden), 1);
@@ -386,9 +386,10 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
       isTheOne
     }
   }else{
-    //Change Opacity of legend
-    square.attr("opacity",0.5)
-    d3.select("#labelText_"+category_hidden).style('fill', 'lightgrey')
+
+    // //Change Opacity of legend
+    // square.attr("opacity",0.5)
+    // d3.select("#labelText_"+category_hidden).style('fill', 'lightgrey')
 
     lines[idGraph][category_hidden].remove();
 
@@ -503,12 +504,14 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     .x(function(d) {return x[graphId](d.date) })
     .y(function(d) { return y[graphId](d.value) })
     ).on('mouseover', function (d, i) {
+      d3.select(this).style("cursor", "pointer");
       //On MouseOver of Each Line
       const id = this.id
       d3.selectAll(".lines").filter(function() {
       return !(this.id == id || this.attributes.class.value.includes("hide"))
     }, id).attr('opacity', 0.5);
     }).on('mouseout', function (d, i) {
+      d3.select(this).style("cursor", "default");
       d3.selectAll(".lines").filter(function() {
       return !(this.attributes.class.value.includes("hide"))
     }).attr('opacity', 1);
@@ -528,19 +531,21 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     .attr('class', 'label_rect')
     .style('fill', color(data.idCat))
     .on('mouseover', function (d, i) {
-      //TODO Stay low opacity when path removed
-      d3.select(this).transition()
-      .duration('50')
-      .attr('opacity', '.85');
+
+      d3.select(this).style("cursor", "pointer");
+      const id = d3.select(this).attr("data_id");
+      mouseOver_animation(id,true)
+
     }).on('mouseout', function (d, i) {
-      d3.select(this).transition()
-      .duration('50')
-      .attr('opacity', '1');
+      d3.select(this).style("cursor", "default");
+      const id = d3.select(this).attr("data_id");
+      mouseOver_animation(id,false)
     }).on("dblclick",function(d){
       TODO //On Double click remove all other Lines
     }).on('click', function (d, i) {
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
+      hide_categories(id_cat)
       updateView(id_cat,idGraph);
     });
 
@@ -557,9 +562,9 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
   function hideAllExcept(id, idGraph){
     //If only one is left / else
     if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
-
       for(i in datas1[idGraph]){
         if(datas1[idGraph][i].idCat != id){
+          hide_categories(datas1[idGraph][i].idCat);
           updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
         }
       }
@@ -574,12 +579,14 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
       categories_hidden[idGraph] = [];
 
       for(i in datas1[idGraph]){
-        // if(datas1[idGraph][i].idCat != id){
+         const idI = datas1[idGraph][i].idCat
+         if(idI != id && (!d3.select("#label_"+idI).classed('hide'))){
+           hide_categories(datas1[idGraph][i].idCat);
+         }
         categories_hidden[idGraph].push(parseInt(datas1[idGraph][i].idCat));
         // }
       }
       updateView(id,idGraph,1);
-
     }
   }
 

@@ -20,3 +20,7 @@
 .labelText{
   font: icon;
 }
+
+.line.pointer {
+  cursor: pointer;
+}
