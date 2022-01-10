@@ -23,17 +23,17 @@ def getResponse(url):
 
     return (error,jsonData)
 
-with open('data/history/watch-history_2.json') as f:
+with open('data/history/watch-history_3.json') as f:
     data = json.load(f)
 
 #Output Data
-dataFile =  "data/test.json"
+dataFile =  "data/donnees_quentin.json"
 with open(dataFile) as f:
     previousData = json.load(f)
 
 Logs = []
 #Youtube Api Key
-apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
+apiKey = 'AIzaSyBS-E56Er8bAkNy4GsqsdhmEZ-9Yy38iXA'
 
 #List autres Api Key :
 # AIzaSyBS-E56Er8bAkNy4GsqsdhmEZ-9Yy38iXA
@@ -43,7 +43,7 @@ apiKey = 'AIzaSyAQFsBExlOlauTxsMC0LyGlN34Dcq5KtaI'
 #Api Key Timothee : AIzaSyBZ-BcTFC8CFSfr4O5k_MrzpfuGw7j2H3U
 
 #Start and End scrapping data
-debut = 5000
+debut = 0
 fin = len(data)-1
 nbError = 0
 
