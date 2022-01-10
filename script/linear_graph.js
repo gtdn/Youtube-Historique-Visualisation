@@ -537,12 +537,12 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
 
       d3.select(this).style("cursor", "pointer");
       const id = d3.select(this).attr("data_id");
-      mouseOver_animation(id,true)
+      mouseOver_animation(id,true,idGraph)
 
     }).on('mouseout', function (d, i) {
       d3.select(this).style("cursor", "default");
       const id = d3.select(this).attr("data_id");
-      mouseOver_animation(id,false)
+      mouseOver_animation(id,false, idGraph)
     }).on("dblclick",function(d){
       TODO //On Double click remove all other Lines
     }).on('click', function (d, i) {
