@@ -219,7 +219,7 @@ function createLineChart(arrayData, svgId, idGraph){
       .attr('x2', 0)
       .attr('y2', height+margin.top)
       .style("stroke","black")
-      .style("stroke-width", "1px")
+      .style("stroke-width", "0.3px")
       .style("opacity", "0");
       //Initialize scales for Line Chart and add axis
       x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
@@ -290,7 +290,6 @@ function createLineChart(arrayData, svgId, idGraph){
   let  x2 = d3.scaleTime().range([0, width]).domain(x[1].domain()),
        y2 = d3.scaleLinear().range([height2, 0]).domain(y[1].domain());
     xAxis2 = d3.axisBottom(x2);
-
 
     let context = svg[0].append("g")
       .attr("class", "context")
@@ -418,19 +417,23 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     var coordinates= d3.pointer(e);
     var cooX = coordinates[0];
     var cooY = coordinates[1];
-    //Move verticalLine on the SVG
-    mouseLine[1].attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
+    for(i in datas1){
+      //Move verticalLine on the SVG
+      mouseLine[i].attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
+    }
   }
 
   function mouseover() {
-    mouseLine[1]
-  .style("opacity", "0.5");
+    for(i in datas1){
+      mouseLine[i].style("opacity", "0.5");
+    }
   }
 
   function mouseout() {
-    mouseLine[1]
-  .style("opacity", "0");
-
+    for(i in datas1){
+      mouseLine[i]
+    .style("opacity", "0");
+    }
   }
 
 //brush moved
