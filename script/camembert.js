@@ -32,8 +32,8 @@ const arc = d3.arc()
     .outerRadius(radius);
 
 const label = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(radius - 80);
+            .outerRadius(radius-80)
+            .innerRadius(radius/2);
 
 var pie = d3.pie()
   .sort(null)
@@ -45,16 +45,16 @@ function createPie(svg, categ, element) {
   const pie = d3.pie()
     .value((d) => d[1])
 
-  arcs[element] = svg.selectAll("path")
+  test = svg.selectAll("path")
     .data(pie(categ))
 
-  arcs[element]
-    .join('path')
+  test
+    .join("path")
     .transition()
     .duration(1000)
     .attr('d', arc)
     .attr('fill',(d) => color(d.data[0]))
-
+  return test
   // arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
   //   .selectAll('path')
   //   .data(pie(categ))

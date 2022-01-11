@@ -78,7 +78,7 @@ const categoriesDictShort = {
   29 : "N & A"
 }
 
-
+var test;
 d3.json(
   "data/test.json"
 ).then(function (json) {
@@ -384,25 +384,11 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
   // If Already hide / Else
   if(categories_hidden[idGraph].includes(category_hidden)){
 
-    // //Change opacity of legend
-    // square.attr("opacity",1)
-    // d3.select("#labelText_"+category_hidden).style('fill', 'black')
 
     //Remove from hidden
     categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(category_hidden), 1);
 
-    //FInd New Max of line Graph
-    let max = 0;
-    datas1[idGraph].map(function(d){
-      if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
-
-        const localMax = Math.max(...d.values.map(de => de.value));
-        max = (max >= localMax) ? max : localMax;
-      }
-    });
-    //Change domain to fit the line we want to show
-    y[idGraph].domain([0,max])
-    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
+    updateScale(idGraph);
 
     let index = updatePath(idGraph,categories_hidden[idGraph], category_hidden);
 
@@ -422,21 +408,26 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     categories_hidden[idGraph].push(category_hidden);
     //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
     //We're looking for the max of all lines without the current category
-    let max = 0;
-    datas1[idGraph].map(function(d){
-      if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
-        const localMax = Math.max(...d.values.map(de => de.value));
-        max = (max >= localMax) ? max : localMax;
-      }
-    });
-
-    //Upgrade y axis
-    y[idGraph].domain([0,max])
-    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
+    updateScale(idGraph);
 
     //Upgrade Others Paths :
     updatePath(idGraph,categories_hidden[idGraph]);
   }
+}
+
+function updateScale(idGraph){
+  //FInd New Max of line Graph
+  let max = 0;
+  datas1[idGraph].map(function(d){
+    if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
+
+      const localMax = Math.max(...d.values.map(de => de.value));
+      max = (max >= localMax) ? max : localMax;
+    }
+  });
+  //Change domain to fit the line we want to show
+  y[idGraph].domain([0,max])
+  axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
 }
 
 //Function mouse action on svg
@@ -500,9 +491,9 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     /* On met à jour les statistiques*/
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
 
-    createPie(svgCamFive, categFavFive,0)
+    test = createPie(svgCamFive, categFavFive, test)
     createPie(svgCamTen, categFavTen,1)
-    
+
 
   }
 
@@ -604,11 +595,11 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     }).on('click', function (d, i) {
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
-      switchLine(id_cat,idGraph,1,1)
-/*
+      //switchLine(id_cat,idGraph,1,1)
+// /*
       hide_categories(id_cat)
       updateView(id_cat,idGraph)
-*/
+// */
     });
 
     //Add text to legend
