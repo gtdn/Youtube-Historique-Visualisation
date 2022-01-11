@@ -193,8 +193,8 @@ function getStat(date1, date2){
   categFavFive = []
   categFavTen  = []
 
-  categFavFive = categFav.slice(11,categFav.length)
-  categFavTen = categFav.slice(0,10)
+  categFavFive = categFav.slice(categFav.length - 5, categFav.length)
+  categFavTen = categFav.slice(0,categFav.length - 6)
 
   changeStatInfo(categFavFive,videoFav, date1, date2)
   printTime("endOfGetStat",timeStart);
@@ -357,22 +357,6 @@ function createLineChart(arrayData, svgId, idGraph){
     .attr("d", d3.line()
     .x(function(d) { return x2(d.date) })
     .y(function(d) { return y2(d.value) }));
-
-
-
-
-
-//TODO Display text all along vertical Line
-// Create the text that travels along the curve of chart
-// var focusText = svg
-// .append('g')
-// .append('text')
-//   .style("opacity", 0)
-//   .attr("text-anchor", "left")
-//   .attr("alignment-baseline", "middle")
-// Create a rect on top of the svg area: this rectangle recovers mouse position
-
-
 
 //Function to update view when a category is hidden
 function updateView(category_hidden, idGraph, isTheOne = 0){
