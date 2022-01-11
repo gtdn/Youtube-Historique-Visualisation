@@ -100,6 +100,7 @@ d3.json(
   }
   dates.push(par(month));
 
+
   //Create a structure of video by Categories AND Month
   let datas = [];
   //Create Value Table
@@ -201,6 +202,7 @@ function getStat(date1, date2){
 // List of all hidden categories
 var categories_hidden = []
 var mouseLine = [];
+var mouseHLine = [];
 var legend = [];
 var x = [];
 var y = [];
@@ -215,9 +217,19 @@ function createLineChart(arrayData, svgId, idGraph){
     mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
       .attr("class","mouseLine")
       .attr('x1', 0)
-      .attr('y1', 0+margin.top)
+      .attr('y1', 0)
       .attr('x2', 0)
-      .attr('y2', height+margin.top)
+      .attr('y2', height)
+      .style("stroke","black")
+      .style("stroke-width", "0.3px")
+      .style("opacity", "0");
+  //Initialize vertical line
+    mouseHLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
+      .attr("class","mouseLine")
+      .attr('x1', 0)
+      .attr('y1', 0-margin.left)
+      .attr('x2', width)
+      .attr('y2', 0-margin.left)
       .style("stroke","black")
       .style("stroke-width", "0.3px")
       .style("opacity", "0");
@@ -249,6 +261,7 @@ function createLineChart(arrayData, svgId, idGraph){
          .style("pointer-events", "all")
          .attr('width', width )
          .attr('height', height  )
+         .attr('graph_id',idGraph)
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
          .on('mouseover', mouseover)
          .on('mousemove', mousemove)
@@ -281,14 +294,30 @@ function createLineChart(arrayData, svgId, idGraph){
 
 
 }
+  getStat(par(dateStart),par(dateEnd));
+
   let datas1 = [];
-  datas1[0] = datas.slice(0, 5);
-  datas1[1] = datas.slice(5, datas.length);
+  datas1[0] = [];
+  categFavFive.forEach(function (item, i) {
+      let de = datas.filter(d => (d.idCat == item[0]))
+     datas1[0].push(de[0]);
+  });
+  datas1[1] = [];
+  categFavTen.forEach(function (item, i) {
+      let de = datas.filter(d => (d.idCat == item[0]))
+     if(de.length>0){
+       datas1[1].push(de[0]);
+
+     }
+  });
+
+  console.log("datas1",categFavFive)
+  console.log("datas2",categFavTen)
   createLineChart(datas1[0],svg[0],0);
   createLineChart(datas1[1],svg[1],1);
 
-  let  x2 = d3.scaleTime().range([0, width]).domain(x[1].domain()),
-       y2 = d3.scaleLinear().range([height2, 0]).domain(y[1].domain());
+  let  x2 = d3.scaleTime().range([0, width]).domain(x[0].domain()),
+       y2 = d3.scaleLinear().range([height2, 0]).domain(y[0].domain());
     xAxis2 = d3.axisBottom(x2);
 
     let context = svg[0].append("g")
@@ -313,27 +342,23 @@ function createLineChart(arrayData, svgId, idGraph){
 
 
 
-  i = 6;
+  let lineBrushD = datas1[0].filter(d => d.idCat == categFavFive[4][0])[0]
+
   context.append("path")
-    .datum(datas[i].values)
+    .datum(lineBrushD.values)
     .attr("class", "line")
     .attr('fill','none')
-    .attr("id","line_"+datas[i].idCat)
-    .attr("stroke", colorArray[i])
-    .attr("data-id",datas[i].idCat)
-    .attr("stroke-width", 3)
+    .attr("id","line_"+lineBrushD.idCat)
+    .attr("stroke", color(lineBrushD.idCat))
+    .attr("data-id",lineBrushD.idCat)
+    .attr("stroke-width", 2)
     .attr("d", d3.line()
     .x(function(d) { return x2(d.date) })
     .y(function(d) { return y2(d.value) }));
 
-  context.append("g")
-    .attr("class", "brush")//
-  //  .call(brush)
-  //  .call(brush.move, x.range());
 
 
-//Todo This allows to find the closest X index of the mouse:
-var bisect = d3.bisector(function(d) { return d.x; }).left;
+
 
 //TODO Display text all along vertical Line
 // Create the text that travels along the curve of chart
@@ -417,22 +442,42 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     var coordinates= d3.pointer(e);
     var cooX = coordinates[0];
     var cooY = coordinates[1];
+    id = d3.select(this).attr('graph_id')
+    const inv = y[id].invert(cooY)-margin.top
+
+
+    mouseHLine[id].attr('y1', cooY+margin.top).attr('y2', cooY+margin.top)
     for(i in datas1){
       //Move verticalLine on the SVG
       mouseLine[i].attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
+
+      if(id != i){
+        if(y[i](inv) >= 0 && inv >= 0){
+          mouseHLine[i].style("opacity", "1");
+
+          mouseHLine[i].attr('y1', y[i](inv)+margin.top).attr('y2', y[i](inv)+margin.top)
+        }else{
+          mouseHLine[i].style("opacity", "0");
+        }
+      }
     }
   }
 
   function mouseover() {
+    id = d3.select(this).attr('graph_id')
+
     for(i in datas1){
       mouseLine[i].style("opacity", "0.5");
+      mouseHLine[i].style("opacity", "0.5");
     }
   }
 
   function mouseout() {
+    id = d3.select(this).attr('graph_id')
+
     for(i in datas1){
-      mouseLine[i]
-    .style("opacity", "0");
+      mouseLine[i].style("opacity", "0");
+      mouseHLine[i].style("opacity", "0");
     }
   }
 
@@ -496,20 +541,20 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     .attr("id","line_"+data.idCat)
     .attr("stroke", color(data.idCat))
     .attr("data-id",data.idCat)
-    .attr("stroke-width", 3)
+    .attr("stroke-width", 2)
     .attr("d", d3.line()
     .x(function(d) {return x[graphId](d.date) })
-    .y(function(d) { return y[graphId](d.value) })
+    .y(function(d) {return y[graphId](d.value) })
     ).on('mouseover', function (d, i) {
       d3.select(this).style("cursor", "pointer");
       //On MouseOver of Each Line
       const id = this.id
-      d3.selectAll(".lines").filter(function() {
+      svg[graphId].selectAll(".lines").filter(function() {
       return !(this.id == id || this.attributes.class.value.includes("hide"))
-    }, id).attr('opacity', 0.5);
+    }, id).attr('opacity', 0.1);
     }).on('mouseout', function (d, i) {
       d3.select(this).style("cursor", "default");
-      d3.selectAll(".lines").filter(function() {
+      svg[graphId].selectAll(".lines").filter(function() {
       return !(this.attributes.class.value.includes("hide"))
     }).attr('opacity', 1);
     }).on('click',function(){
