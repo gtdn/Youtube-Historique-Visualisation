@@ -137,7 +137,7 @@ function sortObject(obj){
 }
 
 // Fonction pour mettre à jour les stats
-function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
+function changeStatInfo(categFav, videoFav, countVideo, dateBeg, dateEnd){
   // On met a jour le titre
   d3.select("#periodeDate").text(dateBeg +" - "+ dateEnd)
 
@@ -160,6 +160,9 @@ function changeStatInfo(categFav, videoFav, dateBeg, dateEnd){
   d3.select("#favVidOne").text(videoFav1[0] + " : " + videoFav1[1] + " vues")
   d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
   d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
+
+  // On met à jour le nombre total de vidéo vues
+  d3.select("#videoCount").text(countVideo + ' vidéos')
 }
 
 // Fonction pour récupérer les stats pour une range de date
@@ -190,13 +193,19 @@ function getStat(date1, date2){
   categFav = sortObject(categFav)
   videoFav = sortObject(videoFav)
 
+  var countVideo = 0;
+
+  for(let i = 0; i < categFav.length; i++){
+    countVideo += categFav[i][1]
+  }
+
   categFavFive = []
   categFavTen  = []
 
   categFavFive = categFav.slice(categFav.length - 5, categFav.length)
   categFavTen = categFav.slice(0,categFav.length - 6)
 
-  changeStatInfo(categFavFive,videoFav, date1, date2)
+  changeStatInfo(categFavFive,videoFav, countVideo, date1, date2)
 }
 
 // List of all hidden categories

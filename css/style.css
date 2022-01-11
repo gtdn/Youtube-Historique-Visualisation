@@ -28,6 +28,13 @@ nav{
 	padding: 40px;
 }
 
+.h4 {
+	text-align: center;
+	padding-top: 35px;
+	font-weight:bold;
+	padding-bottom: 10px;'
+}
+
 #periode{
 	text-align: center;
 }
@@ -43,7 +50,6 @@ nav{
 	margin-top: 10px;
 	text-align: center;	
 }
-
 
 #footer {
 	text-align: center;
