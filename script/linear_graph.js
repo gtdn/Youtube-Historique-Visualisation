@@ -1,5 +1,6 @@
 const d = new Date();
 let timeStart = d.getTime();
+printTime("Time Start ",timeStart)
 const margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
@@ -169,7 +170,6 @@ function getStat(date1, date2){
 
   const d = new Date();
   let time2Load = d.getTime();
-  printTime("GetStat",timeStart);
   // On filtre le JSON pour la période sélectionnée
   var newJson = json.filter((d) => {
     const currentDate = par(new Date(d.date))
@@ -197,6 +197,8 @@ function getStat(date1, date2){
   categFavTen = categFav.slice(0,10)
 
   changeStatInfo(categFavFive,videoFav, date1, date2)
+  printTime("endOfGetStat",timeStart);
+
 }
 
 // List of all hidden categories
@@ -292,7 +294,7 @@ function createLineChart(arrayData, svgId, idGraph){
       createLegend(arrayData[i],i,idGraph);
     }
 
-
+    printTime("End of graph", timeStart)
 }
   getStat(par(dateStart),par(dateEnd));
 
@@ -517,6 +519,22 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     return d;
   }
 
+  function switchLine(idLine1,oldIdGraph1, idLine2, oldIdGraph2){
+    lines[oldIdGraph1][idLine1].remove();
+    lines[oldIdGraph2][idLine2].remove();
+
+    // updatePath(idGraph2,categories_hidden,idLine1);
+    // updatePath(idGraph2,categories_hidden,idLine2);
+    let tmpData1 = datas1[oldIdGraph1].find(d => d.idCat == idLine1);
+    let tmpData2 = datas1[oldIdGraph2].find(d => d.idCat == idLine2);
+    console.log(datas1[oldIdGraph1], idLine1, tmpData1);
+
+    lines[oldIdGraph1][idLine1] = createPath(oldIdGraph2,tmpData1, idLine1);
+    lines[oldIdGraph2][idLine2] = createPath(oldIdGraph1,tmpData2, idLine2);
+
+  }
+
+
   //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
   function updatePath(idGraph,categories_hidden, category_hidden = -1){
     let index;
@@ -539,7 +557,6 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
 
   //Function Creation of lines, argument : Id of the line
   function createPath(graphId,data,i){
-
     return svg[graphId].append("path")
     .datum(data.values)
     .attr("fill", "none")
@@ -593,8 +610,11 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     }).on('click', function (d, i) {
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
+      switchLine(id_cat,idGraph,1,1)
+/*
       hide_categories(id_cat)
-      updateView(id_cat,idGraph);
+      updateView(id_cat,idGraph)
+*/
     });
 
     //Add text to legend
