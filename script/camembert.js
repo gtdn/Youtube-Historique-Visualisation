@@ -45,7 +45,7 @@ function createPie(svg, categ, element) {
   const pie = d3.pie()
     .value((d) => d[1])
 
-  svg.selectAll("lala")
+  svg.selectAll("path")
     .data(pie(categ))
     .join('path')
     .transition()
@@ -53,9 +53,13 @@ function createPie(svg, categ, element) {
     .attr('d', arc)
     .attr('fill',(d) => color(d.data[0]))
 
-  svg.selectAll("lala")
+
+  svg.selectAll("text")
     .data(pie(categ))
     .join('text')
+    .filter((d) => d.endAngle - d.startAngle > .4)
+    .transition()
+    .duration(1000)
     .text((d) => categoriesDictShort[d.data[0]])
     .attr("transform", (d) => "translate("+ arc.centroid(d) + ")")
     .style("text-anchor", "middle")

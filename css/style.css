@@ -2,6 +2,13 @@ body{
 	font-family: "Fira Sans"
 }
 
+h4{
+	text-align: center;
+	padding-top: 35px;
+	font-weight:bold;
+	padding-bottom: 10px;'
+}
+
 #header{	
 	background-color: #FFDAB9;
 	padding: 40px;
@@ -28,11 +35,12 @@ nav{
 	padding: 40px;
 }
 
+
 #periode{
 	text-align: center;
 }
 
-#favCateg,#favVideo{
+#favCateg,#favVideo, #channelCateg{
 	text-align: center;
 	padding-bottom: 40px;
 	font-weight:bold;
@@ -43,7 +51,6 @@ nav{
 	margin-top: 10px;
 	text-align: center;	
 }
-
 
 #footer {
 	text-align: center;
