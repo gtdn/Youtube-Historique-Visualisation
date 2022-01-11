@@ -32,8 +32,8 @@ const arc = d3.arc()
     .outerRadius(radius);
 
 const label = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(radius - 80);
+            .outerRadius(radius-80)
+            .innerRadius(radius/2);
 
 var pie = d3.pie()
   .sort(null)

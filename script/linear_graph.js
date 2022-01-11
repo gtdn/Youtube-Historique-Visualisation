@@ -1,5 +1,6 @@
 const d = new Date();
 let timeStart = d.getTime();
+printTime("Time Start ",timeStart)
 const margin = {top: 10, right: 100, bottom: 110, left: 40},
 width = 960 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom,
@@ -77,7 +78,7 @@ const categoriesDictShort = {
   29 : "N & A"
 }
 
-
+var test;
 d3.json(
   "data/test.json"
 ).then(function (json) {
@@ -172,7 +173,6 @@ function getStat(date1, date2){
 
   const d = new Date();
   let time2Load = d.getTime();
-  printTime("GetStat",timeStart);
   // On filtre le JSON pour la période sélectionnée
   var newJson = json.filter((d) => {
     const currentDate = par(new Date(d.date))
@@ -206,6 +206,7 @@ function getStat(date1, date2){
   categFavTen = categFav.slice(0,categFav.length - 6)
 
   changeStatInfo(categFavFive,videoFav, countVideo, date1, date2)
+
 }
 
 // List of all hidden categories
@@ -301,7 +302,7 @@ function createLineChart(arrayData, svgId, idGraph){
       createLegend(arrayData[i],i,idGraph);
     }
 
-
+    printTime("End of graph", timeStart)
 }
   getStat(par(dateStart),par(dateEnd));
 
@@ -365,22 +366,6 @@ function createLineChart(arrayData, svgId, idGraph){
     .x(function(d) { return x2(d.date) })
     .y(function(d) { return y2(d.value) }));
 
-
-
-
-
-//TODO Display text all along vertical Line
-// Create the text that travels along the curve of chart
-// var focusText = svg
-// .append('g')
-// .append('text')
-//   .style("opacity", 0)
-//   .attr("text-anchor", "left")
-//   .attr("alignment-baseline", "middle")
-// Create a rect on top of the svg area: this rectangle recovers mouse position
-
-
-
 //Function to update view when a category is hidden
 function updateView(category_hidden, idGraph, isTheOne = 0){
 
@@ -391,25 +376,11 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
   // If Already hide / Else
   if(categories_hidden[idGraph].includes(category_hidden)){
 
-    // //Change opacity of legend
-    // square.attr("opacity",1)
-    // d3.select("#labelText_"+category_hidden).style('fill', 'black')
 
     //Remove from hidden
     categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(category_hidden), 1);
 
-    //FInd New Max of line Graph
-    let max = 0;
-    datas1[idGraph].map(function(d){
-      if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
-
-        const localMax = Math.max(...d.values.map(de => de.value));
-        max = (max >= localMax) ? max : localMax;
-      }
-    });
-    //Change domain to fit the line we want to show
-    y[idGraph].domain([0,max])
-    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
+    updateScale(idGraph);
 
     let index = updatePath(idGraph,categories_hidden[idGraph], category_hidden);
 
@@ -429,21 +400,26 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     categories_hidden[idGraph].push(category_hidden);
     //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
     //We're looking for the max of all lines without the current category
-    let max = 0;
-    datas1[idGraph].map(function(d){
-      if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
-        const localMax = Math.max(...d.values.map(de => de.value));
-        max = (max >= localMax) ? max : localMax;
-      }
-    });
-
-    //Upgrade y axis
-    y[idGraph].domain([0,max])
-    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
+    updateScale(idGraph);
 
     //Upgrade Others Paths :
     updatePath(idGraph,categories_hidden[idGraph]);
   }
+}
+
+function updateScale(idGraph){
+  //FInd New Max of line Graph
+  let max = 0;
+  datas1[idGraph].map(function(d){
+    if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
+
+      const localMax = Math.max(...d.values.map(de => de.value));
+      max = (max >= localMax) ? max : localMax;
+    }
+  });
+  //Change domain to fit the line we want to show
+  y[idGraph].domain([0,max])
+  axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
 }
 
 //Function mouse action on svg
@@ -507,9 +483,9 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     /* On met à jour les statistiques*/
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
 
-    createPie(svgCamFive, categFavFive,0)
+    test = createPie(svgCamFive, categFavFive, test)
     createPie(svgCamTen, categFavTen,1)
-    
+
 
   }
 
@@ -519,6 +495,22 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     d.Air_Temp = +d.Air_Temp;
     return d;
   }
+
+  function switchLine(idLine1,oldIdGraph1, idLine2, oldIdGraph2){
+    lines[oldIdGraph1][idLine1].remove();
+    lines[oldIdGraph2][idLine2].remove();
+
+    // updatePath(idGraph2,categories_hidden,idLine1);
+    // updatePath(idGraph2,categories_hidden,idLine2);
+    let tmpData1 = datas1[oldIdGraph1].find(d => d.idCat == idLine1);
+    let tmpData2 = datas1[oldIdGraph2].find(d => d.idCat == idLine2);
+    console.log(datas1[oldIdGraph1], idLine1, tmpData1);
+
+    lines[oldIdGraph1][idLine1] = createPath(oldIdGraph2,tmpData1, idLine1);
+    lines[oldIdGraph2][idLine2] = createPath(oldIdGraph1,tmpData2, idLine2);
+
+  }
+
 
   //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
   function updatePath(idGraph,categories_hidden, category_hidden = -1){
@@ -542,7 +534,6 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
 
   //Function Creation of lines, argument : Id of the line
   function createPath(graphId,data,i){
-
     return svg[graphId].append("path")
     .datum(data.values)
     .attr("fill", "none")
@@ -596,8 +587,11 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     }).on('click', function (d, i) {
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
+      //switchLine(id_cat,idGraph,1,1)
+// /*
       hide_categories(id_cat)
-      updateView(id_cat,idGraph);
+      updateView(id_cat,idGraph)
+// */
     });
 
     //Add text to legend
