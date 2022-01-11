@@ -193,8 +193,8 @@ function getStat(date1, date2){
   categFavFive = []
   categFavTen  = []
 
-  categFavFive = categFav.slice(11,categFav.length)
-  categFavTen = categFav.slice(0,10)
+  categFavFive = categFav.slice(categFav.length - 5, categFav.length)
+  categFavTen = categFav.slice(0,categFav.length - 6)
 
   changeStatInfo(categFavFive,videoFav, date1, date2)
 }
