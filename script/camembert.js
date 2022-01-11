@@ -53,9 +53,11 @@ function createPie(svg, categ, element) {
     .attr('d', arc)
     .attr('fill',(d) => color(d.data[0]))
 
+
   svg.selectAll("text")
     .data(pie(categ))
     .join('text')
+    .filter((d) => d.endAngle - d.startAngle > .4)
     .transition()
     .duration(1000)
     .text((d) => categoriesDictShort[d.data[0]])
