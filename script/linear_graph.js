@@ -138,7 +138,7 @@ function sortObject(obj){
 }
 
 // Fonction pour mettre à jour les stats
-function changeStatInfo(categFav, videoFav, countVideo, dateBeg, dateEnd){
+function changeStatInfo(categFav, videoFav, channelFav, countVideo, dateBeg, dateEnd){
   // On met a jour le titre
   d3.select("#periodeDate").text(dateBeg +" - "+ dateEnd)
 
@@ -162,14 +162,25 @@ function changeStatInfo(categFav, videoFav, countVideo, dateBeg, dateEnd){
   d3.select("#favVidTwo").text(videoFav2[0] + " : " + videoFav2[1] + " vues")
   d3.select("#favVidThree").text(videoFav3[0] + " : " + videoFav3[1] + " vues")
 
+  // On met a jour le top 3 des channels
+  const lengChannel = channelFav.length
+  const channelFav1 = channelFav[lengChannel - 1]
+  const channelFav2 = channelFav[lengChannel - 2]
+  const channelFav3 = channelFav[lengChannel - 3]
+
+  d3.select("#favChannelOne").text(channelFav1[0] + " : " + channelFav1[1] + " vues")
+  d3.select("#favChannelTwo").text(channelFav2[0] + " : " + channelFav2[1] + " vues")
+  d3.select("#favChannelThree").text(channelFav3[0] + " : " + channelFav3[1] + " vues")
+
   // On met à jour le nombre total de vidéo vues
   d3.select("#videoCount").text(countVideo + ' vidéos')
 }
 
 // Fonction pour récupérer les stats pour une range de date
 function getStat(date1, date2){
-  var categFav = new Object();
-  var videoFav = new Object();
+  var categFav   = new Object();
+  var videoFav   = new Object();
+  var channelFav = new Object();
 
   const d = new Date();
   let time2Load = d.getTime();
@@ -189,9 +200,14 @@ function getStat(date1, date2){
     const itemVid = newJson[i].title
     if (videoFav[itemVid] == null) videoFav[itemVid] = 1
     else videoFav[itemVid] ++
+
+    const itemChannel = newJson[i].channelTitle
+    if (channelFav[itemChannel] == null) channelFav[itemChannel] = 1
+    else channelFav[itemChannel] ++
   }
-  categFav = sortObject(categFav)
-  videoFav = sortObject(videoFav)
+  categFav   = sortObject(categFav)
+  videoFav   = sortObject(videoFav)
+  channelFav = sortObject(channelFav)
 
   var countVideo = 0;
 
@@ -205,7 +221,7 @@ function getStat(date1, date2){
   categFavFive = categFav.slice(categFav.length - 5, categFav.length)
   categFavTen = categFav.slice(0,categFav.length - 6)
 
-  changeStatInfo(categFavFive,videoFav, countVideo, date1, date2)
+  changeStatInfo(categFavFive,videoFav, channelFav, countVideo, date1, date2)
 
 }
 
