@@ -500,15 +500,9 @@ function updateView(category_hidden, idGraph, isTheOne = 0){
     /* On met à jour les statistiques*/
     getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
 
-    if(boolPie == 0){
-      createPie(svgCamFive, categFavFive,0)
-      createPie(svgCamTen, categFavTen,1)
-      boolPie ++
-    }
-    else {
-      updatePie(svgCamFive, categFavFive,0)
-      updatePie(svgCamTen, categFavTen,1)
-    }
+    createPie(svgCamFive, categFavFive,0)
+    createPie(svgCamTen, categFavTen,1)
+    
 
   }
 

@@ -27,9 +27,6 @@ const radius = 150
 
 var arcs = []
 
-
-
-
 const arc = d3.arc()
     .innerRadius(radius / 2)
     .outerRadius(radius);
@@ -38,79 +35,61 @@ const label = d3.arc()
             .outerRadius(radius)
             .innerRadius(radius - 80);
 
+var pie = d3.pie()
+  .sort(null)
+  .value((d) => d[1]);
+
 function createPie(svg, categ, element) {
 
+  // Compute the position of each group on the pie:
   const pie = d3.pie()
-  .sort(null)
-  .value((d) => d[1]);
+    .value((d) => d[1])
 
-  arcs[element] = svg.selectAll("arc")
-          .data(pie(categ))
-          .enter()
-          .append("g")
-          .attr("class", "arc")
-
-  d3.select(".arc").append("text")
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .text("Camembert Catégorie");
+  arcs[element] = svg.selectAll("path")
+    .data(pie(categ))
 
   arcs[element]
-        .append("path")
-        .merge(arcs[element])
-        .attr("fill", d => color(d.data[0]))
-        .attr("d", arc)
-        .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
-        .on('mouseout', function (d){ d3.select(this).style("opacity", 1)})
-        .append("title")
-        .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
+    .join('path')
+    .transition()
+    .duration(1000)
+    .attr('d', arc)
+    .attr('fill',(d) => color(d.data[0]))
 
-  arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
-      .append("text")
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
-      .text((d) => categoriesDictShort[d.data[0]]);
-
-  arcs[element].exit()
-    .remove()
+  // arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
+  //   .selectAll('path')
+  //   .data(pie(categ))
+  //   .join('text')
+  //   .text((d) => categoriesDictShort[d.data[0]])
+  //   .attr("transform", (d) => "translate("+arc.centroid(d) + ")")
+  //   .style("text-anchor", "middle")
 
 }
 
-function updatePie(svg, categ, element){
+// function createPie(svg, categ, element) {
 
-  const pie = d3.pie()
-  .sort(null)
-  .value((d) => d[1]);
+//   arcs[element] = svg.selectAll("arc")
+//           .data(pie(categ))
+//           .enter()
 
-  arcs[element] = svg.selectAll("arc")
-          .data(pie(categ))
-          .enter()
-          .append("g")
-          .attr("class", "arc")
+//   d3.select(".arc").append("text")
+//       .attr("dy", ".35em")
+//       .attr("text-anchor", "middle")
+//       .text("Camembert Catégorie");
 
-  d3.select(".arc").append("text")
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .text("Camembert Catégorie");
+//   arcs[element]
+//         .append("path")
+//         .attr("fill", d => color(d.data[0]))
+//         .attr("d", arc)
+//         .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
+//         .on('mouseout', function (d){ d3.select(this).style("opacity", 1)})
+//         .append("title")
+//         .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
 
-  arcs[element]
-        .append("path")
-        .merge(arcs[element])
-        .attr("fill", d => color(d.data[0]))
-        .attr("d", arc)
-        .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
-        .on('mouseout', function (d){ d3.select(this).style("opacity", 1)})
-        .append("title")
-        .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
+//   arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
+//       .append("text")
+//       .attr("dy", ".35em")
+//       .attr("text-anchor", "middle")
+//       .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
+//       .text((d) => categoriesDictShort[d.data[0]]);
 
-  arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
-      .append("text") //.text((d) => categoriesDictShort[d.data[0]]);
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
-      .text((d) => categoriesDictShort[d.data[0]]);
-
-  arcs[element].exit()
-    .remove()
-}
+// }
