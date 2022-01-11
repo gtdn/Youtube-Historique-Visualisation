@@ -77,7 +77,7 @@ const categoriesDictShort = {
   28 : "S & T",
   29 : "N & A"
 }
-
+var lastCategFavF = []
 var test;
 d3.json(
   "data/test.json"
@@ -169,7 +169,6 @@ function getStat(date1, date2){
   var videoFav = new Object();
 
   const d = new Date();
-  let time2Load = d.getTime();
   // On filtre le JSON pour la période sélectionnée
   var newJson = json.filter((d) => {
     const currentDate = par(new Date(d.date))
@@ -195,9 +194,16 @@ function getStat(date1, date2){
 
   categFavFive = categFav.slice(categFav.length - 5, categFav.length)
   categFavTen = categFav.slice(0,categFav.length - 6)
+  const isEqual = areEqual(lastCategFavF,categFavFive)
+  // console.log(isEqual, lastCategFavF.length == 0 || isEqual)
+  // console.log(lastCategFavF,categFavFive)
+
+  if(lastCategFavF.length == 0 || !isEqual){
+    console.log("ça change! ")
+  }
+  lastCategFavF = categFavFive
 
   changeStatInfo(categFavFive,videoFav, date1, date2)
-  printTime("endOfGetStat",timeStart);
 
 }
 
@@ -299,6 +305,7 @@ function createLineChart(arrayData, svgId, idGraph){
   getStat(par(dateStart),par(dateEnd));
 
   let datas1 = [];
+
   datas1[0] = [];
   categFavFive.forEach(function (item, i) {
       let de = datas.filter(d => (d.idCat == item[0]))
@@ -360,40 +367,24 @@ function createLineChart(arrayData, svgId, idGraph){
 
 //Function to update view when a category is hidden
 function updateView(category_hidden, idGraph, isTheOne = 0){
-
   let square = d3.select("#label_"+category_hidden);
-
   category_hidden = parseInt(category_hidden);
-
   // If Already hide / Else
   if(categories_hidden[idGraph].includes(category_hidden)){
-
-
     //Remove from hidden
     categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(category_hidden), 1);
-
     updateScale(idGraph);
-
     let index = updatePath(idGraph,categories_hidden[idGraph], category_hidden);
-
     if(!isTheOne){
       lines[idGraph][category_hidden] = createPath(idGraph,datas1[idGraph][index],index);
-    }else{
-      isTheOne
     }
+
   }else{
-
-    // //Change Opacity of legend
-    // square.attr("opacity",0.5)
-    // d3.select("#labelText_"+category_hidden).style('fill', 'lightgrey')
-
     lines[idGraph][category_hidden].remove();
-
     categories_hidden[idGraph].push(category_hidden);
     //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
     //We're looking for the max of all lines without the current category
     updateScale(idGraph);
-
     //Upgrade Others Paths :
     updatePath(idGraph,categories_hidden[idGraph]);
   }
