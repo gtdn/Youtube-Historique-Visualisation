@@ -3,7 +3,7 @@ const categ = [["29",1],["44",1],["2",2],["15",4],["19",7],["17",25],["27",64],[
 const colorArray = [
     '#6c9ea3',
     '#e5d4be',
-    '#F57C00',
+    '#eabeed',
     '#e38839',
     '#9c3546',
     '#6879a4',
@@ -39,6 +39,11 @@ var pie = d3.pie()
   .sort(null)
   .value((d) => d[1]);
 
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+
 function createPie(svg, categ, element) {
 
   // Compute the position of each group on the pie:
@@ -48,11 +53,25 @@ function createPie(svg, categ, element) {
   svg.selectAll("path")
     .data(pie(categ))
     .join('path')
+    .on('mouseover', function(event,d) {
+      d3.select(this).style("opacity", 0.5)
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      div.html(categoriesDictShort[d.data[0]] + ' : ' + d.data[1] + ' vues')
+        .style("left", (event.pageX) + "px")
+        .style("top", (event.pageY - 20) + "px");
+    })
+   .on('mouseout', function(event, d) {
+      d3.select(this).style("opacity", 1)
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
+    })
     .transition()
     .duration(1000)
     .attr('d', arc)
     .attr('fill',(d) => color(d.data[0]))
-
 
   svg.selectAll("text")
     .data(pie(categ))
