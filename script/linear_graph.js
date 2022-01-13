@@ -361,6 +361,7 @@ function createLineChart(arrayData, svgId, idGraph){
     svg[graphId].selectAll(".lines")
     .data(data)
     .join('path')
+
     .attr("fill", "none")
     .attr("class","lines")
     .attr("id",d => "line"+d.idCat)
@@ -386,7 +387,8 @@ function createLineChart(arrayData, svgId, idGraph){
     }).attr('opacity', 1);
     }).on('click',function(){
         hideAllExcept(this.getAttribute("data-id"),graphId)
-    });
+    }).transition()
+    .duration(200);
   }
 
   function createLegend(idGraph, data){
@@ -418,7 +420,8 @@ function createLineChart(arrayData, svgId, idGraph){
       //switchLine(id_cat,idGraph,1,1)
       hide_categories(id_cat)
       updateView(id_cat,idGraph)
-    });
+    }).transition()
+    .duration(200);
 
     //Add text to legend
     legend[idGraph].selectAll('text')
@@ -429,7 +432,8 @@ function createLineChart(arrayData, svgId, idGraph){
       .style('font','icon')
       .attr('id',d => "labelText_"+d.idCat)
       .attr('class', "labelText")
-      .text(d => categoriesDict[d.idCat]);
+      .text(d => categoriesDict[d.idCat]).transition()
+      .duration(200);
   }
   //brush moved
   function brushed(event) {
