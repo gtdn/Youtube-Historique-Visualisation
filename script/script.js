@@ -25,3 +25,20 @@ function areEqual(array1, array2) {
   }
   return false;
 }
+
+function formatDatas(categFavFive,categFavTen,datas){
+    let datas1 = [];
+    datas1[0] = [];
+    categFavFive.forEach(function (item, i) {
+        let de = datas.filter(d => (d.idCat == item[0]))
+       datas1[0].push(de[0]);
+    });
+    datas1[1] = [];
+    categFavTen.forEach(function (item, i) {
+        let de = datas.filter(d => (d.idCat == item[0]))
+       if(de.length>0){
+         datas1[1].push(de[0]);
+       }
+    });
+    return datas1
+}

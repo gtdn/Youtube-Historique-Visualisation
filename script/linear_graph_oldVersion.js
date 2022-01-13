@@ -217,12 +217,21 @@ function getStat(date1, date2){
   categFavFive = []
   categFavTen  = []
 
-  categFavFive = categFav.slice(categFav.length - 5, categFav.length).reverse()
-  categFavTen = categFav.slice(0,categFav.length - 6).reverse()
+  categFavFive = categFav.slice(categFav.length - 5, categFav.length)
+  categFavTen = categFav.slice(0,categFav.length - 6)
+  const isEqual = areEqual(lastCategFavF,categFavFive)
+  // console.log(isEqual, lastCategFavF.length == 0 || isEqual)
+  // console.log(lastCategFavF,categFavFive)
+
+  if(lastCategFavF.length == 0 || !isEqual){
+    console.log("ça change! ")
+  }
+  lastCategFavF = categFavFive
 
   changeStatInfo(categFavFive,videoFav, channelFav, countVideo, date1, date2)
 
 }
+
 // List of all hidden categories
 var categories_hidden = []
 var mouseLine = [];
@@ -287,6 +296,9 @@ function createLineChart(arrayData, svgId, idGraph){
          .attr('height', height  )
          .attr('graph_id',idGraph)
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .on('mouseover', mouseover)
+         .on('mousemove', mousemove)
+         .on('mouseout',  mouseout);
 
        //Pour brush :
        let Line_chart = svgId.append("g")
@@ -299,14 +311,39 @@ function createLineChart(arrayData, svgId, idGraph){
         .append('g')
         .attr('class', 'legend')
 
-    createPath(idGraph,arrayData);
-    createLegend(idGraph,arrayData);
+    createPath(idGraph,arrayData,i);
+    lines[idGraph] = {};
+    //For each categories add a line and legend from datas
+    for(i in arrayData){
+      //append Line
+      //path = createPath(idGraph,arrayData[i],i);
 
+      //Set Path in dictionnary of lines
+      lines[idGraph][arrayData[i].idCat] = path;
 
+      // Append colored square legend
+      createLegend(arrayData[i],i,idGraph);
+    }
+
+    printTime("End of graph", timeStart)
 }
   getStat(par(dateStart),par(dateEnd));
 
-  datas1 = formatDatas(categFavFive,categFavTen,datas)
+  let datas1 = [];
+
+  datas1[0] = [];
+  categFavFive.forEach(function (item, i) {
+      let de = datas.filter(d => (d.idCat == item[0]))
+     datas1[0].push(de[0]);
+  });
+  datas1[1] = [];
+  categFavTen.forEach(function (item, i) {
+      let de = datas.filter(d => (d.idCat == item[0]))
+     if(de.length>0){
+       datas1[1].push(de[0]);
+
+     }
+  });
 
   console.log("datas1",categFavFive)
   console.log("datas2",categFavTen)
@@ -339,7 +376,7 @@ function createLineChart(arrayData, svgId, idGraph){
 
 
 
-  let lineBrushD = datas1[0].find(d => d.idCat == categFavFive[0][0])
+  let lineBrushD = datas1[0].filter(d => d.idCat == categFavFive[4][0])[0]
 
   context.append("path")
     .datum(lineBrushD.values)
@@ -353,26 +390,172 @@ function createLineChart(arrayData, svgId, idGraph){
     .x(function(d) { return x2(d.date) })
     .y(function(d) { return y2(d.value) }));
 
+//Function to update view when a category is hidden
+function updateView(category_hidden, idGraph, isTheOne = 0){
+  let square = d3.select("#label_"+category_hidden);
+  category_hidden = parseInt(category_hidden);
+  // If Already hide / Else
+  if(categories_hidden[idGraph].includes(category_hidden)){
+    //Remove from hidden
+    categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(category_hidden), 1);
+    updateScale(idGraph);
+    let index = updatePath(idGraph,categories_hidden[idGraph], category_hidden);
+    if(!isTheOne){
+      lines[idGraph][category_hidden] = createPath(idGraph,datas1[idGraph][index],index);
+    }
 
+  }else{
+    lines[idGraph][category_hidden].remove();
+    categories_hidden[idGraph].push(category_hidden);
+    //currentCategories = currentCategories.filter(function(d) {return d.id != category_hidden })
+    //We're looking for the max of all lines without the current category
+    updateScale(idGraph);
+    //Upgrade Others Paths :
+    updatePath(idGraph,categories_hidden[idGraph]);
+  }
+}
+
+function updateScale(idGraph){
+  //FInd New Max of line Graph
+  let max = 0;
+  datas1[idGraph].map(function(d){
+    if(!categories_hidden[idGraph].includes(parseInt(d.idCat))){
+
+      const localMax = Math.max(...d.values.map(de => de.value));
+      max = (max >= localMax) ? max : localMax;
+    }
+  });
+  //Change domain to fit the line we want to show
+  y[idGraph].domain([0,max])
+  axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
+}
+
+//Function mouse action on svg
+  function mousemove(e) {
+    var coordinates= d3.pointer(e);
+    var cooX = coordinates[0];
+    var cooY = coordinates[1];
+    id = d3.select(this).attr('graph_id')
+    const inv = y[id].invert(cooY)-margin.top
+
+
+    mouseHLine[id].attr('y1', cooY+margin.top).attr('y2', cooY+margin.top)
+    for(i in datas1){
+      //Move verticalLine on the SVG
+      mouseLine[i].attr('x1', cooX+margin.left).attr('x2', cooX+margin.left)
+
+      if(id != i){
+        if(y[i](inv) >= 0 && inv >= 0){
+          mouseHLine[i].style("opacity", "1");
+
+          mouseHLine[i].attr('y1', y[i](inv)+margin.top).attr('y2', y[i](inv)+margin.top)
+        }else{
+          mouseHLine[i].style("opacity", "0");
+        }
+      }
+    }
+  }
+
+  function mouseover() {
+    id = d3.select(this).attr('graph_id')
+
+    for(i in datas1){
+      mouseLine[i].style("opacity", "0.5");
+      mouseHLine[i].style("opacity", "0.5");
+    }
+  }
+
+  function mouseout() {
+    id = d3.select(this).attr('graph_id')
+
+    for(i in datas1){
+      mouseLine[i].style("opacity", "0");
+      mouseHLine[i].style("opacity", "0");
+    }
+  }
+
+//brush moved
+  function brushed(event) {
+    var s = event.selection || x2.range();
+    for (i in datas1){
+      x[i].domain(s.map(x2.invert, x2));
+      axisX[i].transition(500).call(d3.axisBottom(x[i]));
+      updatePath(i,[])
+
+    }
+
+    //Line_chart.select(".line").attr("d", line);
+    //focus.select(".axis--x").call(axisX);
+
+
+    /* On met à jour les statistiques*/
+    getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
+
+    test = createPie(svgCamFive, categFavFive, test)
+    createPie(svgCamTen, categFavTen,1)
+
+
+  }
+
+
+  function type(d) {
+    d.Date = parseDate(d.Date);
+    d.Air_Temp = +d.Air_Temp;
+    return d;
+  }
+
+  function switchLine(idLine1,oldIdGraph1, idLine2, oldIdGraph2){
+    lines[oldIdGraph1][idLine1].remove();
+    lines[oldIdGraph2][idLine2].remove();
+
+    // updatePath(idGraph2,categories_hidden,idLine1);
+    // updatePath(idGraph2,categories_hidden,idLine2);
+    let tmpData1 = datas1[oldIdGraph1].find(d => d.idCat == idLine1);
+    let tmpData2 = datas1[oldIdGraph2].find(d => d.idCat == idLine2);
+    console.log(datas1[oldIdGraph1], idLine1, tmpData1);
+
+    lines[oldIdGraph1][idLine1] = createPath(oldIdGraph2,tmpData1, idLine1);
+    lines[oldIdGraph2][idLine2] = createPath(oldIdGraph1,tmpData2, idLine2);
+
+  }
+
+
+  //Function Update all lines, arguments : array of hidden categories, if new line return the index of the line
+  function updatePath(idGraph,categories_hidden, category_hidden = -1){
+    let index;
+    for(i in datas1[idGraph]){
+      if(!categories_hidden.includes(datas1[idGraph][i].idCat)){
+
+        if(datas1[idGraph][i].idCat == category_hidden){
+          index = i;
+        }
+        lines[idGraph][datas1[idGraph][i].idCat].transition(500)
+        .attr("d", d3.line()
+        .x(function(d) { return x[idGraph](d.date) })
+        .y(function(d) { return y[idGraph](d.value) })
+        )
+      }
+    }
+
+    return index
+  }
 
   //Function Creation of lines, argument : Id of the line
-  function createPath(graphId,data){
-    console.log("data",data)
-    svg[graphId].selectAll(".lines")
+  function createPath(graphId,data,i){
+    console.log(data)
+    return svg[graphId].selectAll("path")
     .data(data)
     .join('path')
     .attr("fill", "none")
     .attr("class","lines")
-    .attr("id",d => "line"+d.idCat)
-    .attr("stroke", d => color(d.idCat))
-    .attr("data-id",d => d.idCat)
+    .attr("id","line_"+d.idCat)
+    .attr("stroke", color(d.idCat))
+    .attr("data-id",d.idCat)
     .attr("stroke-width", 2)
-    .attr("d", function(d){
-      return d3.line()
-        .x(function(d) {return x[graphId](d.date); })
-        .y(function(d) { return y[graphId](+d.value); })
-        (d.values)
-    }).on('mouseover', function (d, i) {
+    .attr("d", d3.line()
+    .x(function(d) {return x[graphId](d.date) })
+    .y(function(d) {return y[graphId](d.value) })
+    ).on('mouseover', function (d, i) {
       d3.select(this).style("cursor", "pointer");
       //On MouseOver of Each Line
       const id = this.id
@@ -389,23 +572,22 @@ function createLineChart(arrayData, svgId, idGraph){
     });
   }
 
-  function createLegend(idGraph, data){
-
-    legend[idGraph].selectAll('rect')
-    .data(data)
-    .join('rect')
+  function createLegend(data,i,idGraph){
+    legend[idGraph].append('rect')
     .attr('x', width - 130)
-    .attr('y', function(d,i) {return i* 20 -10})
+    .attr('y', i* 20 -10 )
     .attr('width', 10)
     .attr('height', 10)
-    .attr("data_id",d => d.idCat)
-    .attr("id", d => "label_"+d.idCat)
+    .attr("data_id",data.idCat)
+    .attr("id","label_"+data.idCat)
     .attr('class', 'label_rect')
-    .style('fill', d => color(d.idCat))
+    .style('fill', color(data.idCat))
     .on('mouseover', function (d, i) {
+
       d3.select(this).style("cursor", "pointer");
       const id = d3.select(this).attr("data_id");
       mouseOver_animation(id,true,idGraph)
+
     }).on('mouseout', function (d, i) {
       d3.select(this).style("cursor", "default");
       const id = d3.select(this).attr("data_id");
@@ -416,42 +598,51 @@ function createLineChart(arrayData, svgId, idGraph){
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
       //switchLine(id_cat,idGraph,1,1)
+// /*
       hide_categories(id_cat)
       updateView(id_cat,idGraph)
+// */
     });
 
     //Add text to legend
-    legend[idGraph].selectAll('text')
-    .data(data)
-    .join('text')
+    legend[idGraph].append('text')
       .attr('x', width - 115)
-      .attr('y', (d,i) => i * 20)
+      .attr('y', i * 20)
       .style('font','icon')
-      .attr('id',d => "labelText_"+d.idCat)
+      .attr('id',"labelText_"+data.idCat)
       .attr('class', "labelText")
-      .text(d => categoriesDict[d.idCat]);
+      .text(categoriesDict[data.idCat]);
   }
-  //brush moved
-  function brushed(event) {
-    var s = event.selection || x2.range();
 
-    /* On met à jour les statistiques*/
-    getStat(par((x[1].domain()[0])), par((x[1].domain()[1])))
-    for (i in datas1){
-      x[i].domain(s.map(x2.invert, x2));
-      axisX[i].transition(500).call(d3.axisBottom(x[i]));
-      datas1 = formatDatas(categFavFive,categFavTen,datas);
-      createPath(i, datas1[i])
-      createLegend(i,datas1[i])
+  function hideAllExcept(id, idGraph){
+    //If only one is left / else
+    if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
+      for(i in datas1[idGraph]){
+        if(datas1[idGraph][i].idCat != id){
+          hide_categories(datas1[idGraph][i].idCat);
+          updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
+        }
+      }
+    }else{
+
+      for(i in lines[idGraph]){
+        if(i != id){
+          lines[idGraph][i].remove();
+        }
+      }
+
+      categories_hidden[idGraph] = [];
+
+      for(i in datas1[idGraph]){
+         const idI = datas1[idGraph][i].idCat
+         if(idI != id && (!d3.select("#label_"+idI).classed('hide'))){
+           hide_categories(datas1[idGraph][i].idCat);
+         }
+        categories_hidden[idGraph].push(parseInt(datas1[idGraph][i].idCat));
+        // }
+      }
+      updateView(id,idGraph,1);
     }
-
-
-
-
-
-    test = createPie(svgCamFive, categFavFive, test)
-    createPie(svgCamTen, categFavTen,1)
-
-
   }
+
 });
