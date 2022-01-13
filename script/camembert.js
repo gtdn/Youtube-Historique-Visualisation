@@ -58,7 +58,7 @@ function createPie(svg, categ, element) {
       div.transition()
         .duration(200)
         .style("opacity", .9);
-      div.html(categoriesDictShort[d.data[0]] + ' : ' + d.data[1] + ' vues')
+      div.html(categoriesDict[d.data[0]] + ' : ' + d.data[1] + ' vues')
         .style("left", (event.pageX) + "px")
         .style("top", (event.pageY - 20) + "px");
     })
