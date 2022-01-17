@@ -21,19 +21,20 @@ height2 = 500 - margin2.top - margin2.bottom;
   .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
 
+const widthPie = 400
 var svgCamFive = d3.select("#codeD3CamFive").append("svg")
-  .attr("width", width)
+  .attr("width", widthPie)
   .attr("height", height)
   .append("g")
   .attr("transform",
-  "translate(" + width / 2 + "," + height / 2 + ")");
+  "translate(" + widthPie / 2 + "," + height / 2 + ")");
 
 var svgCamTen = d3.select("#codeD3CamTen").append("svg")
-  .attr("width", width)
+  .attr("width", widthPie)
   .attr("height", height)
   .append("g")
   .attr("transform",
-  "translate(" + width / 2 + "," + height / 2 + ")");
+  "translate(" + widthPie / 2 + "," + height / 2 + ")");
 
 /* Tableau contenant les categories favaories*/
 var categFavFive = []
@@ -220,7 +221,7 @@ function getStat(date1, date2){
   categFavFive = categFav.slice(categFav.length - 5, categFav.length).reverse()
   categFavTen = categFav.slice(0,categFav.length - 6).reverse()
 
-  changeStatInfo(categFavFive,videoFav, channelFav, countVideo, date1, date2)
+  changeStatInfo(categFavFive.reverse(),videoFav, channelFav, countVideo, date1, date2)
 
 }
 // List of all hidden categories
