@@ -100,32 +100,3 @@ function createPie(svg, categ, element) {
     .duration(1000)
 
 }
-
-// function createPie(svg, categ, element) {
-
-//   arcs[element] = svg.selectAll("arc")
-//           .data(pie(categ))
-//           .enter()
-
-//   d3.select(".arc").append("text")
-//       .attr("dy", ".35em")
-//       .attr("text-anchor", "middle")
-//       .text("Camembert Catégorie");
-
-//   arcs[element]
-//         .append("path")
-//         .attr("fill", d => color(d.data[0]))
-//         .attr("d", arc)
-//         .on('mouseover', function (d){ d3.select(this).style("opacity", 0.5)})
-//         .on('mouseout', function (d){ d3.select(this).style("opacity", 1)})
-//         .append("title")
-//         .text(d => categoriesDict[d.data[0]] + " : " + d.data[1]);
-
-//   arcs[element].filter((d) => d.endAngle - d.startAngle > .4)
-//       .append("text")
-//       .attr("dy", ".35em")
-//       .attr("text-anchor", "middle")
-//       .attr("transform",(d) => "translate("+arc.centroid(d) + ")")
-//       .text((d) => categoriesDictShort[d.data[0]]);
-
-// }

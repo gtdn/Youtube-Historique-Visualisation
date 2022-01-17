@@ -59,6 +59,11 @@ nav{
 	font-weight:bold;
 }
 
+#codeD3GraphTen, #codeD3GraphFive, #codeD3CamFive, #codeD3CamTen {
+	text-align: center;
+	padding-top: 20px;
+}
+
 #codeD3{
 	padding: 40px;
 	margin-top: 10px;
