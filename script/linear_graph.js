@@ -145,9 +145,9 @@ function changeStatInfo(categFav, videoFav, channelFav, countVideo, dateBeg, dat
 
   // On met a jour les catégories
   const lengCat = categFav.length
-  const categFav1 = categFav[lengCat - 1]
-  const categFav2 = categFav[lengCat - 2]
-  const categFav3 = categFav[lengCat - 3]
+  const categFav1 = categFav[0]
+  const categFav2 = categFav[1]
+  const categFav3 = categFav[2]
 
   d3.select("#favCatOne").text(categoriesDict[categFav1[0]] + " : " + categFav1[1])
   d3.select("#favCatTwo").text(categoriesDict[categFav2[0]] + " : " + categFav2[1])
@@ -221,7 +221,7 @@ function getStat(date1, date2){
   categFavFive = categFav.slice(categFav.length - 5, categFav.length).reverse()
   categFavTen = categFav.slice(0,categFav.length - 6).reverse()
 
-  changeStatInfo(categFavFive.reverse(),videoFav, channelFav, countVideo, date1, date2)
+  changeStatInfo(categFavFive,videoFav, channelFav, countVideo, date1, date2)
 
 }
 // List of all hidden categories
@@ -251,7 +251,7 @@ function createLineChart(arrayData, svgId, idGraph){
   .attr('x2', 0)
   .attr('y2', height)
   .style("stroke","black")
-  .style("stroke-width", "0.3px")
+  .style("stroke-width", "1px")
   .style("opacity", "0");
   //Initialize vertical line
   mouseHLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
@@ -261,7 +261,7 @@ function createLineChart(arrayData, svgId, idGraph){
   .attr('x2', width)
   .attr('y2', 0-margin.left)
   .style("stroke","black")
-  .style("stroke-width", "0.3px")
+  .style("stroke-width", "1px")
   .style("opacity", "0");
   //Initialize scales for Line Chart and add axis
   x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
@@ -292,7 +292,10 @@ function createLineChart(arrayData, svgId, idGraph){
   .attr('width', width )
   .attr('height', height  )
   .attr('graph_id',idGraph)
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr("transform", "translate(" +0+ "," +0+ ")")
+  .on('mouseover', mouseover)
+  .on('mousemove', mousemove)
+  .on('mouseout',  mouseout);
 
   //Pour brush :
   line_chart[idGraph] = svgId.append("g")
@@ -516,4 +519,47 @@ function createLineChart(arrayData, svgId, idGraph){
     createPath(idGraph,datas1[idGraph])
 
   }
+  //Function mouse action on svg
+    function mousemove(e) {
+      var coordinates= d3.pointer(e);
+      var cooX = coordinates[0];
+      var cooY = coordinates[1];
+      id = d3.select(this).attr('graph_id')
+      const inv = y[id].invert(cooY)
+
+
+      mouseHLine[id].attr('y1', cooY).attr('y2', cooY)
+      for(i in datas1){
+        //Move verticalLine on the SVG
+        mouseLine[i].attr('x1', cooX).attr('x2', cooX)
+
+        if(id != i){
+          if(y[i](inv) >= 0 && inv >= 0){
+            mouseHLine[i].style("opacity", "1");
+
+            mouseHLine[i].attr('y1', y[i](inv)).attr('y2', y[i](inv))
+          }else{
+            mouseHLine[i].style("opacity", "0");
+          }
+        }
+      }
+    }
+
+    function mouseover() {
+      id = d3.select(this).attr('graph_id')
+
+      for(i in datas1){
+        mouseLine[i].style("opacity", "0.5");
+        mouseHLine[i].style("opacity", "0.5");
+      }
+    }
+
+    function mouseout() {
+      id = d3.select(this).attr('graph_id')
+
+      for(i in datas1){
+        mouseLine[i].style("opacity", "0");
+        mouseHLine[i].style("opacity", "0");
+      }
+    }
 });
