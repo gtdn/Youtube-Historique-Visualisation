@@ -233,10 +233,10 @@ var y = [];
 var axisX = [];
 var axisY = [];
 var lines = [];
+let line_chart = [];
 
 function createLineChart(arrayData, svgId, idGraph){
 
-    categories_hidden[idGraph] = [];
   //Initialize vertical line
     mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
       .attr("class","mouseLine")
@@ -288,11 +288,12 @@ function createLineChart(arrayData, svgId, idGraph){
          .attr('graph_id',idGraph)
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-       //Pour brush :
-       let Line_chart = svgId.append("g")
-         .attr("class", "focus")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .attr("clip-path", "url(#clip)");
+
+   //Pour brush :
+   line_chart[idGraph] = svgId.append("g")
+     .attr("class", "focus")
+     .attr("transform", "translate(" +0+ "," + margin.top + ")")
+     .attr("clip-path", "url(#clip)");
 
     //Initialize Legend :
     legend[idGraph] = svgId
@@ -301,15 +302,14 @@ function createLineChart(arrayData, svgId, idGraph){
 
     createPath(idGraph,arrayData);
     createLegend(idGraph,arrayData);
-
+    
+    categories_hidden[idGraph] = [];
 
 }
   getStat(par(dateStart),par(dateEnd));
 
   datas1 = formatDatas(categFavFive,categFavTen,datas)
 
-  console.log("datas1",categFavFive)
-  console.log("datas2",categFavTen)
   createLineChart(datas1[0],svg[0],0);
   createLineChart(datas1[1],svg[1],1);
 
@@ -357,11 +357,10 @@ function createLineChart(arrayData, svgId, idGraph){
 
   //Function Creation of lines, argument : Id of the line
   function createPath(graphId,data){
-    console.log("data",data)
-    svg[graphId].selectAll(".lines")
+
+    line_chart[graphId].selectAll(".lines")
     .data(data)
     .join('path')
-
     .attr("fill", "none")
     .attr("class","lines")
     .attr("id",d => "line"+d.idCat)
@@ -369,6 +368,11 @@ function createLineChart(arrayData, svgId, idGraph){
     .attr("data-id",d => d.idCat)
     .attr("stroke-width", 2)
     .attr("d", function(d){
+      //console.log(categories_hidden)
+      if(categories_hidden.includes(d.idCat)){
+        console.log(categories_hidden,d.idCat);
+
+      };
       return d3.line()
         .x(function(d) {return x[graphId](d.date); })
         .y(function(d) { return y[graphId](+d.value); })
@@ -418,8 +422,8 @@ function createLineChart(arrayData, svgId, idGraph){
       //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
       //switchLine(id_cat,idGraph,1,1)
-      hide_categories(id_cat)
-      updateView(id_cat,idGraph)
+      hideAllExcept(id_cat)
+      //updateView(id_cat,idGraph)
     }).transition()
     .duration(200);
 
@@ -448,14 +452,43 @@ function createLineChart(arrayData, svgId, idGraph){
       createPath(i, datas1[i])
       createLegend(i,datas1[i])
     }
-
-
-
-
-
     test = createPie(svgCamFive, categFavFive, test)
     createPie(svgCamTen, categFavTen,1)
+  }
 
 
+  function hideAllExcept(id, idGraph){
+    //If only one is left / else
+    if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
+      for(i in datas1[idGraph]){
+        if(datas1[idGraph][i].idCat != id){
+          hide_categories(datas1[idGraph][i].idCat);
+        //  updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
+        }
+      }
+    }else{
+
+
+      for(i in datas1[idGraph]){
+         const idI = datas1[idGraph][i].idCat
+         if(idI != id && (!d3.select("#label_"+idI).classed('hide'))){
+           categories_hidden[idGraph].push(idI)
+           hide_categories(datas1[idGraph][i].idCat);
+
+           //hide_line(idI,idGraph);
+         }
+        // }
+      }
+    //  updateView(id,idGraph,1);
+    }
+    console.log("cat",categories_hidden[idGraph])
+
+  }
+
+  function hide_line(idLine, idGraph){
+    console.log(idLine)
+    console.log(d3.select("#line"+idLine).attr("opacity",0))
+    categories_hidden[idGraph].push(parseInt(idLine));
+    //svg[idGraph].select()
   }
 });

@@ -614,35 +614,6 @@ function updateScale(idGraph){
       .text(categoriesDict[data.idCat]);
   }
 
-  function hideAllExcept(id, idGraph){
-    //If only one is left / else
-    if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
-      for(i in datas1[idGraph]){
-        if(datas1[idGraph][i].idCat != id){
-          hide_categories(datas1[idGraph][i].idCat);
-          updateView(parseInt(datas1[idGraph][i].idCat), idGraph)
-        }
-      }
-    }else{
 
-      for(i in lines[idGraph]){
-        if(i != id){
-          lines[idGraph][i].remove();
-        }
-      }
-
-      categories_hidden[idGraph] = [];
-
-      for(i in datas1[idGraph]){
-         const idI = datas1[idGraph][i].idCat
-         if(idI != id && (!d3.select("#label_"+idI).classed('hide'))){
-           hide_categories(datas1[idGraph][i].idCat);
-         }
-        categories_hidden[idGraph].push(parseInt(datas1[idGraph][i].idCat));
-        // }
-      }
-      updateView(id,idGraph,1);
-    }
-  }
 
 });
