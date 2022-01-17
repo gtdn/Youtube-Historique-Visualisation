@@ -427,8 +427,8 @@ function createLineChart(arrayData, svgId, idGraph){
     }).on("dblclick",function(d){
       TODO //On Double click remove all other Lines
     }).on('click', function (d, i) {
-      var id_cat = d3.select("#"+this.id).attr('data_id');
-      hide_line(id_cat);
+      var id_cat = d3.select(this).attr('data_id');
+      hide_line(id_cat, idGraph);
     }).transition()
     .duration(2000);
 
@@ -490,7 +490,6 @@ function createLineChart(arrayData, svgId, idGraph){
   }
 
   function updateYScale(idGraph){
-    console.log("cc")
     //FInd New Max of line Graph
     let max = 0;
     datas1[idGraph].map(function(d){
@@ -508,7 +507,7 @@ function createLineChart(arrayData, svgId, idGraph){
   function hide_line(idLine, idGraph){
     hide_categories(idLine);
     if(categories_hidden[idGraph].includes(idLine)){
-      console.log("déja caché")
+      categories_hidden[idGraph].splice(categories_hidden[idGraph].indexOf(idLine), 1)
     }else{
       categories_hidden[idGraph].push(idLine);
     }
