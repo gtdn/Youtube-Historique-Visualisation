@@ -33,16 +33,26 @@ function mouseOver_animation(data_id, isMouseOver,idGraph){
     .duration('50')
     .attr('opacity', '1');
     d3.select("#labelText_"+data_id).style('fill', 'black')
+
+    svg[idGraph].selectAll(".lines").each(function(d, i) {
+      let l = d3.select(this);
+      if(l.attr('data-id') != data_id){
+        l.transition()
+        .duration('50')
+        .attr('opacity', '1');
+      }
+    });
+  }else if(!isMouseOver){
+    svg[idGraph].selectAll(".lines").each(function(d, i) {
+      let l = d3.select(this);
+      if(l.attr('data-id') != data_id){
+        l.transition()
+        .duration('50')
+        .attr('opacity', '1');
+      }
+    });
   }
 
-  svg[idGraph].selectAll(".lines").each(function(d, i) {
-    let l = d3.select(this);
-    if(l.attr('data-id') != data_id){
-      l.transition()
-      .duration('50')
-      .attr('opacity', '1');
-    }
-  });
 
 
 }

@@ -395,7 +395,7 @@ function createLineChart(arrayData, svgId, idGraph){
       const id = this.id
       svg[graphId].selectAll(".lines").filter(function() {
       return !(this.id == id || this.attributes.class.value.includes("hide"))
-    }, id).attr('opacity', 0.1);
+    }, id).attr('opacity', 0.2);
     }).on('mouseout', function (d, i) {
       d3.select(this).style("cursor", "default");
       svg[graphId].selectAll(".lines").filter(function() {
