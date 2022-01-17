@@ -234,76 +234,85 @@ var axisX = [];
 var axisY = [];
 var lines = [];
 let line_chart = [];
+let clip = [];
 
 function createLineChart(arrayData, svgId, idGraph){
 
+
+
+
+  categories_hidden[idGraph] = [];
   //Initialize vertical line
-    mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
-      .attr("class","mouseLine")
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', 0)
-      .attr('y2', height)
-      .style("stroke","black")
-      .style("stroke-width", "0.3px")
-      .style("opacity", "0");
+  mouseLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
+  .attr("class","mouseLine")
+  .attr('x1', 0)
+  .attr('y1', 0)
+  .attr('x2', 0)
+  .attr('y2', height)
+  .style("stroke","black")
+  .style("stroke-width", "0.3px")
+  .style("opacity", "0");
   //Initialize vertical line
-    mouseHLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
-      .attr("class","mouseLine")
-      .attr('x1', 0)
-      .attr('y1', 0-margin.left)
-      .attr('x2', width)
-      .attr('y2', 0-margin.left)
-      .style("stroke","black")
-      .style("stroke-width", "0.3px")
-      .style("opacity", "0");
-      //Initialize scales for Line Chart and add axis
-      x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
+  mouseHLine[idGraph] = svgId.append("line") // this is the black vertical line to follow mouse
+  .attr("class","mouseLine")
+  .attr('x1', 0)
+  .attr('y1', 0-margin.left)
+  .attr('x2', width)
+  .attr('y2', 0-margin.left)
+  .style("stroke","black")
+  .style("stroke-width", "0.3px")
+  .style("opacity", "0");
+  //Initialize scales for Line Chart and add axis
+  x[idGraph] = d3.scaleTime().range([0, width]).domain(d3.extent(dates,(d)=> new Date(d)));
 
-      y[idGraph] = d3.scaleLinear()
-          .domain([0, d3.max(arrayData,(d)=> d3.max(d.values, (de) => de.value ) )])
-          .range([ height, 0 ]);
+  y[idGraph] = d3.scaleLinear()
+  .domain([0, d3.max(arrayData,(d)=> d3.max(d.values, (de) => de.value ) )])
+  .range([ height, 0 ]);
 
-          let focus = svgId.append("g")
-            .attr("class", "focus")
-            //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-      axisX[idGraph] = focus.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x[idGraph]));
-      axisY[idGraph] = focus.append("g")
-        .attr("transform", `translate(-1,0)`)
-        .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y[idGraph]));
-
-     //Initialize Rect to catch mouse position on the svg (For the vertical line)
-       svgId
-         .append('rect')
-         .style("fill", "none")
-         .style("pointer-events", "all")
-         .attr('width', width )
-         .attr('height', height  )
-         .attr('graph_id',idGraph)
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  let focus = svgId.append("g")
+  .attr("class", "focus")
+  //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-   //Pour brush :
-   line_chart[idGraph] = svgId.append("g")
-     .attr("class", "focus")
-     .attr("transform", "translate(" +0+ "," + margin.top + ")")
-     .attr("clip-path", "url(#clip)");
+  axisX[idGraph] = focus.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", `translate(0, ${height})`)
+  .call(d3.axisBottom(x[idGraph]));
+  axisY[idGraph] = focus.append("g")
+  .attr("transform", `translate(-1,0)`)
+  .attr("class", "axis axis--y")
+  .call(d3.axisLeft(y[idGraph]));
 
-    //Initialize Legend :
-    legend[idGraph] = svgId
-        .append('g')
-        .attr('class', 'legend')
+  //Initialize Rect to catch mouse position on the svg (For the vertical line)
+  svgId
+  .append('rect')
+  .style("fill", "none")
+  .style("pointer-events", "all")
+  .attr('width', width )
+  .attr('height', height  )
+  .attr('graph_id',idGraph)
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    createPath(idGraph,arrayData);
-    createLegend(idGraph,arrayData);
-    
-    categories_hidden[idGraph] = [];
+  //Pour brush :
+  line_chart[idGraph] = svgId.append("g")
+  .attr("class", "focus")
+  .attr("transform", "translate(" +0+ "," + 0 + ")")
+  .attr("clip-path", "url(#clip_"+idGraph+")");
+
+  clip[idGraph] = svgId.append("defs").append("svg:clipPath")
+  .attr("id", "clip_"+idGraph)
+  .append("svg:rect")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("x", 0)
+  .attr("y", 0);
+  //Initialize Legend :
+  legend[idGraph] = svgId
+  .append('g')
+  .attr('class', 'legend')
+
+  createPath(idGraph,arrayData);
+  createLegend(idGraph,arrayData);
 
 }
   getStat(par(dateStart),par(dateEnd));
@@ -368,15 +377,14 @@ function createLineChart(arrayData, svgId, idGraph){
     .attr("data-id",d => d.idCat)
     .attr("stroke-width", 2)
     .attr("d", function(d){
-      //console.log(categories_hidden)
-      if(categories_hidden.includes(d.idCat)){
-        console.log(categories_hidden,d.idCat);
-
+      //console.log(categories_hidden, d.idCat)
+      if(!categories_hidden[graphId].includes(d.idCat)){
+        return d3.line()
+          .x(function(d) {return x[graphId](d.date); })
+          .y(function(d) { return y[graphId](+d.value); })
+          (d.values)
       };
-      return d3.line()
-        .x(function(d) {return x[graphId](d.date); })
-        .y(function(d) { return y[graphId](+d.value); })
-        (d.values)
+
     }).on('mouseover', function (d, i) {
       d3.select(this).style("cursor", "pointer");
       //On MouseOver of Each Line
@@ -392,7 +400,7 @@ function createLineChart(arrayData, svgId, idGraph){
     }).on('click',function(){
         hideAllExcept(this.getAttribute("data-id"),graphId)
     }).transition()
-    .duration(200);
+    .duration(2000);
   }
 
   function createLegend(idGraph, data){
@@ -419,13 +427,10 @@ function createLineChart(arrayData, svgId, idGraph){
     }).on("dblclick",function(d){
       TODO //On Double click remove all other Lines
     }).on('click', function (d, i) {
-      //On Click remove this line
       var id_cat = d3.select("#"+this.id).attr('data_id');
-      //switchLine(id_cat,idGraph,1,1)
-      hideAllExcept(id_cat)
-      //updateView(id_cat,idGraph)
+      hide_line(id_cat);
     }).transition()
-    .duration(200);
+    .duration(2000);
 
     //Add text to legend
     legend[idGraph].selectAll('text')
@@ -460,6 +465,7 @@ function createLineChart(arrayData, svgId, idGraph){
   function hideAllExcept(id, idGraph){
     //If only one is left / else
     if(categories_hidden[idGraph].length +1 == datas1[idGraph].length){
+      categories_hidden[idGraph] = [];
       for(i in datas1[idGraph]){
         if(datas1[idGraph][i].idCat != id){
           hide_categories(datas1[idGraph][i].idCat);
@@ -467,8 +473,6 @@ function createLineChart(arrayData, svgId, idGraph){
         }
       }
     }else{
-
-
       for(i in datas1[idGraph]){
          const idI = datas1[idGraph][i].idCat
          if(idI != id && (!d3.select("#label_"+idI).classed('hide'))){
@@ -481,14 +485,35 @@ function createLineChart(arrayData, svgId, idGraph){
       }
     //  updateView(id,idGraph,1);
     }
-    console.log("cat",categories_hidden[idGraph])
+    updateYScale(idGraph);
+    createPath(idGraph,datas1[idGraph]);
+  }
 
+  function updateYScale(idGraph){
+    console.log("cc")
+    //FInd New Max of line Graph
+    let max = 0;
+    datas1[idGraph].map(function(d){
+      if(!categories_hidden[idGraph].includes(d.idCat)){
+
+        const localMax = Math.max(...d.values.map(de => de.value));
+        max = (max >= localMax) ? max : localMax;
+      }
+    });
+    //Change domain to fit the line we want to show
+    y[idGraph].domain([0,max])
+    axisY[idGraph].transition(500).call(d3.axisLeft(y[idGraph]));
   }
 
   function hide_line(idLine, idGraph){
-    console.log(idLine)
-    console.log(d3.select("#line"+idLine).attr("opacity",0))
-    categories_hidden[idGraph].push(parseInt(idLine));
-    //svg[idGraph].select()
+    hide_categories(idLine);
+    if(categories_hidden[idGraph].includes(idLine)){
+      console.log("déja caché")
+    }else{
+      categories_hidden[idGraph].push(idLine);
+    }
+    updateYScale(idGraph);
+    createPath(idGraph,datas1[idGraph])
+
   }
 });
