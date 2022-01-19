@@ -6,18 +6,6 @@
 - Savatez Quentin
 
 
->Version Francaise
-### Cadre
-Ce projet est fait dans le cadre de l'UE Data Visualisation du Master Data Science à l'Université Claude Bernard. 
-
-### Sujet
-Le thème du projet était la représentation visuelle de nos données personnelles. Nous avons choisi de représententer notre historique Youtube sous 2 formes : un graphe  et un camembert. 
-Nous avons récupérer ses données gràce à l'API de Google (https://console.cloud.google.com/apis)
-
-### Web page du site 
-https://gtdn.github.io/Youtube-Historique-Visualisation/
-
-- Si vous souhaitez tester le site web sur vos données, suiver les instructions dans l'onglet Réfenrece, en bas de page du site web.
 
 >Version Anglaise
 ### Surroundings
@@ -31,3 +19,21 @@ We gathered our datas thanks to Google API (https://console.cloud.google.com/api
 https://gtdn.github.io/Youtube-Historique-Visualisation/
 
 - If you wish to test this web site on your datas, follow the instructions in the Reference onglet, at the bottom of the page.
+
+
+![](teaser.png)
+
+>Version Francaise
+### Cadre
+Ce projet est fait dans le cadre de l'UE Data Visualisation du Master Data Science à l'Université Claude Bernard. 
+
+### Sujet
+Le thème du projet était la représentation visuelle de nos données personnelles. Nous avons choisi de représententer notre historique Youtube sous 2 formes : un graphe  et un camembert. 
+Nous avons récupérer ses données gràce à l'API de Google (https://console.cloud.google.com/apis)
+
+### Web page du site 
+https://gtdn.github.io/Youtube-Historique-Visualisation/
+
+- Si vous souhaitez tester le site web sur vos données, suiver les instructions dans l'onglet Réfenrece, en bas de page du site web.
+
+
