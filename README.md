@@ -1,9 +1,9 @@
 # Projet de visualisation de l'historique Youtube
 
 ### Membres du projet
-- Jauseau Baptiste 
-- Lambert Timothé
-- Savatez Quentin
+- Jauseau Baptiste - baptiste.jauseau@etu.univ-lyon1.fr
+- Lambert Timothé - 
+- Savatez Quentin - 
 
 
 
