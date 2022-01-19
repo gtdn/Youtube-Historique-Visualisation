@@ -15,7 +15,7 @@ Le thème du projet était la représentation visuelle de nos données personnel
 Nous avons récupérer ses données gràce à l'API de Google (https://console.cloud.google.com/apis)
 
 ### Web page du site 
-https://gtdn.github.io/data_viz-project/
+https://gtdn.github.io/Youtube-Historique-Visualisation/
 
 - Si vous souhaitez tester le site web sur vos données, suiver les instructions dans l'onglet Réfenrece, en bas de page du site web.
 
@@ -28,6 +28,6 @@ The project's topic was the visual representation of our personnels datas. We ch
 We gathered our datas thanks to Google API (https://console.cloud.google.com/apis)
 
 ### Web page 
-https://gtdn.github.io/data_viz-project/
+https://gtdn.github.io/Youtube-Historique-Visualisation/
 
 - If you wish to test this web site on your datas, follow the instructions in the Reference onglet, at the bottom of the page.
