@@ -2,8 +2,8 @@
 
 ### Membres du projet
 - Jauseau Baptiste - baptiste.jauseau@etu.univ-lyon1.fr
-- Lambert Timothé - 
-- Savatez Quentin - 
+- Lambert Timothé - timothee.lambert@etu.univ-lyon1.fr
+- Savatez Quentin - quentin.savattez@etu.univ-lyon1.fr
 
 
 
@@ -21,7 +21,7 @@ https://gtdn.github.io/Youtube-Historique-Visualisation/
 - If you wish to test this web site on your datas, follow the instructions in the Reference onglet, at the bottom of the page.
 
 
-![](teaser.png)
+![](8-teaser.png)
 
 >Version Francaise
 ### Cadre
