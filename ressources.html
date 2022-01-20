@@ -17,69 +17,147 @@
         </div>
         <div class="container">
             <div class="row">
-                <div>
-                    <h5><strong>Récupération de votre historique YouTube :</strong></h5>
-                    <ol>
-                        <li>Allez sur <a href="http://google.com/takeout">http://google.com/takeout</a></li>
-                        <li>Sélectionnez "désélectionner tout" en haut</li>
-                        <li>Faites défiler vers le bas et sélectionnez "YouTube et YouTube Music"</li>
-                        <li>Sélectionnez ensuite "Toutes les données YouTube incluses" sous l'option "YouTube et YouTube Music"</li>
-                        <li>Sélectionnez "désélectionner tout" (à nouveau) dans cette fenêtre contextuelle</li>
-                        <li>Sélectionnez "historique", puis "ok"</li>
-                        <li>Sélectionnez "Étape suivante", laissez "exporter une fois" sélectionné</li>
-                        <li>Laissez .zip sélectionné et 2 Go sélectionnés (le téléchargement ne fera que quelques Mo)</li>
-                        <li>Le téléchargement devrait être prêt dans quelques minutes, actualisez la page sur <a href="https://takeout.google.com/">https://takeout.google.com/</a> et vous verrez un bouton "Télécharger"</li>
-                    </ol>
+                <div id='presentation'>
+                    <h3><strong>Présentation du projet :</strong></h3>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Membres du groupe</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>JAUSEAU Baptiste : baptiste.jauseau@etu.univ-lyon1.fr</li>
+                                <li>LAMBERT Timothé : timothee.lambert@etu.univ-lyon1.fr</li>
+                                <li>SAVATTEZ Quentin : quentin.savattez@etu.univ-lyon1.fr</li>
+                            </ul>
+                        </div>
+                      </div>
+                      <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Cadre</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Ce projet est fait dans le cadre de l'UE Data Visualisation (<a href='https://lyondataviz.github.io/teaching/lyon1-m2/2021/'>https://lyondataviz.github.io/teaching/lyon1-m2/2021/</a>) du Master Data Science à l'Université Claude Bernard.</p>
+                        </div>
+                      </div>
+                      <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Sujet</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Le thème du projet était la représentation visuelle de nos données personnelles. Nous avons choisi de représententer notre historique Youtube sous 2 formes : un graphe et un camembert. Nous avons récupérer ses données gràce à l'API de Google (<a href='https://console.cloud.google.com/apis'>https://console.cloud.google.com/apis</a>).</p>
+                        </div>
+                      </div>
+                      <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Page Web du site</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <a href='https://gtdn.github.io/Youtube-Historique-Visualisation/'>https://gtdn.github.io/Youtube-Historique-Visualisation/</a>
+                            <p>Si vous souhaitez tester le site web sur vos données, suivez les instructions du tutoriel.</p>
+                        </div>
+                      </div>
                 </div>
-                <div>
-                    <h5><strong>Mappage de votre historique avec les informations de chaque vidéo :</strong></h5>
-                    <ol>
-                        <li>Enregistrez votre <strong>watch-history.json</strong> obtenu précédemment dans <strong>/data/history</strong></li>
-                        <li>Ouvrez le script Python <strong>script.py</strong> et modifiez le de la façon suivante :
-                        <ul>
-                            <li>Changez le fichier à ouvrir (ligne 26) et mettez <strong>data/history/yourdatahistory.json</strong></li>
-                            <li>Changez le fichier de sorti (ligne 30) et mettez <strong>data/youroutput.json</strong> que vous avez préalablement créé</li>
-                            <li>Changer la premiere ligne à lire (ligne 46) et mettez à <strong>0</strong></li>
-                        </ul>
-                        </li>
-                        <li>Lancez le script Python avec la commande <strong>python3 script.py</strong></li>
-                        <li>Lorsque le script est interrompu suite à l'épuisement d'une API Key :</li>
-                        <ul>
-                            <li>Sélectionnez une autre API Key dans le script <strong>script.py</strong></li>
-                            <li>Changez la ligne à lire lors de la reprise (ligne 46) et mettez le dernier nombre indiqué par le script lors de l'erreur</li>
-                            <li>Effectuez ces opérations jusqu'à avoir finir la lecture de historique</li>
-                        </ul>
-                        <li>S'il n'y a pas assez d'API Keys, poursuivez le script le lendemain, les clés devraient être réutilisables</li>
-                    </ol>
+                <div id='tutoriel'>
+                    <h3><strong>Tutoriel :</strong></h3>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Récupération de votre historique YouTube</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li>Allez sur <a href="http://google.com/takeout">http://google.com/takeout</a></li>
+                                <li>Sélectionnez "désélectionner tout" en haut</li>
+                                <li>Faites défiler vers le bas et sélectionnez "YouTube et YouTube Music"</li>
+                                <li>Sélectionnez ensuite "Toutes les données YouTube incluses" sous l'option "YouTube et YouTube Music"</li>
+                                <li>Sélectionnez "désélectionner tout" (à nouveau) dans cette fenêtre contextuelle</li>
+                                <li>Sélectionnez "historique", puis "ok"</li>
+                                <li>Sélectionnez "Étape suivante", laissez "exporter une fois" sélectionné</li>
+                                <li>Laissez .zip sélectionné et 2 Go sélectionnés (le téléchargement ne fera que quelques Mo)</li>
+                                <li>Le téléchargement devrait être prêt dans quelques minutes, actualisez la page sur <a href="https://takeout.google.com/">https://takeout.google.com/</a> et vous verrez un bouton "Télécharger"</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Mappage de votre historique avec les informations de chaque vidéo</strong></h5>
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li>Enregistrez votre <code>watch-history.json</code> obtenu précédemment dans <code>/data/history</code></li>
+                                <li>Ouvrez le script Python <code>script.py</code> et modifiez le de la façon suivante :
+                                <ul>
+                                    <li>Changez le fichier à ouvrir (ligne 26) et mettez <code>data/history/yourdatahistory.json</code></li>
+                                    <li>Changez le fichier de sorti (ligne 30) et mettez <code>data/youroutput.json</code> que vous avez préalablement créé</li>
+                                    <li>Changer la premiere ligne à lire (ligne 46) et mettez à <code>0</code></li>
+                                </ul>
+                                </li>
+                                <li>Lancez le script Python avec la commande <kbd>python3 script.py</kbd></li>
+                                <li>Lorsque le script est interrompu suite à l'épuisement d'une API Key :</li>
+                                <ul>
+                                    <li>Sélectionnez une autre API Key dans le script <code>script.py</code></li>
+                                    <li>Changez la ligne à lire lors de la reprise (ligne 46) et mettez le dernier nombre indiqué par le script lors de l'erreur</li>
+                                    <li>Effectuez ces opérations jusqu'à avoir finir la lecture de historique</li>
+                                </ul>
+                                <li>S'il n'y a pas assez d'API Keys, poursuivez le script le lendemain, les clés devraient être réutilisables</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Visualisez vos données</strong></h5>
+                        </div>
+                        <div class='card-body'>
+                            <ol>
+                                <li>Ouvrez le fichier <code>linear_graph.js</code> dans le dossier <code>script</code></li>
+                                <li>Changez le fichier json (ligne 84) de lecture et mettez <code>data/youroutput.json</code></li>
+                                <li>Une fois toutes les étapes précédentes faites et enregistrées, ouvrez la page de visualisation</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h5><strong>Visualisez vos données :</strong></h5>
-                    <ol>
-                        <li>Ouvrez le fichier <strong>linear_graph.js</strong> dans le dossier <strong>script</strong></li>
-                        <li>Changez le fichier json (ligne 84) de lecture et mettez <strong>data/youroutput.json</strong></li>
-                        <li>Une fois toutes les étapes précédentes faites et enregistrées, ouvrez la page de visualisation</li>
-                    </ol>
-                </div>
-                <div>
-                    <h5><strong>Ressources utilisées :</strong></h5>
-                    <ul type="square">
-                        <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
-                        <li><a href="https://console.cloud.google.com/apis">Google Cloud API</a></li>
-                        <li>ID Catégory des vidéos : 
-                            <ul type="circle">
+                <div id='ressources'>
+                    <h3><strong>Ressources utilisées :</strong></h3>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Bootstrap</strong></h5>
+                        </div>
+                        <div class='card-body'>
+                            <a href="https://getbootstrap.com/">https://getbootstrap.com/</a>
+                        </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Google Cloud API</strong></h5>
+                        </div>
+                        <div class='card-body'>
+                            <a href="https://console.cloud.google.com/apis">https://console.cloud.google.com/apis</a>
+                        </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>ID Category des vidéos</strong></h5>
+                        </div>
+                        <div class='card-body'>
+                            <ul>
                                 <li><a href="https://gist.github.com/dgp/1b24bf2961521bd75d6c">https://gist.github.com/dgp/1b24bf2961521bd75d6c</a></li>
                                 <li><a href="https://techpostplus.com/youtube-video-categories-list-faqs-and-solutions/">https://techpostplus.com/youtube-video-categories-list-faqs-and-solutions/</a></li>
                             </ul>
-                        </li>
-                        <li>Les graphes :
-                            <ul type="circle">
+                        </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                        <div class="card-header">
+                            <h5><strong>Les graphes</strong></h5>
+                        </div>
+                        <div class='card-body'>
+                            <ul>
                                 <li><a href="https://www.tutorialsteacher.com/d3js/create-pie-chart-using-d3js">https://www.tutorialsteacher.com/d3js/create-pie-chart-using-d3js</a></li>
-                                <li><a href="https://www.d3-graph-gallery.com/graph/pie_changeData.html">https://www.d3-graph-gallery.com/graph/pie_changeData.html</a></li>
-                                <li><a href="https://bl.ocks.org/EfratVil/92f894ac0ba265192411e73f633a3e2f">https://bl.ocks.org/EfratVil/92f894ac0ba265192411e73f633a3e2f</a></li>
+                                    <li><a href="https://www.d3-graph-gallery.com/graph/pie_changeData.html">https://www.d3-graph-gallery.com/graph/pie_changeData.html</a></li>
+                                    <li><a href="https://bl.ocks.org/EfratVil/92f894ac0ba265192411e73f633a3e2f">https://bl.ocks.org/EfratVil/92f894ac0ba265192411e73f633a3e2f</a></li>
                             </ul>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
         <footer>
