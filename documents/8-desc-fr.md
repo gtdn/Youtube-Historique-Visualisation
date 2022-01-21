@@ -10,4 +10,4 @@ Nous avons récupérer ses données gràce à l'API de Google ([API Link](https:
 ### Web page du site 
 [Lien du site](https://gtdn.github.io/Youtube-Historique-Visualisation/)
 
-- Si vous souhaitez tester le site web sur vos données, suiver les instructions dans l'onglet Réfenrece, en bas de page du site web.
+- Si vous souhaitez tester le site web sur vos données, suivez les instructions dans l'onglet [Réference](https://gtdn.github.io/Youtube-Historique-Visualisation/ressources.html), en bas de page du site web.
