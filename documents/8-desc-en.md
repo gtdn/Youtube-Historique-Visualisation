@@ -10,4 +10,4 @@ We gathered our datas thanks to Google API ([API Link](https://console.cloud.goo
 ### Web page 
 [Web site link](https://gtdn.github.io/Youtube-Historique-Visualisation/)
 
-- If you wish to test this web site on your datas, follow the instructions in the Reference onglet, at the bottom of the page.
+- If you wish to test this web site on your datas, follow the instructions in the [Reference](https://gtdn.github.io/Youtube-Historique-Visualisation/ressources.html) onglet, at the bottom of the page.
