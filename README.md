@@ -2,7 +2,7 @@
 
 ### Membres du projet
 - Jauseau Baptiste - baptiste.jauseau@etu.univ-lyon1.fr
-- Lambert Timothé - timothee.lambert@etu.univ-lyon1.fr
+- Lambert Timothée - timothee.lambert@etu.univ-lyon1.fr
 - Savatez Quentin - quentin.savattez@etu.univ-lyon1.fr
 
 
